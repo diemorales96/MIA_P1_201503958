@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="MIA_P1"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="MIA_P1">
+				<Option output="/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/MIA_P1" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/diego/Escritorio/Proyectos/MIA_P1/."/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/Makefile&quot;  VERBOSE=1 MIA_P1"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="MIA_P1/fast">
+				<Option output="/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/MIA_P1" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/diego/Escritorio/Proyectos/MIA_P1/."/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/Makefile&quot;  VERBOSE=1 MIA_P1/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/comexec.cpp">
+			<Option target="MIA_P1"/>
+		</Unit>
+		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/comexec.h">
+			<Option target="MIA_P1"/>
+		</Unit>
+		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/disco.cpp">
+			<Option target="MIA_P1"/>
+		</Unit>
+		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/disco.h">
+			<Option target="MIA_P1"/>
+		</Unit>
+		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/fdisk.cpp">
+			<Option target="MIA_P1"/>
+		</Unit>
+		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/fdisk.h">
+			<Option target="MIA_P1"/>
+		</Unit>
+		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/main.cpp">
+			<Option target="MIA_P1"/>
+		</Unit>
+		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/parser.cpp">
+			<Option target="MIA_P1"/>
+		</Unit>
+		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/parser.h">
+			<Option target="MIA_P1"/>
+		</Unit>
+		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/scanner.cpp">
+			<Option target="MIA_P1"/>
+		</Unit>
+		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/scanner.h">
+			<Option target="MIA_P1"/>
+		</Unit>
+		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

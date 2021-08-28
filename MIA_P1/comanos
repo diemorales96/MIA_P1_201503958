@@ -1,0 +1,11 @@
+Compilar archivos cpp y h
+
+g++ *.cpp || *.h output
+
+Compilar archivos .l
+
+flex --header-file=scanner.h -o scanner.cpp lexico.l
+
+Compilar archivos .y
+
+bison -o parser.cpp --defines=parser.h parser.y

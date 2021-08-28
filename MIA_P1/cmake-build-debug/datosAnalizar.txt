@@ -1,0 +1,1 @@
+fdisk -type=E -path=/home/diego/Escritorio/s/disco1.dk -U=K -name=Particion4 -size=5
