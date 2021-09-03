@@ -144,6 +144,136 @@ CMakeFiles/MIA_P1.dir/comexec.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MIA_P1.dir/comexec.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/diego/Escritorio/Proyectos/MIA_P1/comexec.cpp -o CMakeFiles/MIA_P1.dir/comexec.cpp.s
 
+CMakeFiles/MIA_P1.dir/mount.cpp.o: CMakeFiles/MIA_P1.dir/flags.make
+CMakeFiles/MIA_P1.dir/mount.cpp.o: ../mount.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/MIA_P1.dir/mount.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MIA_P1.dir/mount.cpp.o -c /home/diego/Escritorio/Proyectos/MIA_P1/mount.cpp
+
+CMakeFiles/MIA_P1.dir/mount.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MIA_P1.dir/mount.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/diego/Escritorio/Proyectos/MIA_P1/mount.cpp > CMakeFiles/MIA_P1.dir/mount.cpp.i
+
+CMakeFiles/MIA_P1.dir/mount.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MIA_P1.dir/mount.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/diego/Escritorio/Proyectos/MIA_P1/mount.cpp -o CMakeFiles/MIA_P1.dir/mount.cpp.s
+
+CMakeFiles/MIA_P1.dir/mkfs.cpp.o: CMakeFiles/MIA_P1.dir/flags.make
+CMakeFiles/MIA_P1.dir/mkfs.cpp.o: ../mkfs.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/MIA_P1.dir/mkfs.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MIA_P1.dir/mkfs.cpp.o -c /home/diego/Escritorio/Proyectos/MIA_P1/mkfs.cpp
+
+CMakeFiles/MIA_P1.dir/mkfs.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MIA_P1.dir/mkfs.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/diego/Escritorio/Proyectos/MIA_P1/mkfs.cpp > CMakeFiles/MIA_P1.dir/mkfs.cpp.i
+
+CMakeFiles/MIA_P1.dir/mkfs.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MIA_P1.dir/mkfs.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/diego/Escritorio/Proyectos/MIA_P1/mkfs.cpp -o CMakeFiles/MIA_P1.dir/mkfs.cpp.s
+
+CMakeFiles/MIA_P1.dir/mkdir.cpp.o: CMakeFiles/MIA_P1.dir/flags.make
+CMakeFiles/MIA_P1.dir/mkdir.cpp.o: ../mkdir.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/MIA_P1.dir/mkdir.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MIA_P1.dir/mkdir.cpp.o -c /home/diego/Escritorio/Proyectos/MIA_P1/mkdir.cpp
+
+CMakeFiles/MIA_P1.dir/mkdir.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MIA_P1.dir/mkdir.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/diego/Escritorio/Proyectos/MIA_P1/mkdir.cpp > CMakeFiles/MIA_P1.dir/mkdir.cpp.i
+
+CMakeFiles/MIA_P1.dir/mkdir.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MIA_P1.dir/mkdir.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/diego/Escritorio/Proyectos/MIA_P1/mkdir.cpp -o CMakeFiles/MIA_P1.dir/mkdir.cpp.s
+
+CMakeFiles/MIA_P1.dir/touch.cpp.o: CMakeFiles/MIA_P1.dir/flags.make
+CMakeFiles/MIA_P1.dir/touch.cpp.o: ../touch.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/MIA_P1.dir/touch.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MIA_P1.dir/touch.cpp.o -c /home/diego/Escritorio/Proyectos/MIA_P1/touch.cpp
+
+CMakeFiles/MIA_P1.dir/touch.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MIA_P1.dir/touch.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/diego/Escritorio/Proyectos/MIA_P1/touch.cpp > CMakeFiles/MIA_P1.dir/touch.cpp.i
+
+CMakeFiles/MIA_P1.dir/touch.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MIA_P1.dir/touch.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/diego/Escritorio/Proyectos/MIA_P1/touch.cpp -o CMakeFiles/MIA_P1.dir/touch.cpp.s
+
+CMakeFiles/MIA_P1.dir/chmod.cpp.o: CMakeFiles/MIA_P1.dir/flags.make
+CMakeFiles/MIA_P1.dir/chmod.cpp.o: ../chmod.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/MIA_P1.dir/chmod.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MIA_P1.dir/chmod.cpp.o -c /home/diego/Escritorio/Proyectos/MIA_P1/chmod.cpp
+
+CMakeFiles/MIA_P1.dir/chmod.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MIA_P1.dir/chmod.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/diego/Escritorio/Proyectos/MIA_P1/chmod.cpp > CMakeFiles/MIA_P1.dir/chmod.cpp.i
+
+CMakeFiles/MIA_P1.dir/chmod.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MIA_P1.dir/chmod.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/diego/Escritorio/Proyectos/MIA_P1/chmod.cpp -o CMakeFiles/MIA_P1.dir/chmod.cpp.s
+
+CMakeFiles/MIA_P1.dir/ren.cpp.o: CMakeFiles/MIA_P1.dir/flags.make
+CMakeFiles/MIA_P1.dir/ren.cpp.o: ../ren.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/MIA_P1.dir/ren.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MIA_P1.dir/ren.cpp.o -c /home/diego/Escritorio/Proyectos/MIA_P1/ren.cpp
+
+CMakeFiles/MIA_P1.dir/ren.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MIA_P1.dir/ren.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/diego/Escritorio/Proyectos/MIA_P1/ren.cpp > CMakeFiles/MIA_P1.dir/ren.cpp.i
+
+CMakeFiles/MIA_P1.dir/ren.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MIA_P1.dir/ren.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/diego/Escritorio/Proyectos/MIA_P1/ren.cpp -o CMakeFiles/MIA_P1.dir/ren.cpp.s
+
+CMakeFiles/MIA_P1.dir/move.cpp.o: CMakeFiles/MIA_P1.dir/flags.make
+CMakeFiles/MIA_P1.dir/move.cpp.o: ../move.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/MIA_P1.dir/move.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MIA_P1.dir/move.cpp.o -c /home/diego/Escritorio/Proyectos/MIA_P1/move.cpp
+
+CMakeFiles/MIA_P1.dir/move.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MIA_P1.dir/move.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/diego/Escritorio/Proyectos/MIA_P1/move.cpp > CMakeFiles/MIA_P1.dir/move.cpp.i
+
+CMakeFiles/MIA_P1.dir/move.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MIA_P1.dir/move.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/diego/Escritorio/Proyectos/MIA_P1/move.cpp -o CMakeFiles/MIA_P1.dir/move.cpp.s
+
+CMakeFiles/MIA_P1.dir/cat.cpp.o: CMakeFiles/MIA_P1.dir/flags.make
+CMakeFiles/MIA_P1.dir/cat.cpp.o: ../cat.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/MIA_P1.dir/cat.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MIA_P1.dir/cat.cpp.o -c /home/diego/Escritorio/Proyectos/MIA_P1/cat.cpp
+
+CMakeFiles/MIA_P1.dir/cat.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MIA_P1.dir/cat.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/diego/Escritorio/Proyectos/MIA_P1/cat.cpp > CMakeFiles/MIA_P1.dir/cat.cpp.i
+
+CMakeFiles/MIA_P1.dir/cat.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MIA_P1.dir/cat.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/diego/Escritorio/Proyectos/MIA_P1/cat.cpp -o CMakeFiles/MIA_P1.dir/cat.cpp.s
+
+CMakeFiles/MIA_P1.dir/login.cpp.o: CMakeFiles/MIA_P1.dir/flags.make
+CMakeFiles/MIA_P1.dir/login.cpp.o: ../login.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/MIA_P1.dir/login.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MIA_P1.dir/login.cpp.o -c /home/diego/Escritorio/Proyectos/MIA_P1/login.cpp
+
+CMakeFiles/MIA_P1.dir/login.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MIA_P1.dir/login.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/diego/Escritorio/Proyectos/MIA_P1/login.cpp > CMakeFiles/MIA_P1.dir/login.cpp.i
+
+CMakeFiles/MIA_P1.dir/login.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MIA_P1.dir/login.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/diego/Escritorio/Proyectos/MIA_P1/login.cpp -o CMakeFiles/MIA_P1.dir/login.cpp.s
+
+CMakeFiles/MIA_P1.dir/find.cpp.o: CMakeFiles/MIA_P1.dir/flags.make
+CMakeFiles/MIA_P1.dir/find.cpp.o: ../find.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/MIA_P1.dir/find.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MIA_P1.dir/find.cpp.o -c /home/diego/Escritorio/Proyectos/MIA_P1/find.cpp
+
+CMakeFiles/MIA_P1.dir/find.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MIA_P1.dir/find.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/diego/Escritorio/Proyectos/MIA_P1/find.cpp > CMakeFiles/MIA_P1.dir/find.cpp.i
+
+CMakeFiles/MIA_P1.dir/find.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MIA_P1.dir/find.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/diego/Escritorio/Proyectos/MIA_P1/find.cpp -o CMakeFiles/MIA_P1.dir/find.cpp.s
+
 # Object files for target MIA_P1
 MIA_P1_OBJECTS = \
 "CMakeFiles/MIA_P1.dir/main.cpp.o" \
@@ -151,7 +281,17 @@ MIA_P1_OBJECTS = \
 "CMakeFiles/MIA_P1.dir/scanner.cpp.o" \
 "CMakeFiles/MIA_P1.dir/disco.cpp.o" \
 "CMakeFiles/MIA_P1.dir/fdisk.cpp.o" \
-"CMakeFiles/MIA_P1.dir/comexec.cpp.o"
+"CMakeFiles/MIA_P1.dir/comexec.cpp.o" \
+"CMakeFiles/MIA_P1.dir/mount.cpp.o" \
+"CMakeFiles/MIA_P1.dir/mkfs.cpp.o" \
+"CMakeFiles/MIA_P1.dir/mkdir.cpp.o" \
+"CMakeFiles/MIA_P1.dir/touch.cpp.o" \
+"CMakeFiles/MIA_P1.dir/chmod.cpp.o" \
+"CMakeFiles/MIA_P1.dir/ren.cpp.o" \
+"CMakeFiles/MIA_P1.dir/move.cpp.o" \
+"CMakeFiles/MIA_P1.dir/cat.cpp.o" \
+"CMakeFiles/MIA_P1.dir/login.cpp.o" \
+"CMakeFiles/MIA_P1.dir/find.cpp.o"
 
 # External object files for target MIA_P1
 MIA_P1_EXTERNAL_OBJECTS =
@@ -162,9 +302,19 @@ MIA_P1: CMakeFiles/MIA_P1.dir/scanner.cpp.o
 MIA_P1: CMakeFiles/MIA_P1.dir/disco.cpp.o
 MIA_P1: CMakeFiles/MIA_P1.dir/fdisk.cpp.o
 MIA_P1: CMakeFiles/MIA_P1.dir/comexec.cpp.o
+MIA_P1: CMakeFiles/MIA_P1.dir/mount.cpp.o
+MIA_P1: CMakeFiles/MIA_P1.dir/mkfs.cpp.o
+MIA_P1: CMakeFiles/MIA_P1.dir/mkdir.cpp.o
+MIA_P1: CMakeFiles/MIA_P1.dir/touch.cpp.o
+MIA_P1: CMakeFiles/MIA_P1.dir/chmod.cpp.o
+MIA_P1: CMakeFiles/MIA_P1.dir/ren.cpp.o
+MIA_P1: CMakeFiles/MIA_P1.dir/move.cpp.o
+MIA_P1: CMakeFiles/MIA_P1.dir/cat.cpp.o
+MIA_P1: CMakeFiles/MIA_P1.dir/login.cpp.o
+MIA_P1: CMakeFiles/MIA_P1.dir/find.cpp.o
 MIA_P1: CMakeFiles/MIA_P1.dir/build.make
 MIA_P1: CMakeFiles/MIA_P1.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable MIA_P1"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Linking CXX executable MIA_P1"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/MIA_P1.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -107,7 +107,7 @@ bool disco::verificarExtension(string path){
     }
 
     string str = vector[cont-1];
-    size_t found = str.find(".dk");
+    size_t found = str.find(".disk");
     if (found!=std::string::npos){
         cout << str <<endl;
         return  true;

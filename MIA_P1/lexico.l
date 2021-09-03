@@ -23,7 +23,7 @@ TkNumero        {Digito}+("."{Digito}+)?
 
 Letra           [a-zA-ZZñÑáéíóúÁÉÍÓÚ]
 
-Id              {Letra}({Letra}|"_"|{Digito})*
+Id              (({Digito}+)|{Letra})({Letra}|"_"|{Digito})*
 
 texto           \"[^\n"]+\"
 
@@ -35,11 +35,31 @@ Comentario	    "#"[^\r\n]*[^\r\n]
 
 %%
 
-"Mkdisk"			{	return (Mkdisk); }
-"Rmdisk"			{	return (Rmdisk); }
-"Exec"              {   return (Exec);   }
-"Pause"             {   return (Pause);  }
+"Mkdisk"			{	return (Mkdisk);  }
+"Rmdisk"			{	return (Rmdisk);  }
+"Exec"              {   return (Exec);    }
+"Pause"             {   return (Pause);   }
+"Mount"             {   return (Mount);   }
+"Unmount"           {   return (Unmount); }
 
+"login"             {   return (Login);   }
+"-user"             {   return (User);    }
+"-pwd"              {   return (Pwd);     }
+
+"ren"               {   return (Ren);     }
+
+
+"Mkfs"              {   return (Mkfs);    }
+"-fs"               {   return (Fs);      }
+"2fs"               {   return (Fs2);     }
+"3fs"               {   return (Fs3);     }
+
+"Mkdir"             {   return (Mkdir);   }
+
+"touch"             {   return (Touch);   }
+"-r"                {   return (R);       }
+"-cont"             {   return (Cont);    }
+"-stdin"            {   return (Stdin);    }
 
 "Fdisk"			    {	return (Fdisk); }
 
@@ -66,6 +86,13 @@ Comentario	    "#"[^\r\n]*[^\r\n]
 "k"					{	return (Kilo); 	}
 "m"					{	return (Mega); 	}
 
+"find"              {   return (Find);  }
+"*"                 {   return (Asterisco);   }
+"?"                 {   return (Interrogacion); }
+
+"chmod"             {   return (Chmod); }
+"-ugo"              {   return (Ugo);   }
+
 "-path"				{	return (Path); 	}
 
 "rep"				{	return (Rep); 	}
@@ -76,6 +103,7 @@ Comentario	    "#"[^\r\n]*[^\r\n]
 "="					{	return (TIgual); }
 "-" 				{	return (TMenos); }
 
+"-id"               {   return (Id); 	 }
 
 {TkNumero}			{	strcpy(yylval.TEXT, yytext); return (TNumero); }
 {texto}         	{ 	strcpy(yylval.TEXT, yytext); return (TTexto); }

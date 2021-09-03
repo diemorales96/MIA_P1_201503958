@@ -129,6 +129,54 @@ MIA_P1/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/build
 .PHONY : MIA_P1/fast
 
+cat.o: cat.cpp.o
+.PHONY : cat.o
+
+# target to build an object file
+cat.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/cat.cpp.o
+.PHONY : cat.cpp.o
+
+cat.i: cat.cpp.i
+.PHONY : cat.i
+
+# target to preprocess a source file
+cat.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/cat.cpp.i
+.PHONY : cat.cpp.i
+
+cat.s: cat.cpp.s
+.PHONY : cat.s
+
+# target to generate assembly for a file
+cat.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/cat.cpp.s
+.PHONY : cat.cpp.s
+
+chmod.o: chmod.cpp.o
+.PHONY : chmod.o
+
+# target to build an object file
+chmod.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/chmod.cpp.o
+.PHONY : chmod.cpp.o
+
+chmod.i: chmod.cpp.i
+.PHONY : chmod.i
+
+# target to preprocess a source file
+chmod.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/chmod.cpp.i
+.PHONY : chmod.cpp.i
+
+chmod.s: chmod.cpp.s
+.PHONY : chmod.s
+
+# target to generate assembly for a file
+chmod.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/chmod.cpp.s
+.PHONY : chmod.cpp.s
+
 comexec.o: comexec.cpp.o
 .PHONY : comexec.o
 
@@ -201,6 +249,54 @@ fdisk.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/fdisk.cpp.s
 .PHONY : fdisk.cpp.s
 
+find.o: find.cpp.o
+.PHONY : find.o
+
+# target to build an object file
+find.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/find.cpp.o
+.PHONY : find.cpp.o
+
+find.i: find.cpp.i
+.PHONY : find.i
+
+# target to preprocess a source file
+find.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/find.cpp.i
+.PHONY : find.cpp.i
+
+find.s: find.cpp.s
+.PHONY : find.s
+
+# target to generate assembly for a file
+find.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/find.cpp.s
+.PHONY : find.cpp.s
+
+login.o: login.cpp.o
+.PHONY : login.o
+
+# target to build an object file
+login.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/login.cpp.o
+.PHONY : login.cpp.o
+
+login.i: login.cpp.i
+.PHONY : login.i
+
+# target to preprocess a source file
+login.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/login.cpp.i
+.PHONY : login.cpp.i
+
+login.s: login.cpp.s
+.PHONY : login.s
+
+# target to generate assembly for a file
+login.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/login.cpp.s
+.PHONY : login.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -224,6 +320,102 @@ main.s: main.cpp.s
 main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/main.cpp.s
 .PHONY : main.cpp.s
+
+mkdir.o: mkdir.cpp.o
+.PHONY : mkdir.o
+
+# target to build an object file
+mkdir.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/mkdir.cpp.o
+.PHONY : mkdir.cpp.o
+
+mkdir.i: mkdir.cpp.i
+.PHONY : mkdir.i
+
+# target to preprocess a source file
+mkdir.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/mkdir.cpp.i
+.PHONY : mkdir.cpp.i
+
+mkdir.s: mkdir.cpp.s
+.PHONY : mkdir.s
+
+# target to generate assembly for a file
+mkdir.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/mkdir.cpp.s
+.PHONY : mkdir.cpp.s
+
+mkfs.o: mkfs.cpp.o
+.PHONY : mkfs.o
+
+# target to build an object file
+mkfs.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/mkfs.cpp.o
+.PHONY : mkfs.cpp.o
+
+mkfs.i: mkfs.cpp.i
+.PHONY : mkfs.i
+
+# target to preprocess a source file
+mkfs.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/mkfs.cpp.i
+.PHONY : mkfs.cpp.i
+
+mkfs.s: mkfs.cpp.s
+.PHONY : mkfs.s
+
+# target to generate assembly for a file
+mkfs.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/mkfs.cpp.s
+.PHONY : mkfs.cpp.s
+
+mount.o: mount.cpp.o
+.PHONY : mount.o
+
+# target to build an object file
+mount.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/mount.cpp.o
+.PHONY : mount.cpp.o
+
+mount.i: mount.cpp.i
+.PHONY : mount.i
+
+# target to preprocess a source file
+mount.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/mount.cpp.i
+.PHONY : mount.cpp.i
+
+mount.s: mount.cpp.s
+.PHONY : mount.s
+
+# target to generate assembly for a file
+mount.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/mount.cpp.s
+.PHONY : mount.cpp.s
+
+move.o: move.cpp.o
+.PHONY : move.o
+
+# target to build an object file
+move.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/move.cpp.o
+.PHONY : move.cpp.o
+
+move.i: move.cpp.i
+.PHONY : move.i
+
+# target to preprocess a source file
+move.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/move.cpp.i
+.PHONY : move.cpp.i
+
+move.s: move.cpp.s
+.PHONY : move.s
+
+# target to generate assembly for a file
+move.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/move.cpp.s
+.PHONY : move.cpp.s
 
 parser.o: parser.cpp.o
 .PHONY : parser.o
@@ -249,6 +441,30 @@ parser.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/parser.cpp.s
 .PHONY : parser.cpp.s
 
+ren.o: ren.cpp.o
+.PHONY : ren.o
+
+# target to build an object file
+ren.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/ren.cpp.o
+.PHONY : ren.cpp.o
+
+ren.i: ren.cpp.i
+.PHONY : ren.i
+
+# target to preprocess a source file
+ren.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/ren.cpp.i
+.PHONY : ren.cpp.i
+
+ren.s: ren.cpp.s
+.PHONY : ren.s
+
+# target to generate assembly for a file
+ren.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/ren.cpp.s
+.PHONY : ren.cpp.s
+
 scanner.o: scanner.cpp.o
 .PHONY : scanner.o
 
@@ -273,6 +489,30 @@ scanner.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/scanner.cpp.s
 .PHONY : scanner.cpp.s
 
+touch.o: touch.cpp.o
+.PHONY : touch.o
+
+# target to build an object file
+touch.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/touch.cpp.o
+.PHONY : touch.cpp.o
+
+touch.i: touch.cpp.i
+.PHONY : touch.i
+
+# target to preprocess a source file
+touch.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/touch.cpp.i
+.PHONY : touch.cpp.i
+
+touch.s: touch.cpp.s
+.PHONY : touch.s
+
+# target to generate assembly for a file
+touch.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/touch.cpp.s
+.PHONY : touch.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -282,6 +522,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... MIA_P1"
+	@echo "... cat.o"
+	@echo "... cat.i"
+	@echo "... cat.s"
+	@echo "... chmod.o"
+	@echo "... chmod.i"
+	@echo "... chmod.s"
 	@echo "... comexec.o"
 	@echo "... comexec.i"
 	@echo "... comexec.s"
@@ -291,15 +537,39 @@ help:
 	@echo "... fdisk.o"
 	@echo "... fdisk.i"
 	@echo "... fdisk.s"
+	@echo "... find.o"
+	@echo "... find.i"
+	@echo "... find.s"
+	@echo "... login.o"
+	@echo "... login.i"
+	@echo "... login.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... mkdir.o"
+	@echo "... mkdir.i"
+	@echo "... mkdir.s"
+	@echo "... mkfs.o"
+	@echo "... mkfs.i"
+	@echo "... mkfs.s"
+	@echo "... mount.o"
+	@echo "... mount.i"
+	@echo "... mount.s"
+	@echo "... move.o"
+	@echo "... move.i"
+	@echo "... move.s"
 	@echo "... parser.o"
 	@echo "... parser.i"
 	@echo "... parser.s"
+	@echo "... ren.o"
+	@echo "... ren.i"
+	@echo "... ren.s"
 	@echo "... scanner.o"
 	@echo "... scanner.i"
 	@echo "... scanner.s"
+	@echo "... touch.o"
+	@echo "... touch.i"
+	@echo "... touch.s"
 .PHONY : help
 
 

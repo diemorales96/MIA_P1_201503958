@@ -29,6 +29,6 @@ void comexec::analizar(string cadena){
     FILE * input = fopen("datosAnalizar.txt","r");
     yyrestart(input);
     if( yyparse() == 0 ){
-        cout << "Todo bien :) " <<endl;
+        cout << "****************************************************************************************************************** " <<endl;
     }
 }

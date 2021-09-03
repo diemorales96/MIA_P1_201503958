@@ -10,4 +10,4 @@ add_executable(MIA_P1
         parser.cpp
         parser.h
         scanner.cpp
-        scanner.h disco.cpp disco.h fdisk.cpp fdisk.h comexec.cpp comexec.h)
+        scanner.h disco.cpp disco.h fdisk.cpp fdisk.h comexec.cpp comexec.h mount.cpp mount.h mkfs.cpp mkfs.h mkdir.cpp mkdir.h touch.cpp touch.h chmod.cpp chmod.h ren.cpp ren.h move.cpp move.h cat.cpp cat.h login.cpp login.h find.cpp find.h)

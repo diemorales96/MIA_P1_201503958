@@ -36,7 +36,7 @@ typedef struct MBR{
 
 typedef  struct EBR{
     char part_status = '\0';
-    char pat_fit = '\0';
+    char part_fit = '\0';
     long int par_start = 0;
     long int part_size = 0;
     int part_next = 0;

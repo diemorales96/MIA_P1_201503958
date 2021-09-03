@@ -64,25 +64,46 @@ extern int yydebug;
     Rmdisk = 270,
     Exec = 271,
     Pause = 272,
-    Fdisk = 273,
-    Type = 274,
-    Delete = 275,
-    Name = 276,
-    Add = 277,
-    P = 278,
-    E = 279,
-    L = 280,
-    Fast = 281,
-    Full = 282,
-    Units = 283,
-    Rep = 284,
-    Mbr = 285,
-    Disk = 286,
-    TIgual = 287,
-    TTexto = 288,
-    TID = 289,
-    TCara = 290,
-    TMenos = 291
+    Mount = 273,
+    Unmount = 274,
+    Id = 275,
+    Fdisk = 276,
+    Type = 277,
+    Delete = 278,
+    Name = 279,
+    Add = 280,
+    P = 281,
+    E = 282,
+    L = 283,
+    Fast = 284,
+    Full = 285,
+    Units = 286,
+    Touch = 287,
+    R = 288,
+    Cont = 289,
+    Stdin = 290,
+    Mkfs = 291,
+    Fs = 292,
+    Fs2 = 293,
+    Fs3 = 294,
+    Mkdir = 295,
+    Find = 296,
+    Asterisco = 297,
+    Interrogacion = 298,
+    Login = 299,
+    User = 300,
+    Pwd = 301,
+    Ren = 302,
+    Chmod = 303,
+    Ugo = 304,
+    Rep = 305,
+    Mbr = 306,
+    Disk = 307,
+    TIgual = 308,
+    TTexto = 309,
+    TID = 310,
+    TCara = 311,
+    TMenos = 312
   };
 #endif
 
@@ -90,11 +111,11 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 47 "parser.y"
+#line 74 "parser.y"
 
     char TEXT [256];
 
-#line 98 "parser.h"
+#line 119 "parser.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

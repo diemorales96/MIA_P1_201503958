@@ -84,6 +84,18 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/cat.cpp">
+			<Option target="MIA_P1"/>
+		</Unit>
+		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/cat.h">
+			<Option target="MIA_P1"/>
+		</Unit>
+		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/chmod.cpp">
+			<Option target="MIA_P1"/>
+		</Unit>
+		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/chmod.h">
+			<Option target="MIA_P1"/>
+		</Unit>
 		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/comexec.cpp">
 			<Option target="MIA_P1"/>
 		</Unit>
@@ -102,7 +114,43 @@
 		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/fdisk.h">
 			<Option target="MIA_P1"/>
 		</Unit>
+		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/find.cpp">
+			<Option target="MIA_P1"/>
+		</Unit>
+		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/find.h">
+			<Option target="MIA_P1"/>
+		</Unit>
+		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/login.cpp">
+			<Option target="MIA_P1"/>
+		</Unit>
+		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/login.h">
+			<Option target="MIA_P1"/>
+		</Unit>
 		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/main.cpp">
+			<Option target="MIA_P1"/>
+		</Unit>
+		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/mkdir.cpp">
+			<Option target="MIA_P1"/>
+		</Unit>
+		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/mkdir.h">
+			<Option target="MIA_P1"/>
+		</Unit>
+		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/mkfs.cpp">
+			<Option target="MIA_P1"/>
+		</Unit>
+		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/mkfs.h">
+			<Option target="MIA_P1"/>
+		</Unit>
+		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/mount.cpp">
+			<Option target="MIA_P1"/>
+		</Unit>
+		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/mount.h">
+			<Option target="MIA_P1"/>
+		</Unit>
+		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/move.cpp">
+			<Option target="MIA_P1"/>
+		</Unit>
+		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/move.h">
 			<Option target="MIA_P1"/>
 		</Unit>
 		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/parser.cpp">
@@ -111,10 +159,22 @@
 		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/parser.h">
 			<Option target="MIA_P1"/>
 		</Unit>
+		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/ren.cpp">
+			<Option target="MIA_P1"/>
+		</Unit>
+		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/ren.h">
+			<Option target="MIA_P1"/>
+		</Unit>
 		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/scanner.cpp">
 			<Option target="MIA_P1"/>
 		</Unit>
 		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/scanner.h">
+			<Option target="MIA_P1"/>
+		</Unit>
+		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/touch.cpp">
+			<Option target="MIA_P1"/>
+		</Unit>
+		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/touch.h">
 			<Option target="MIA_P1"/>
 		</Unit>
 		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/CMakeLists.txt">

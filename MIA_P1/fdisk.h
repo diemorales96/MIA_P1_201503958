@@ -21,6 +21,10 @@ public:
     static void crearParticion(string tam, string uni, string pat, string fi, string typ, string nam );
     static void crearPrimaria(string pat, char typ, char fi, long tam, string nam);
     static void crearExtendida(string pat, char typ, char fi, long tam, string nam);
+    static void crearLogica(string pat, char typ,char fi,long tam,string name);
+
+
+    static void extenderParticion();
 
     static void eliminarP(string nam, string pat, string tipo);
     static void eliminarParticion(string nam, string pat, string tipo);

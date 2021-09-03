@@ -51,13 +51,8 @@ void analizar(string cadena){
     FILE * input = fopen("datosAnalizar.txt","r");
     yyrestart(input);
     if( yyparse() == 0 ){
-        cout << "Todo bien :) " <<endl;
+        cout << "****************************************************************************************************************** " <<endl;
     }
 }
 
-
-//mkdisk -size=10 -path=/home/diego/Escritorio/s/disco1.dk
-//rmdisk -path=/home/diego/Escritorio/s/disco1.dk
-//home/diego/Escritorio/salidas/Entrada.sh
-//fdisk -Size=300 -path=/home/diego/Escritorio/s/disco1.dk -name=Particion1
 //exec -path=/home/diego/Escritorio/s/salida.txt
