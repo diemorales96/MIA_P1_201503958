@@ -99,11 +99,14 @@ extern int yydebug;
     Rep = 305,
     Mbr = 306,
     Disk = 307,
-    TIgual = 308,
-    TTexto = 309,
-    TID = 310,
-    TCara = 311,
-    TMenos = 312
+    Sb = 308,
+    TIgual = 309,
+    TTexto = 310,
+    TID = 311,
+    TCara = 312,
+    TMenos = 313,
+    Cat = 314,
+    File = 315
   };
 #endif
 
@@ -111,11 +114,11 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 74 "parser.y"
+#line 82 "parser.y"
 
     char TEXT [256];
 
-#line 119 "parser.h"
+#line 122 "parser.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

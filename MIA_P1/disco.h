@@ -58,6 +58,10 @@ public:
     static void f( char cadena[]);
     static int aleatorio();
 
+    static void repoteMBR(string id, string path);
+    static void reporteDisco(string id, string path);
+    static void generarGraficaDisk(MBR &mbr,string destino,string disco,FILE *archivo);
+    static double obtenerPorcentaje(int tamanio,int tamanioTotal);
 public:
     disco();
 };

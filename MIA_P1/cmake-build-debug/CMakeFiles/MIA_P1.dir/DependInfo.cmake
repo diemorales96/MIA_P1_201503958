@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/diego/Escritorio/Proyectos/MIA_P1/arbol.cpp" "/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/CMakeFiles/MIA_P1.dir/arbol.cpp.o"
   "/home/diego/Escritorio/Proyectos/MIA_P1/cat.cpp" "/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/CMakeFiles/MIA_P1.dir/cat.cpp.o"
   "/home/diego/Escritorio/Proyectos/MIA_P1/chmod.cpp" "/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/CMakeFiles/MIA_P1.dir/chmod.cpp.o"
   "/home/diego/Escritorio/Proyectos/MIA_P1/comexec.cpp" "/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/CMakeFiles/MIA_P1.dir/comexec.cpp.o"

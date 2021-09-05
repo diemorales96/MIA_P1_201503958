@@ -190,6 +190,9 @@ void touch::crearArchivo(string path, string r, string Pname, string cont, strin
                                     for(int s = 0; s < nuevaC.contenido.size();s++){
                                         fseek(archivo,aux.s_block_start +(64*(aux.s_blocks_count + 1+ s)),SEEK_SET);
                                         fwrite(&nuevaC.contenido[s],64,1,archivo);
+                                        if (s >= 1){
+                                            nuevaT.i_block[s] = aux.s_blocks_count + 1 +s;
+                                        }
                                     }
                                 }else{
                                     BloqueArchivos nuevobloque;

@@ -19,6 +19,8 @@
 #include "move.h"
 #include "find.h"
 #include "chmod.h"
+#include "cat.h"
+
 
 using namespace std;
 
@@ -57,6 +59,12 @@ static string path_find = "", name_find = "", termina_find_ast = "", termina_fin
 
 static int pathCh = 0,ugoCh = 0,rCh = 0;
 static string pathChmod = "",ugoChmod = "", rChmod = "";
+
+static int mbrRep = 0,pathRep = 0,idRep = 0,nameRep = 0,sbRep = 0,diskRep = 0;
+static string pathReporte = "",id_Reporte = "";
+
+static int fileC = 0;
+static string fileCat = "";
 
 //********************ERRORES
 int yyerror(const char* mens){
@@ -101,12 +109,10 @@ int yyerror(const char* mens){
 
 %token<TEXT>  Ren
 %token<TEXT>  Chmod Ugo
-%token<TEXT>  Rep Mbr Disk
+%token<TEXT>  Rep Mbr Disk Sb
 %token<TEXT>  TIgual TTexto TID TCara
-%token<TEXT>  TMenos 
-
-
-
+%token<TEXT>  TMenos
+%token<TEXT>  Cat File
 
 
 //****************************** NO TERMINALES
@@ -136,6 +142,9 @@ int yyerror(const char* mens){
 
 %type<TEXT> CHMOD CUERPO_CHMOD COMMAND_CHMOD
 
+%type<TEXT> REP CUERPO_REP COMMAND_REP TIPO_REP
+
+%type<TEXT> CAT CUERPO_CAT COMMAND_CAT
 
 %start S
 
@@ -163,7 +172,9 @@ SENTENCIAS      	: MKDISK	{}
 			| LOGIN		{}
 			| REN		{}
 			| FIND		{}
-			| CHMOD		{};
+			| CHMOD		{}
+			| REP		{}
+			| CAT		{};
 
 //--------------------------------------MKDISK---------------------------------------------------------
 MKDISK          	: Mkdisk CUERPO_MKDISK    {
@@ -493,6 +504,74 @@ CUERPO_CHMOD 		: CUERPO_CHMOD COMMAND_CHMOD	{}
 COMMAND_CHMOD		: Path TIgual DIRECCION		{ pathCh = 1; pathChmod = $3; }
 			| Ugo TIgual TNumero		{ ugoCh = 1; ugoChmod = $3; }
 			| R 				{ rCh = 1; rChmod = "r"; };
+//------------------------------------- REP -----------------------------------------------------------------
+
+REP 			: Rep CUERPO_REP		{
+	if(idRep == 1 && pathRep == 1 && nameRep == 1){
+		if(mbrRep == 1){
+			if(comDisc == 1){
+				pathReporte = disco::quitarComillas(pathReporte);
+				disco::repoteMBR(id_Reporte,pathReporte);
+			}else{
+				disco::repoteMBR(id_Reporte,pathReporte);
+			}
+
+		}else if (sbRep == 1){
+			if(comDisc == 1){
+				pathReporte = disco::quitarComillas(pathReporte);
+				mkdir::ReporteSuperBloque(id_Reporte, pathReporte);
+			}else{
+				mkdir::ReporteSuperBloque(id_Reporte, pathReporte);
+			}
+		}else if(diskRep == 1){
+			if(comDisc == 1){
+				pathReporte = disco::quitarComillas(pathReporte);
+				disco::reporteDisco(id_Reporte, pathReporte);
+			}else{
+				disco::reporteDisco(id_Reporte, pathReporte);
+			}
+		}else{
+			cout<<"error en parametro name";
+		}
+	}else{
+		cout<<"Falta un parametro"<<endl;
+	}
+	idRep = 0; pathRep = 0; nameRep = 0;
+	mbrRep = 0; comDisc = 0; pathReporte = ""; id_Reporte = ""; sbRep = 0; diskRep = 0;
+};
+
+CUERPO_REP 		: CUERPO_REP COMMAND_REP	{}
+			|COMMAND_REP			{};
+
+COMMAND_REP		: Id TIgual TID 		{ idRep = 1; id_Reporte = $3; }
+			| Path TIgual DIRECCION		{ pathRep = 1; pathReporte = pathMount; }
+			|Name TIgual TIPO_REP		{ nameRep = 1; };
+
+TIPO_REP		: Mbr 				{ mbrRep = 1; }
+			| Sb				{ sbRep = 1; }
+			| Disk				{ diskRep = 1; };
+//------------------------------------- CAT -----------------------------------------------------------------
+
+CAT 			: Cat CUERPO_CAT		{
+	if(fileC == 1){
+		if(comDisc == 1){
+			pathReporte = disco::quitarComillas(pathReporte);
+                        cat::ContentA(fileCat, "581a");
+		}else{
+			cat::ContentA(fileCat, "581a");
+		}
+	}else{
+		cout <<"Fal el comando file"<<endl;
+	}
+
+};
+
+CUERPO_CAT		: CUERPO_CAT COMMAND_CAT	{}
+			| COMMAND_CAT			{};
+
+COMMAND_CAT 		: File TNumero TIgual DIRECCION	{ fileC = 1; fileCat = pathMount; };
+
+
 %%
 
 

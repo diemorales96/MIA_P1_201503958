@@ -1,1 +1,1 @@
-mkdir -path=/home
+rep -id=581a -Path=/home/diego/Escritorio/s/reporte3.png -name=disk

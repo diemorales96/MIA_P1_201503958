@@ -1,0 +1,28 @@
+digraph DISK{
+    Disk[
+    shape=plaintext
+    label=<
+    <table border='1' cellborder='1'>
+    <tr><td>MBR</td>
+     <td>Particion1(Primaria)<br/>     <br/>33.340894%</td>
+     <td>
+     <table border = '1' cellborder = '1'>
+      <tr>
+     <td>Particion2(EXTENDIDA)<br/>     <br/>33.340894%</td></tr>
+        <tr><td>
+            <table border = '1' cellborder = '1'>
+            <tr>
+      <td>EBR</td>
+      <td>LOGICA - Particion3            </td>
+      <td>EBR</td>
+        </tr></table>
+        </td>
+        </tr>
+        </table>
+        </td>
+     <td>PART3<br/>0%</td>
+     <td>PART4<br/>0%</td>
+     <td>LIBRE <br/>33.318211%</td>
+    </tr>    </table>
+    >];
+}

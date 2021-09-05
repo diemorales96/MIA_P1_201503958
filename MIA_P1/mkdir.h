@@ -17,6 +17,8 @@ public:
     static Inodo CInodo(char fechaActual[], int bloque,char tipo);
     static BloqueCarpetas CbloqueC(int actual, int padre);
     static BloqueApuntadores Capunt();
+    static void ReporteSuperBloque(string id, string path);
+
 
 };
 

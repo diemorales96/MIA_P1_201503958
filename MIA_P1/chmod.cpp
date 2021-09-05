@@ -77,12 +77,12 @@ void chmod::cambiarP(string path, string p, string UGO, string id)
                         {
                             if (i + 1 == contador)
                             {
+                                fseek(archivo,aux.s_inode_start+(sizeof(Inodo)*siguienteI),SEEK_SET);
+                                fread(&aux2, sizeof(Inodo), 1, archivo);
                                 aux2.i_perm=atoi(UGO.c_str());
                                 strcpy(aux2.i_mtime,fechaActual);
                                 fseek(archivo,aux.s_inode_start+(sizeof(Inodo)*siguienteI),SEEK_SET);
                                 fwrite(&aux2,sizeof(Inodo),1,archivo);
-                                fseek(archivo,aux.s_inode_start+(sizeof(Inodo)*siguienteI),SEEK_SET);
-                                fread(&aux2, sizeof(Inodo), 1, archivo);
                                 break;
                             }
                             fseek(archivo, aux.s_inode_start + (sizeof(Inodo) * siguienteI), SEEK_SET);

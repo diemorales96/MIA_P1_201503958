@@ -48,10 +48,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /snap/clion/163/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /home/diego/Escritorio/Clion/clion-2021.2/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /snap/clion/163/bin/cmake/linux/bin/cmake -E rm -f
+RM = /home/diego/Escritorio/Clion/clion-2021.2/bin/cmake/linux/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -68,7 +68,7 @@ CMAKE_BINARY_DIR = /home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/snap/clion/163/bin/cmake/linux/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/home/diego/Escritorio/Clion/clion-2021.2/bin/cmake/linux/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -78,7 +78,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/snap/clion/163/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/home/diego/Escritorio/Clion/clion-2021.2/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -128,6 +128,30 @@ MIA_P1: cmake_check_build_system
 MIA_P1/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/build
 .PHONY : MIA_P1/fast
+
+arbol.o: arbol.cpp.o
+.PHONY : arbol.o
+
+# target to build an object file
+arbol.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/arbol.cpp.o
+.PHONY : arbol.cpp.o
+
+arbol.i: arbol.cpp.i
+.PHONY : arbol.i
+
+# target to preprocess a source file
+arbol.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/arbol.cpp.i
+.PHONY : arbol.cpp.i
+
+arbol.s: arbol.cpp.s
+.PHONY : arbol.s
+
+# target to generate assembly for a file
+arbol.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/arbol.cpp.s
+.PHONY : arbol.cpp.s
 
 cat.o: cat.cpp.o
 .PHONY : cat.o
@@ -522,6 +546,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... MIA_P1"
+	@echo "... arbol.o"
+	@echo "... arbol.i"
+	@echo "... arbol.s"
 	@echo "... cat.o"
 	@echo "... cat.i"
 	@echo "... cat.s"

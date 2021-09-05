@@ -98,7 +98,10 @@ Comentario	    "#"[^\r\n]*[^\r\n]
 "rep"				{	return (Rep); 	}
 "mbr"				{	return (Mbr); 	}
 "disk"				{	return (Disk); 	}
+"sb"                {   return (Sb);    }
 
+"cat"               {   return (Cat);   }
+"-file"             {   return (File);  }
 
 "="					{	return (TIgual); }
 "-" 				{	return (TMenos); }

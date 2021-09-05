@@ -6,7 +6,6 @@
 
 string find::buscar(int uno, int varios, string path, string name, string id)
 {
-    //string ruta[50];
     vector<string> f;
     if (uno == 1 || varios == 1){
         name = "." + name;
@@ -14,9 +13,8 @@ string find::buscar(int uno, int varios, string path, string name, string id)
 
     listMounted particion;
     particion = mount::recorrerLista(id);
-    //Mkdir::Separar(path, ruta);
     FILE *archivo;
-    archivo = fopen(particion.path.c_str(), "rb+");
+    archivo = fopen(particion.path.c_str(), "rb");
     int contador = 0;
     if (path != "/")
     {
@@ -109,8 +107,7 @@ string find::buscar(int uno, int varios, string path, string name, string id)
 vector <string> reporte;
 void find::buscarTodo(string dire, int uno, int varios, int siguienteI, int inicioP, string sufijo,FILE *archivo)
 {
-    //FILE *archivo;
-    //archivo = fopen(dire.c_str(), "rb");
+
     SuperBloque aux;
     Inodo aux2;
     BloqueCarpetas aux3;
@@ -137,7 +134,7 @@ void find::buscarTodo(string dire, int uno, int varios, int siguienteI, int inic
                             cout<<"Nombre archivo: "<< nombre<<endl;
                             reporte.push_back(nombre);
                         }else if(sufijo == aux3.b_content[j].b_name){
-                            cout<<"Nombre archivo: "<< nombre<<endl;
+                            cout<<"Nombre carpeta: "<< nombre<<endl;
                             reporte.push_back(nombre);
                         }
                         else

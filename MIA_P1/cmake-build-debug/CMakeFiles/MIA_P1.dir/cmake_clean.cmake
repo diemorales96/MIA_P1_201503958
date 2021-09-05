@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/MIA_P1.dir/arbol.cpp.o"
   "CMakeFiles/MIA_P1.dir/cat.cpp.o"
   "CMakeFiles/MIA_P1.dir/chmod.cpp.o"
   "CMakeFiles/MIA_P1.dir/comexec.cpp.o"

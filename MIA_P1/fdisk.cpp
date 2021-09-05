@@ -73,7 +73,23 @@ void fdisk::crearParticion(string tam, string uni, string pat, string fi, string
         }else{
 
             //cout << "No logre crear particiones logicas "<< endl;
-            crearLogica(pat,'L',fit,tama,nam);
+            FILE *archivo;
+            char ruta[500];
+            strcpy(ruta, pat.c_str());
+            archivo = fopen(ruta,"rb+");
+            MBR mbr;
+            rewind(archivo);
+            fread(&mbr,sizeof(MBR),1,archivo);
+
+            for(int i =0; i < 4; i++){
+                if(mbr.mbr_partition[i].part_status == 'V' && mbr.mbr_partition[i].part_type=='E'){
+                    crearLogica(archivo,mbr.mbr_partition[i].part_start,mbr.mbr_tamano,uni,fit,typ,nam,tama);
+                    fclose(archivo);
+                    return;
+
+                }
+            }
+
         }
     }else{
         printf("ERROR: El parametro de type no es valido.\n");
@@ -769,192 +785,137 @@ void fdisk::crearExtendida(string pat, char typ, char fi, long tam, string nam){
     //---- Cerrar el archivo
     fclose(fileC);
 }
+//|EBR1|LOGICA|EBR2|
+void fdisk::crearLogica(FILE *archivo, int inicio, int total,string uni,char fi,string typ,string nam , int tamanio_particion)
+{
+    EBR ebr;
+    fseek(archivo, inicio, SEEK_SET);
+    fread(&ebr, sizeof(EBR), 1, archivo);
 
-void fdisk::crearLogica(string pat, char typ, char fi, long tam, string name) {
-    char ruta[500];
-    strcpy(ruta,pat.c_str());
-    FILE *fileC;
-    fileC= fopen(ruta,"rb+");
-    rewind(fileC);
-    MBR mbr;
+    if (ebr.part_status == 'F')
+    {
+        //Se escribe el estado la particion
+        ebr.part_status = 'V';
 
-    fseek(fileC, 0, SEEK_SET);
-    fread(&mbr, sizeof(MBR), 1, fileC);
-    int c = 0;
-    for(int i = 0; i < 4; i++){
-        if(mbr.mbr_partition[i].part_type == 'E' && mbr.mbr_partition[i].part_status == 'V'){
-            cout << "Se va a crear una Logica"<<endl;
-
-            int tamcompleto = tam +sizeof(EBR);
-            if(mbr.mbr_partition[i].part_size < tamcompleto){
-                cout << "La particion sobre pasa el tamaño de la particion extendida"<<endl;
-            }else{
-                EBR ebr;
-                Partition part;
-
-                fseek(fileC, mbr.mbr_partition[i].part_start, SEEK_SET);
-                fread(&ebr, sizeof(EBR), 1, fileC);
-
-                if(ebr.part_status == 'F'){
-
-                    ebr.part_status = 'V';
-                    ebr.par_start = mbr.mbr_partition[i].part_start+ (sizeof(EBR))+1;
-                    ebr.part_size = tam;
-                    ebr.part_fit = fi;
-                    ebr.part_next = mbr.mbr_partition[i].part_start+ (sizeof(EBR)) + tam + 1;
-                    strcpy(ebr.part_name,name.c_str());
-                    fseek(fileC, mbr.mbr_partition[i].part_start, SEEK_SET);
-                    fwrite(&ebr, sizeof(EBR), 1, fileC);
-
-                    fseek(fileC, mbr.mbr_partition[i].part_start+(sizeof(EBR))+1, SEEK_SET);
-                    fread(&part, sizeof(Partition), 1, fileC);
-                    part.part_status = 'V';
-                    part.part_start = mbr.mbr_partition[i].part_start +(sizeof(EBR))+1;
-                    strcpy(part.part_name,name.c_str());
-                    part.part_size = tam;
-                    part.part_fit = fi;
-                    fseek(fileC, mbr.mbr_partition[i].part_start+(sizeof(EBR))+1, SEEK_SET);
-                    fwrite(&part, sizeof(Partition), 1, fileC);
-
-
-                    fseek(fileC, ebr.part_next, SEEK_SET);
-                    fwrite(&ebr, sizeof(EBR), 1, fileC);
-                    EBR aux;
-                    aux.part_status = 'F';
-                    aux.part_size = -1;
-                    aux.part_next = -1;
-                    fseek(fileC, ebr.part_next, SEEK_SET);
-                    fwrite(&aux, sizeof(EBR), 1, fileC);
-                    fclose(fileC);
-                }else{
-                    EBR temp;
-                    int comp = 0;
-                    int tamreal = 0;
-                    vector<espacio> esp;
-                    // |EBR| LOGICA | EBR2|
-
-                    for(int j = 0; j < 5; j++) {
-                        comp = (mbr.mbr_partition[i].part_size - (temp.par_start +temp.part_size+ sizeof(EBR)));
-                        tamreal  = (tam +sizeof(EBR));
-                        if(ebr.part_next != -1){
-                            if (ebr.part_next - ebr.par_start == ebr.part_size) {
-                                temp = ebr;
-                                fseek(fileC, ebr.part_next, SEEK_SET);
-                                fread(&ebr, sizeof(EBR), 1, fileC);
-                            }else{
-                                temp = ebr;
-                                espacio nuevo;
-                                nuevo.inicio = ebr.par_start;
-                                nuevo.final = ebr.par_start + ebr.part_size;
-                                nuevo.particion = ebr.part_name;
-                                esp.push_back(nuevo);
-                                fseek(fileC, ebr.part_next, SEEK_SET);
-                                fread(&ebr, sizeof(EBR), 1, fileC);
-                            }
-
-                        }else if(comp >= tamreal){
-                            espacio nuevo;
-                            nuevo.inicio = temp.part_next + sizeof(EBR);
-                            nuevo.final = mbr.mbr_partition[i].part_size;
-                            nuevo.particion = "";
-                            esp.push_back(nuevo);
-                            break;
-                        }
-                    }
-                    espacio temporal;
-                    for (int i = 0; i < esp.size(); i++){
-                        for (int j = 0; j< esp.size()-1; j++){
-                            if (esp[j].inicio > esp[j+1].inicio){
-                                temporal = esp[j];
-                                esp[j] = esp[j+1];
-                                esp[j+1] = temporal;
-                            }
-                        }
-                    }
-                    //FIT
-                    fseek(fileC, mbr.mbr_partition[i].part_start, SEEK_SET);
-                    fread(&ebr, sizeof(EBR), 1, fileC);
-                    for(int j = 0; j < 5; j++) {
-                        if (mbr.mbr_partition[i].part_fit == 'F') {
-                            //----Buscar espacio
-                            espacio nTemp;
-                            bool hayEspacio = false;
-                            long int restaFI = 0;
-
-                            for (int i = 0; i < esp.size(); i++) {
-                                restaFI = esp[i].final -esp[i].inicio;
-                                if (restaFI >= tam) {
-                                    nTemp.inicio = esp[i].inicio;
-                                    nTemp.final = esp[i].inicio + tam;
-                                    nTemp.particion = esp[i].particion;
-                                    hayEspacio = true;
-                                    break;
-                                }
-
-                                if (i == (esp.size() - 1)) {
-                                    restaFI = mbr.mbr_partition[i].part_size - esp[i].final;
-                                    if (restaFI >= tam) {
-                                        nTemp.inicio = esp[i].final + 1;
-                                        nTemp.particion = esp[i].particion;
-                                        hayEspacio = true;
-                                        break;
-                                    }
-                                }
-                            }
-
-                            if (hayEspacio == true) {
-                                cout << "Insertar despues de: " << nTemp.particion << ", IN: " << nTemp.inicio << endl;
-
-                                int BcreoP = 0;
-                                for (int k = 0; k < 5; k++) {
-                                    //if ((part.part_status == 'F') && BcreoP == 0) {
-                                    part.part_status = 'V';
-                                    part.part_type = typ;
-                                    part.part_fit = fi;
-                                    part.part_start = nTemp.inicio;
-                                    part.part_size = tam;
-                                    part.part_name, name.c_str();
-
-                                    fseek(fileC, nTemp.inicio, SEEK_SET);
-                                    fwrite(&part, sizeof(MBR), 1, fileC);
-                                    printf("AVISO: Particion primaria creada correctamente. Se almaceno en la P1\n");
-                                    BcreoP = 1;
-                                    //}
-                                    break;
-                                }
-
-                            } else {
-                                cout << "ERROR: No existe espacio suficiente para almacenar la particion" << endl;
-                                cout << "AVISO: No se creara la particion primaria" << endl;
-                            }
-                        }
-                    }
-                }
-            }
-            cout<<"Se creo correctamente la particion Logica";
-            break;
+        //Tipo de fit
+        if (fi == 'B' || fi == 'b' || fi == 'bf')
+        {
+            ebr.part_fit = 'B';
         }
-        c ++;
-    }
-    if(c == 4){
-        fclose(fileC);
-        cout << "No existe una particion extendida para poder crear una partcion logica"<<endl;
-    }
-    fileC= fopen(ruta,"rb+");
-    rewind(fileC);
-    MBR a;
-    EBR b;
-    EBR d;
-    fseek(fileC, 0, SEEK_SET);
-    fread(&a, sizeof(MBR), 1, fileC);
-    fseek(fileC, a.mbr_partition[0].part_start, SEEK_SET);
-    fread(&b, sizeof(EBR), 1, fileC);
-    rewind(fileC);
-    fseek(fileC, b.part_next, SEEK_SET);
-    fread(&d, sizeof(EBR), 1, fileC);
-    cout<<"asdf";
-}
+        else if (fi == 'F' || fi == 'f' || fi == 'ff')
+        {
+            ebr.part_fit = 'F';
+        }
+        else if (fi == 'W' || fi == 'w' || fi == 'wf')
+        {
+            ebr.part_fit = 'W';
+        }
+        else
+        {
+            cout << "No se eligió un tipo de ajuste, La entrada fue: \"" << typ << "\"" << endl;
+        }
 
+        //Se escribe donde empieza la particion
+        ebr.par_start = inicio + sizeof(EBR);
+        //En caso de que el ebr sea el ultimo de la lista
+        if (ebr.part_next == -1)
+        {
+            //Se escribe el tamaño de la particion
+
+            ebr.part_size = tamanio_particion;
+
+            //Se verifica si hay espacio para la particion
+            if ((ebr.part_size + ebr.par_start) <= total)
+            {
+                //Se escribe donde sigue el otro ebr
+                ebr.part_next = ebr.par_start + ebr.part_size;
+            }
+            else
+            {
+                cout << "La partición: \"" << nam << "\" sobrepasa el espacio disponible" << endl;
+                return;
+            }
+
+            //Se escribe el nombre de la particion
+            strcpy(ebr.part_name, nam.c_str());
+
+            cout << "Partición: \"" << nam << "\" creada" << endl;
+
+            //Se modifica el EBR
+            fseek(archivo, inicio, SEEK_SET);
+            fwrite(&ebr, sizeof(EBR), 1, archivo);
+
+            //Se crea el siguiente EBR
+            EBR ebr_siguiente;
+            ebr_siguiente.part_fit = '-';
+            ebr_siguiente.part_next = -1;
+            ebr_siguiente.part_size = -1;
+            ebr_siguiente.par_start = -1;
+            ebr_siguiente.part_status = 'F';
+            ebr_siguiente.part_name[0] = '\0';
+            fseek(archivo, ebr.part_next, SEEK_SET);
+            fwrite(&ebr_siguiente, sizeof(EBR), 1, archivo);
+        }
+            //Este es en caso de que el ebr se encuentre entre otro
+        else
+        {
+            //Se crea el siguiente EBR
+            EBR ebr_siguiente;
+            ebr_siguiente.part_fit = '-';
+            ebr_siguiente.part_next = -1;
+            ebr_siguiente.part_size = -1;
+            ebr_siguiente.par_start = -1;
+            ebr_siguiente.part_status = 'F';
+            ebr_siguiente.part_name[0] = '\0';
+
+            //Se verifica si se usa todo el espacio
+            if (tamanio_particion == ebr.part_size)
+            {
+                strcpy(ebr.part_name, nam.c_str());
+
+                cout << "Partición: \"" << nam << "\" creada" << endl;
+
+                //Se modifica el EBR
+                fseek(archivo, inicio, SEEK_SET);
+                fwrite(&ebr, sizeof(EBR), 1, archivo);
+            }
+                //En caso de que sea menor, entonces se divide en 2
+            else if (tamanio_particion < ebr.part_size)
+            {
+                //Se crea el ebr siguiente para no perder la conexion
+                ebr_siguiente.part_next = ebr.part_next;
+                ebr_siguiente.par_start = ebr.par_start + tamanio_particion + sizeof(EBR);
+                ebr_siguiente.part_size = ebr.part_next - ebr_siguiente.par_start;
+
+                //Se escribe el nombre de la particion
+                strcpy(ebr.part_name, nam.c_str());
+
+                //Se escribe el espacio de la particion
+                ebr.part_size = tamanio_particion;
+
+                //Se escribe el siguiente de la particion
+                ebr.part_next = ebr_siguiente.par_start - sizeof(EBR);
+
+                cout << "Partición: \"" << nam << "\" creada" << endl;
+
+                //Se modifica el EBR
+                fseek(archivo, inicio, SEEK_SET);
+                fwrite(&ebr, sizeof(EBR), 1, archivo);
+
+                fseek(archivo, ebr.part_next, SEEK_SET);
+                fwrite(&ebr_siguiente, sizeof(EBR), 1, archivo);
+            }
+            else
+            {
+                cout << "La partición: \"" << nam << "\" sobrepasa el espacio disponible" << endl;
+                return;
+            }
+        }
+    }
+    else{
+        crearLogica(archivo, ebr.part_next, total, uni,fi,typ,nam, tamanio_particion);
+    }
+}
 
 void fdisk::eliminarP(string nam, string pat, string tipo){
     cout << "Part. delete: " << nam << "," << tipo << "," << pat << endl;
@@ -1052,52 +1013,3 @@ int fdisk::verificarNombre(string pa, string nombre){
     }
     return 0;
 }
-
-/*
-void fdisk::extenderParticion(fdisk *disco, int cantidad) {
-
-    //int tam_extension;
-    FILE *archivo;
-    archivo = fopen(disco->getRuta().c_str(), "rb+");
-
-    if(archivo == NULL){
-        cout << " >> Archivo no encontrado. \n";
-    }
-
-    // Tamaño del disco
-    fseek(archivo, 0L, SEEK_END);
-    long int tamanioArchivo = ftell(archivo);
-
-    mbr mbr_tmp;
-    fseek(archivo, 0, SEEK_SET);
-    fread(&mbr_tmp, sizeof(mbr), 1, archivo);
-
-
-    // la cantidad a extender es mayor a la del disco
-    if(cantidad >= tamanioArchivo){
-        cout << " >> La particion no se puede extender, la cantidad a extender es superior al tamanio del disco. \n";
-    } else {
-        for(int i = 0; i < 4; i++){
-            if(strcmp(mbr_tmp.mbr_particions[i].part_name, disco->getNombre().c_str()) == 0){
-
-                if(disco->getUnidad() == "m" || disco->getUnidad() == "M"){
-                    cantidad = cantidad*1024*1024;
-                }else if(disco->getUnidad() == "k" || disco->getUnidad()  == "K"){
-                    cantidad = cantidad*1024;
-                }else if(disco->getUnidad() == "b" || disco->getUnidad() == "B"){
-
-                }
-                int tamanioActual = mbr_tmp.mbr_particions[i].part_size;
-                mbr_tmp.mbr_particions[i].part_size = tamanioActual + cantidad;
-                cout <<  mbr_tmp.mbr_particions[i].part_size << "\n";
-                fseek(archivo, 0, SEEK_SET);
-                fwrite(&mbr_tmp, sizeof(mbr), 1, archivo);
-                cout << " >> La particion ha sido extendida. \n";
-            }
-        }
-    }
-
-    fclose(archivo);
-
-
-}*/

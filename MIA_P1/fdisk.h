@@ -21,7 +21,7 @@ public:
     static void crearParticion(string tam, string uni, string pat, string fi, string typ, string nam );
     static void crearPrimaria(string pat, char typ, char fi, long tam, string nam);
     static void crearExtendida(string pat, char typ, char fi, long tam, string nam);
-    static void crearLogica(string pat, char typ,char fi,long tam,string name);
+    static void crearLogica(FILE *archivo, int inicio, int total,string uni,char fi,string typ,string nam ,int tamanio_particion);
 
 
     static void extenderParticion();

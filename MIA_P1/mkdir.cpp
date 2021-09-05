@@ -3,12 +3,12 @@
 #include "mkfs.h"
 #include "mount.h"
 #include "login.h"
-
+#include "arbol.h"
 
 void mkdir::crearCarpeta(string path, string p, string Pname,string id)
 {
-    credenciales log;
-    bool entrada = log.entro;
+    //vector<credenciales> cred;
+    //bool entrada = cred[0].entro;
     listMounted particion;
     particion = mount::recorrerLista(id);
     int n = 0;
@@ -366,24 +366,6 @@ void mkdir::crearCarpeta(string path, string p, string Pname,string id)
     }
 }
 
-/*string mkdir::Separar(string path, int *content)
-{
-    string palabras[100];
-    char *point;
-    int *cont = 0;
-    char cortado[path.length()];
-    strcpy(cortado,path.c_str());
-    point = strtok(cortado, "/");
-    while (point != NULL)
-    {
-        palabras[cont] = point;
-        cont++;
-        point = strtok(NULL, "/");
-    }
-    content = cont;
-    return palabras;
-}*/
-
 vector<string> mkdir::split(string str, char pattern)
 {
 
@@ -491,3 +473,104 @@ BloqueApuntadores mkdir::Capunt()
     }
     return apuntador;
 }
+
+void mkdir::ReporteSuperBloque(string id, string path) {
+    vector<listMounted> disco;
+    listMounted aux = mount::recorrerLista(id);
+    FILE *archivo;
+    archivo = fopen(aux.path.c_str(),"rb");
+    vector<string> f;
+    f = mkdir::split(aux.path,'/');
+    string r = f[f.size()-1];
+    MBR mbr;
+    rewind(archivo);
+    fread(&mbr,sizeof(MBR),1,archivo);
+
+    int inicioP = 0;
+    int tam_P = 0;
+    string nombre;
+    for (int i = 0; i < aux.listMountedPartitions.size(); i++)
+    {
+        if (aux.listMountedPartitions[i].idPart == id)
+        {
+            nombre = aux.listMountedPartitions[i].nombrePart;
+            break;
+        }
+    }
+
+    for (int i = 0; i < 4; i++)
+    {
+        if (mbr.mbr_partition[i].part_name == nombre)
+        {
+            inicioP = mbr.mbr_partition[i].part_start;
+            tam_P = mbr.mbr_partition[i].part_start;
+            break;
+        }
+    }
+
+    SuperBloque aux2;
+    fseek(archivo, inicioP, SEEK_SET);
+    fread(&aux2, sizeof(aux2), 1, archivo);
+
+
+    arbol::Reporte("581a","/","/home/diego/Escritorio/s/reporte3.png");
+
+    string s_mtime(aux2.s_mtime);
+    string s_umtime(aux2.s_umtime);
+
+    string grafo = "digraph MBR{\n";
+    grafo += "  nodesep=.05\n";
+    grafo += "rankdir=LR\n";
+    grafo += "node [shape=record,width=.1,height=.1]\n";
+    grafo += "Nodo0 [label = \" SUPER BLOQUE ";
+    grafo += r +" "+ nombre + "| {NOMBRE | VALOR}|";
+    grafo += "{ s_inodes_count | "+ to_string(aux2.s_inodes_count) +" }|";
+    grafo += "{ s_block_count  | "+ to_string(aux2.s_blocks_count) +" }|";
+    grafo += "{ s_free_block_count | "+ to_string(aux2.s_free_inodes_count) +" }|";
+    grafo += "{ s_free_inodes_count | "+ to_string(aux2.s_free_blocks_count) +" }|";
+    grafo += "{ s_mtime | "+ s_mtime +" }|";
+    grafo += "{ s_umtime | "+ s_umtime +" }|";
+    grafo += "{ s_mnt_count | "+ to_string(aux2.s_mnt_count) +" }|";
+    grafo += "{ s_magic | "+ to_string(aux2.s_magic) +" }|";
+    grafo += "{ s_inode_size | "+ to_string(aux2.s_inode_size)+" }|";
+    grafo += "{ s_block_size | "+ to_string(aux2.s_block_size) +" }|";
+    grafo += "{ s_first_ino | "+ to_string(aux2.s_first_ino) +" }|";
+    grafo += "{ s_first_blo | "+ to_string(aux2.s_first_blo) +" }|";
+    grafo += "{ s_bm_inode_start | "+ to_string(aux2.s_bm_inode_start) +" }|";
+    grafo += "{ s_bm_block_start | "+ to_string(aux2.s_bm_block_start) +" }|";
+    grafo += "{ s_inode_start | "+ to_string(aux2.s_inode_start) +" }|";
+    grafo += "{ s_block_start | "+ to_string(aux2.s_block_start) +" }";
+    grafo += "\"]\n}";
+
+    string cc = "dot -Tpng archivoDot1.dot -o " ;
+    cc += path;
+
+    cout <<grafo << endl;
+
+    char ru[500];
+    strcpy(ru, cc.c_str());
+    cout << "ru: " << ru << endl;
+
+    ofstream file;
+    file.open("archivoDot1.dot");
+    file << grafo;
+    file.close();
+    system(ru);
+
+    string ccc ="nohup display ";
+    ccc+= path;
+    ccc+= " &";
+
+    char rut[500];
+    strcpy(rut, ccc.c_str());
+    cout << ccc << endl;
+    string s(rut);
+    string comando = "eog " + s;
+    const char *cmd2 = comando.c_str();
+    system(cmd2);
+    fclose(archivo);
+    getchar();
+
+}
+
+

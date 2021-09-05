@@ -9,15 +9,17 @@
 
 using namespace std;
 
-typedef struct credenciales{
-    string idMount = "";
+/*typedef struct credenciales{
     bool entro = false;
+    string mont = "";
+} credenciales;*/
 
-} credenciales;
+//static vector<credenciales> cred ;
 
 class login {
 public:
     static void verificar(string user,string pass, string id);
+
     login();
 };
 
