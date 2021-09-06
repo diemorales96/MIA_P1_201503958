@@ -126,10 +126,10 @@
 		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/find.h">
 			<Option target="MIA_P1"/>
 		</Unit>
-		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/login.cpp">
+		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/inodos.cpp">
 			<Option target="MIA_P1"/>
 		</Unit>
-		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/login.h">
+		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/inodos.h">
 			<Option target="MIA_P1"/>
 		</Unit>
 		<Unit filename="/home/diego/Escritorio/Proyectos/MIA_P1/main.cpp">

@@ -11,6 +11,7 @@ public:
     static string buscarTodo(int siguienteI, int inicioP, FILE *archivo, string repo,string anterior);
     static string bInodos( Inodo tabla, int inodo);
     static string bBloques(BloqueCarpetas bloque, int actual, int padre, int Nbloque);
+    static string bArchivos(BloqueArchivos archivo,int Nbloque);
 };
 
 

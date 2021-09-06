@@ -99,12 +99,16 @@ Comentario	    "#"[^\r\n]*[^\r\n]
 "mbr"				{	return (Mbr); 	}
 "disk"				{	return (Disk); 	}
 "sb"                {   return (Sb);    }
+"tree"              {   return (Tree);  }
+"-root"             {   return (Root);  }
 
 "cat"               {   return (Cat);   }
 "-file"             {   return (File);  }
 
 "="					{	return (TIgual); }
 "-" 				{	return (TMenos); }
+
+"logout"            {   return(Logout); }
 
 "-id"               {   return (Id); 	 }
 

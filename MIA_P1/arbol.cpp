@@ -1,6 +1,6 @@
 #include "arbol.h"
 #include "mount.h"
-void arbol::Reporte(string id, string path, string inicio)
+void arbol::Reporte(string id, string path, string dest)
 {
     vector<string> ruta;
     listMounted particion;
@@ -56,7 +56,7 @@ void arbol::Reporte(string id, string path, string inicio)
     int actual = 0;
     int padre = 0;
     int apuntador = 0;
-    for (int i = 0; i < contador; i++)
+    for (int i = 1; i < contador; i++)
     {
         for (int j = 0; j < 15; j++)
         {
@@ -70,9 +70,11 @@ void arbol::Reporte(string id, string path, string inicio)
                     {
                         if (aux3.b_content[k].b_inodo != -1)
                         {
-                            encontrado = true;
-                            siguienteI = aux3.b_content[k].b_inodo;
-                            break;
+                            if(aux3.b_content[k].b_name == ruta[i]){
+                                encontrado = true;
+                                siguienteI = aux3.b_content[k].b_inodo;
+                                break;
+                            }
                         }
                     }
                     if (encontrado)
@@ -89,7 +91,41 @@ void arbol::Reporte(string id, string path, string inicio)
             }
         }
     }
+    string grafo;
     rep = buscarTodo(siguienteI, inicioP, archivo, rep,"");
+    string cc = "dot -Tpng archivoDot1.dot -o " ;
+    cc += dest;
+    grafo = "digraph MBR{\n";
+    grafo += "  nodesep=.05\n";
+    grafo += "rankdir=LR\n";
+    grafo += "node [shape=record,width=.1,height=.1]\n";
+    grafo += rep+"\n";
+    grafo += "}";
+    cout <<grafo << endl;
+
+    char ru[500];
+    strcpy(ru, cc.c_str());
+    cout << "ru: " << ru << endl;
+
+    ofstream file;
+    file.open("archivoDot1.dot");
+    file << grafo;
+    file.close();
+    system(ru);
+
+    string ccc ="nohup display ";
+    ccc+= dest;
+    ccc+= " &";
+
+    char rut[500];
+    strcpy(rut, ccc.c_str());
+    cout << ccc << endl;
+    string s(rut);
+    string comando = "eog " + s;
+    const char *cmd2 = comando.c_str();
+    system(cmd2);
+    fclose(archivo);
+    getchar();
 }
 
 string arbol::buscarTodo(int siguienteI, int inicioP, FILE *archivo, string repo,string anterior)
@@ -103,7 +139,7 @@ string arbol::buscarTodo(int siguienteI, int inicioP, FILE *archivo, string repo
     fread(&aux2, sizeof(Inodo), 1, archivo);
     repo += bInodos(aux2, siguienteI)+"\n";
     if(anterior!=""){
-        repo+=anterior+"->inode"+to_string(siguienteI);
+        repo+=anterior+"->inode"+to_string(siguienteI)+"\n";
         cout<<repo<<endl;
         cout<<"--------------------------------------------------------------------------------------------------"<<endl;
     }
@@ -113,34 +149,44 @@ string arbol::buscarTodo(int siguienteI, int inicioP, FILE *archivo, string repo
 
         if (aux2.i_block[i] != -1)
         {
+
             if (i < 12)
             {
-                fseek(archivo, aux.s_block_start + (64 * aux2.i_block[i]), SEEK_SET);
-                fread(&aux3, 64, 1, archivo);
-                repo += bBloques(aux3, aux3.b_content[0].b_inodo, aux3.b_content[1].b_inodo, aux2.i_block[i]);
-                repo += "inode" + to_string(aux3.b_content[0].b_inodo) + ":i" + to_string(i)+"->node"+to_string(aux2.i_block[i])+":b"+to_string(aux2.i_block[i]);
-                //cout << repo << endl;
-                for (int j = 0; j < 4; j++)
-                {
-                    if(j>=2){
-                        if (aux3.b_content[j].b_inodo != -1)
-                        {
-                            Inodo nuevo;
-                            fseek(archivo,aux.s_inode_start+(sizeof(Inodo)*aux3.b_content[j].b_inodo),SEEK_SET);
-                            fread(&nuevo,sizeof(Inodo),1,archivo);
-                            if(nuevo.i_type == '0'){
+                if(aux2.i_type == '0'){
+                    fseek(archivo, aux.s_block_start + (64 * aux2.i_block[i]), SEEK_SET);
+                    fread(&aux3, 64, 1, archivo);
+                    repo += bBloques(aux3, aux3.b_content[0].b_inodo, aux3.b_content[1].b_inodo, aux2.i_block[i]);
+                    repo += "inode" + to_string(aux3.b_content[0].b_inodo) + ":i" + to_string(i)+"->node"+to_string(aux2.i_block[i])+":b"+to_string(aux2.i_block[i])+"\n";
+                    //cout << repo << endl;
+
+                    for (int j = 0; j < 4; j++)
+                    {
+                        if(j>=2){
+                            if (aux3.b_content[j].b_inodo != -1)
+                            {
                                 siguienteI = aux3.b_content[j].b_inodo;
                                 string n="node"+to_string(aux2.i_block[i])+":bc"+to_string(aux2.i_block[i])+to_string(j);
-                                buscarTodo(siguienteI,inicioP,archivo,repo,n);
+                                repo = buscarTodo(siguienteI,inicioP,archivo,repo,n);
+                                cout<<repo<<endl;
+                                cout <<"------------------------aqui-------------------------------"<<endl;
                             }
                         }
                     }
+                }else{
+                    BloqueArchivos contenido;
+                    fseek(archivo,aux.s_block_start+(64*aux2.i_block[i]),SEEK_SET);
+                    fread(&contenido,64,1,archivo);
+                    repo+=bArchivos(contenido,aux2.i_block[i]);
+                    repo+="inode"+to_string(siguienteI)+":i"+to_string(i)+"->node"+to_string(aux2.i_block[i])+"\n";
+                    cout <<repo<<endl;
+                    cout <<"-----------------------------------------------------------"<<endl;
                 }
             }
         }else{
             break;
         }
     }
+    return repo;
 }
 
 string arbol::bInodos(Inodo tabla, int inodo)
@@ -170,6 +216,7 @@ string arbol::bInodos(Inodo tabla, int inodo)
 
     return repo;
 }
+
 string arbol::bBloques(BloqueCarpetas bloque, int actual, int padre, int Nbloque)
 {
     string repo = "";
@@ -185,5 +232,13 @@ string arbol::bBloques(BloqueCarpetas bloque, int actual, int padre, int Nbloque
         }
     }
     repo+= "\"]\n";
+    return repo;
+}
+
+string arbol::bArchivos(BloqueArchivos archivo,int Nbloque)
+{
+    string repo="";
+    repo+="node"+to_string(Nbloque)+"[label=\"<b"+to_string(Nbloque)+"> Bloque Archivos "+to_string(Nbloque)+"|contenido\"]\n";
+
     return repo;
 }

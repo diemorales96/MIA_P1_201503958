@@ -10,7 +10,7 @@ using namespace std;
 class mkdir {
 public:
     static vector<string> split(string str, char pattern);
-    static void crearCarpeta(string path, string p, string Pname,string id);
+    static void crearCarpeta(string path, string p, string Pname,string id,bool acceso);
     static string Separar(string path, int *content);
     static string Separar2(string path);
     static void actBI(char *bm, int n, int veces);

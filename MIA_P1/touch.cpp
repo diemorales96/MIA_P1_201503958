@@ -3,8 +3,11 @@
 #include "mkfs.h"
 #include "mount.h"
 
-void touch::crearArchivo(string path, string r, string Pname, string cont, string stdin, string size)
+void touch::crearArchivo(string path, string r, string Pname, string cont, string stdin, string size,bool entra)
 {
+    if(!entra){
+        cout<<"Usuario No logeado"<<endl;
+    }
     int n = 0;
     string contenido2;
     if(cont!=""){
@@ -23,7 +26,7 @@ void touch::crearArchivo(string path, string r, string Pname, string cont, strin
         cout<< con <<endl;
         contenido2=con;
     }
-    //string *ruta = new string[200];
+
     listMounted particion;
     particion = mount::recorrerLista(Pname);
     //Mkdir::Separar(path, ruta);

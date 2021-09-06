@@ -2,15 +2,25 @@
 #include "disco.h"
 #include "mkfs.h"
 #include "mount.h"
-#include "login.h"
-#include "arbol.h"
+#include "inodos.h"
 
-void mkdir::crearCarpeta(string path, string p, string Pname,string id)
+void mkdir::crearCarpeta(string path, string p, string Pname,string id,bool acceso)
 {
-    //vector<credenciales> cred;
-    //bool entrada = cred[0].entro;
+    if(acceso == false){
+        cout<<"Usuario no logeado"<<endl;
+        return;
+    }
+
+
+
     listMounted particion;
     particion = mount::recorrerLista(id);
+
+    if(particion.id == 500){
+        cout<<"Particion no montada"<<endl;
+        return;
+    }
+
     int n = 0;
     char e = '/';
     FILE *archivo;
@@ -24,14 +34,8 @@ void mkdir::crearCarpeta(string path, string p, string Pname,string id)
     int inicioP = 0;
     int tam_P = 0;
     string nombre;
-    for (int i = 0; i < particion.listMountedPartitions.size(); i++)
-    {
-        if (particion.listMountedPartitions[i].idPart == id)
-        {
-            nombre = particion.listMountedPartitions[i].nombrePart;
-            break;
-        }
-    }
+    nombre = particion.listMountedPartitions[0].nombrePart;
+
 
     for (int i = 0; i < 4; i++)
     {
@@ -486,6 +490,8 @@ void mkdir::ReporteSuperBloque(string id, string path) {
     rewind(archivo);
     fread(&mbr,sizeof(MBR),1,archivo);
 
+    inodos::Reporte("/","581a");
+
     int inicioP = 0;
     int tam_P = 0;
     string nombre;
@@ -513,7 +519,7 @@ void mkdir::ReporteSuperBloque(string id, string path) {
     fread(&aux2, sizeof(aux2), 1, archivo);
 
 
-    arbol::Reporte("581a","/","/home/diego/Escritorio/s/reporte3.png");
+    //arbol::Reporte("581a","/home","/home/diego/Escritorio/s/reporte3.png");
 
     string s_mtime(aux2.s_mtime);
     string s_umtime(aux2.s_umtime);

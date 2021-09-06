@@ -269,6 +269,8 @@ void disco::repoteMBR(string id, string path){
 
 }
 
+
+
 void disco::reporteDisco(string id, string path){
     vector<listMounted> disco;
     listMounted aux = mount::recorrerLista(id);
@@ -282,7 +284,6 @@ void disco::reporteDisco(string id, string path){
     fread(&mbr,sizeof(MBR),1,archivo);
     generarGraficaDisk(mbr,path,aux.path,archivo);
 }
-
 
 void disco::generarGraficaDisk(MBR &mbr, string destino, string disco,FILE *archivo) {
     string cadena = "";
@@ -397,8 +398,6 @@ void disco::generarGraficaDisk(MBR &mbr, string destino, string disco,FILE *arch
 
 
 }
-
-
 
 double disco::obtenerPorcentaje(int tamanio, int tamanioTotal) {
     double ftam = tamanio;

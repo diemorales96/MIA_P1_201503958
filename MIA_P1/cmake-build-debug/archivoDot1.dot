@@ -1,28 +1,6 @@
-digraph DISK{
-    Disk[
-    shape=plaintext
-    label=<
-    <table border='1' cellborder='1'>
-    <tr><td>MBR</td>
-     <td>Particion1(Primaria)<br/>     <br/>33.340894%</td>
-     <td>
-     <table border = '1' cellborder = '1'>
-      <tr>
-     <td>Particion2(EXTENDIDA)<br/>     <br/>33.340894%</td></tr>
-        <tr><td>
-            <table border = '1' cellborder = '1'>
-            <tr>
-      <td>EBR</td>
-      <td>LOGICA - Particion3            </td>
-      <td>EBR</td>
-        </tr></table>
-        </td>
-        </tr>
-        </table>
-        </td>
-     <td>PART3<br/>0%</td>
-     <td>PART4<br/>0%</td>
-     <td>LIBRE <br/>33.318211%</td>
-    </tr>    </table>
-    >];
+digraph MBR{
+  nodesep=.05
+rankdir=LR
+node [shape=record,width=.1,height=.1]
+Nodo0 [label = " SUPER BLOQUE Disco1.disk Particion1| {NOMBRE | VALOR}|{ s_inodes_count | 11 }|{ s_block_count  | 13 }|{ s_free_block_count | 861 }|{ s_free_inodes_count | 2603 }|{ s_mtime | 05/09/21 17:29: }|{ s_umtime |  }|{ s_mnt_count | 0 }|{ s_magic | 61267 }|{ s_inode_size | 156 }|{ s_block_size | 64 }|{ s_first_ino | 2 }|{ s_first_blo | 2 }|{ s_bm_inode_start | 307312 }|{ s_bm_block_start | 308184 }|{ s_inode_start | 310800 }|{ s_block_start | 446832 }"]
 }

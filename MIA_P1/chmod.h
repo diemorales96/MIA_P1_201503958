@@ -7,7 +7,7 @@
 using namespace std;
 class chmod {
 public:
-    static void cambiarP(string path, string p, string UGO, string id);
+    static void cambiarP(string path, string p, string UGO, string id,bool entra);
 };
 
 

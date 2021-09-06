@@ -1,12 +1,15 @@
 #include "ren.h"
 #include "mount.h"
 #include "mkdir.h"
-#include "login.h"
 
 
-void ren::cambiarNombre(string path, string nombreC) {
+void ren::cambiarNombre(string path, string nombreC,string id,bool entra){
+    if(!entra){
+        cout<<"Usuario No Logeado"<<endl;
+        return;
+    }
+
     int n = 0;
-    string id = "581a";
     string ruta[50];
     listMounted particion;
     particion = mount::recorrerLista(id);

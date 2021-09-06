@@ -1,7 +1,11 @@
 #include "chmod.h"
 #include "mount.h"
-void chmod::cambiarP(string path, string p, string UGO, string id)
+void chmod::cambiarP(string path, string p, string UGO, string id,bool entra)
 {
+    if(!entra){
+        cout<<"Usuario No Logeado"<<endl;
+        return;
+    }
     vector<string> f;
     f = mkdir::split(path,'/');
     listMounted particion;

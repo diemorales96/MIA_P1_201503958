@@ -4,8 +4,12 @@
 #include "touch.h"
 
 
-void cat::ContentA(string path, string id)
+void cat::ContentA(string path, string id,bool entra)
 {
+    if(!entra){
+        cout<<"Usuario No Logeado"<<endl;
+        return;
+    }
     vector <string> f;
     listMounted particion;
     particion = mount::recorrerLista(id);

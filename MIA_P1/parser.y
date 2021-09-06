@@ -14,13 +14,13 @@
 #include "mkfs.h"
 #include "mkdir.h"
 #include "touch.h"
-#include "login.h"
 #include "ren.h"
 #include "move.h"
 #include "find.h"
 #include "chmod.h"
 #include "cat.h"
-
+#include "arbol.h"
+#include <vector>
 
 using namespace std;
 
@@ -47,6 +47,7 @@ static string sizeTouch = "", stdinTouch= "",contTouch = "",pathTouch = "";
 
 static int userL = 0,pwdL = 0, idL = 0;
 static string userLogin = "",pwdLogin = "", idLogin = "";
+static bool aceptado = false;
 
 static int pathMov = 0,destMov = 0;
 static string pathMove = "",destMove = "";
@@ -60,8 +61,8 @@ static string path_find = "", name_find = "", termina_find_ast = "", termina_fin
 static int pathCh = 0,ugoCh = 0,rCh = 0;
 static string pathChmod = "",ugoChmod = "", rChmod = "";
 
-static int mbrRep = 0,pathRep = 0,idRep = 0,nameRep = 0,sbRep = 0,diskRep = 0;
-static string pathReporte = "",id_Reporte = "";
+static int mbrRep = 0,pathRep = 0,idRep = 0,nameRep = 0,sbRep = 0,diskRep = 0,treeRep = 0,rootRep = 0;
+static string pathReporte = "",id_Reporte = "", root_Reporte = "/";
 
 static int fileC = 0;
 static string fileCat = "";
@@ -105,11 +106,11 @@ int yyerror(const char* mens){
 %token<TEXT> Find Asterisco Interrogacion
 
 
-%token<TEXT>  Login User Pwd
+%token<TEXT>  Login User Pwd Logout
 
 %token<TEXT>  Ren
 %token<TEXT>  Chmod Ugo
-%token<TEXT>  Rep Mbr Disk Sb
+%token<TEXT>  Rep Mbr Disk Sb Tree Root
 %token<TEXT>  TIgual TTexto TID TCara
 %token<TEXT>  TMenos
 %token<TEXT>  Cat File
@@ -144,7 +145,7 @@ int yyerror(const char* mens){
 
 %type<TEXT> REP CUERPO_REP COMMAND_REP TIPO_REP
 
-%type<TEXT> CAT CUERPO_CAT COMMAND_CAT
+%type<TEXT> CAT CUERPO_CAT COMMAND_CAT LOGOUT
 
 %start S
 
@@ -174,7 +175,8 @@ SENTENCIAS      	: MKDISK	{}
 			| FIND		{}
 			| CHMOD		{}
 			| REP		{}
-			| CAT		{};
+			| CAT		{}
+			| LOGOUT	{};
 
 //--------------------------------------MKDISK---------------------------------------------------------
 MKDISK          	: Mkdisk CUERPO_MKDISK    {
@@ -374,9 +376,9 @@ TIPO_FORMATEO		: Fs2 				{ sistemaMkfs = "2fs";}
 MKDIR			: Mkdir CUERPO_MKDIR 		{
 	if(patMkdir == 1){
 		if (p == 1){
-			mkdir::crearCarpeta(pathMkdir,"","Particion1","581a");
+			mkdir::crearCarpeta(pathMkdir,"","Particion1",idLogin,aceptado);
 		}else{
-			mkdir::crearCarpeta(pathMkdir,"","Particion1","581a");
+			mkdir::crearCarpeta(pathMkdir,"","Particion1",idLogin,aceptado);
 		}
 	}else{
 		cout <<"Falta parametro path en el comando MKDIR ";
@@ -397,17 +399,17 @@ TOUCH 			: Touch CUERPO_TOUCH		{
                                		if(rT == 1){
                                			if(comDisc == 1){
 								pathTouch = disco::quitarComillas(pathTouch);
-								touch::crearArchivo(pathTouch,"r","581a",contTouch,stdinTouch,sizeTouch);
+								touch::crearArchivo(pathTouch,"r",idLogin,contTouch,stdinTouch,sizeTouch,aceptado);
                                                 	}else{
-								touch::crearArchivo(pathTouch,"r","581a",contTouch,stdinTouch,sizeTouch);
+								touch::crearArchivo(pathTouch,"r",idLogin,contTouch,stdinTouch,sizeTouch,aceptado);
                                                 }
 
                                		}else{
                                			if(comDisc == 1){
 							pathTouch = disco::quitarComillas(pathTouch);
-							touch::crearArchivo(pathTouch,"r","581a",contTouch,stdinTouch,sizeTouch);
+							touch::crearArchivo(pathTouch,"r","581a",contTouch,stdinTouch,sizeTouch,aceptado);
 						}else{
-							touch::crearArchivo(pathTouch,"r","581a",contTouch,stdinTouch,sizeTouch);
+							touch::crearArchivo(pathTouch,"r","581a",contTouch,stdinTouch,sizeTouch,aceptado);
 						}
                                		}
 
@@ -431,11 +433,23 @@ COMMAND_TOUCH 		: Tamanio TIgual TNumero	{ sizeT = 1; sizeTouch = $3; }
 
 //-------------------------------- LOGIN -------------------------------------------------------------------------
 LOGIN			: Login CUERPO_LOGIN 		{
-	if(idL == 1 && userL == 1 && pwdL == 1){
-		login::verificar(userLogin,pwdLogin,idLogin);
-	}else{
-		cout << "falta un parametro";
-	}
+	listMounted particion;
+        particion = mount::recorrerLista(idLogin);
+        if(particion.id != 0){
+		cout<<"Particion no montada"<<endl;
+    	}else{
+		if(idL == 1 && userL == 1 && pwdL == 1){
+			if(userLogin == "root" && pwdLogin == "123"){
+				cout<<"Ingreso exitoso";
+				aceptado = true;
+			}else{
+				cout<<"Usuario o contraseña incorrectos"<<endl;
+			}
+		}else{
+			cout << "falta un parametro";
+		}
+    	}
+
 };
 
 CUERPO_LOGIN 		: CUERPO_LOGIN COMMAND_LOGIN	{}
@@ -444,14 +458,20 @@ CUERPO_LOGIN 		: CUERPO_LOGIN COMMAND_LOGIN	{}
 COMMAND_LOGIN		: User TIgual TID 		{ userL = 1; userLogin = $3; }
 			| Pwd TIgual TNumero 		{ pwdL = 1; pwdLogin = $3; }
 			| Id TIgual TID 		{ idL = 1; idLogin = $3; };
+
+LOGOUT 			: Logout 			{
+		cout<<"--------------Cerro Sesion-------------"<<endl;
+		userL = 0; userLogin = ""; pwdL = 0; pwdLogin = ""; idL = 0; idLogin = "",aceptado = false;
+};
+
 //---------------------------------- REN ---------------------------------------------------------------------------
 REN			: Ren CUERPO_REN		{
 	if(pathRe == 1 && nombreRe == 1){
 		if(comDisc == 1){
 			pathRen = disco::quitarComillas(pathTouch);
-			ren::cambiarNombre(pathRen,nombreRen);
+			ren::cambiarNombre(pathRen,nombreRen,idLogin,aceptado);
 		}else{
-			ren::cambiarNombre(pathRen,nombreRen);
+			ren::cambiarNombre(pathRen,nombreRen,idLogin,aceptado);
 		}
 	}else{
 		cout <<"Faltan parametros"<<endl;
@@ -491,9 +511,9 @@ CHMOD			: Chmod CUERPO_CHMOD 		{
 	if(pathCh == 1 && ugoCh == 1){
 		if(comDisc == 1){
 			pathChmod = disco::quitarComillas(pathChmod);
-			chmod::cambiarP(pathChmod,rChmod,ugoChmod,"581a");
+			chmod::cambiarP(pathChmod,rChmod,ugoChmod,idLogin,aceptado);
 		}else{
-			chmod::cambiarP(pathChmod,rChmod,ugoChmod,"581a");
+			chmod::cambiarP(pathChmod,rChmod,ugoChmod,idLogin,aceptado);
 		}
 	}
 };
@@ -530,14 +550,22 @@ REP 			: Rep CUERPO_REP		{
 			}else{
 				disco::reporteDisco(id_Reporte, pathReporte);
 			}
+		}else if(treeRep == 1){
+			if(comDisc == 1){
+				pathReporte = disco::quitarComillas(pathReporte);
+				root_Reporte = disco::quitarComillas(root_Reporte);
+				arbol::Reporte(id_Reporte,root_Reporte,pathReporte);
+			}else{
+				arbol::Reporte(id_Reporte,root_Reporte,pathReporte);
+			}
 		}else{
 			cout<<"error en parametro name";
 		}
 	}else{
 		cout<<"Falta un parametro"<<endl;
 	}
-	idRep = 0; pathRep = 0; nameRep = 0;
-	mbrRep = 0; comDisc = 0; pathReporte = ""; id_Reporte = ""; sbRep = 0; diskRep = 0;
+	idRep = 0; pathRep = 0; nameRep = 0,root_Reporte = "/";
+	mbrRep = 0; comDisc = 0; pathReporte = ""; id_Reporte = ""; sbRep = 0; diskRep = 0,treeRep = 0; rootRep = 0;
 };
 
 CUERPO_REP 		: CUERPO_REP COMMAND_REP	{}
@@ -545,20 +573,22 @@ CUERPO_REP 		: CUERPO_REP COMMAND_REP	{}
 
 COMMAND_REP		: Id TIgual TID 		{ idRep = 1; id_Reporte = $3; }
 			| Path TIgual DIRECCION		{ pathRep = 1; pathReporte = pathMount; }
-			|Name TIgual TIPO_REP		{ nameRep = 1; };
+			| Name TIgual TIPO_REP		{ nameRep = 1; }
+			| Root TIgual DIRECCION		{ rootRep = 1; root_Reporte = pathMount; };
 
 TIPO_REP		: Mbr 				{ mbrRep = 1; }
 			| Sb				{ sbRep = 1; }
-			| Disk				{ diskRep = 1; };
+			| Disk				{ diskRep = 1; }
+			| Tree				{ treeRep = 1; };
 //------------------------------------- CAT -----------------------------------------------------------------
 
 CAT 			: Cat CUERPO_CAT		{
 	if(fileC == 1){
 		if(comDisc == 1){
 			pathReporte = disco::quitarComillas(pathReporte);
-                        cat::ContentA(fileCat, "581a");
+                        cat::ContentA(fileCat, idLogin,aceptado);
 		}else{
-			cat::ContentA(fileCat, "581a");
+			cat::ContentA(fileCat, idLogin,aceptado);
 		}
 	}else{
 		cout <<"Fal el comando file"<<endl;
@@ -573,7 +603,3 @@ COMMAND_CAT 		: File TNumero TIgual DIRECCION	{ fileC = 1; fileCat = pathMount; 
 
 
 %%
-
-
-
-

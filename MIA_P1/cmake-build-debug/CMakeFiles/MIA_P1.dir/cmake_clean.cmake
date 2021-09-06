@@ -6,7 +6,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/MIA_P1.dir/disco.cpp.o"
   "CMakeFiles/MIA_P1.dir/fdisk.cpp.o"
   "CMakeFiles/MIA_P1.dir/find.cpp.o"
-  "CMakeFiles/MIA_P1.dir/login.cpp.o"
+  "CMakeFiles/MIA_P1.dir/inodos.cpp.o"
   "CMakeFiles/MIA_P1.dir/main.cpp.o"
   "CMakeFiles/MIA_P1.dir/mkdir.cpp.o"
   "CMakeFiles/MIA_P1.dir/mkfs.cpp.o"

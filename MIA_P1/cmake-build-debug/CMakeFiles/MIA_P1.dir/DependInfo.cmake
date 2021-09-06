@@ -15,7 +15,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/diego/Escritorio/Proyectos/MIA_P1/disco.cpp" "/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/CMakeFiles/MIA_P1.dir/disco.cpp.o"
   "/home/diego/Escritorio/Proyectos/MIA_P1/fdisk.cpp" "/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/CMakeFiles/MIA_P1.dir/fdisk.cpp.o"
   "/home/diego/Escritorio/Proyectos/MIA_P1/find.cpp" "/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/CMakeFiles/MIA_P1.dir/find.cpp.o"
-  "/home/diego/Escritorio/Proyectos/MIA_P1/login.cpp" "/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/CMakeFiles/MIA_P1.dir/login.cpp.o"
+  "/home/diego/Escritorio/Proyectos/MIA_P1/inodos.cpp" "/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/CMakeFiles/MIA_P1.dir/inodos.cpp.o"
   "/home/diego/Escritorio/Proyectos/MIA_P1/main.cpp" "/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/CMakeFiles/MIA_P1.dir/main.cpp.o"
   "/home/diego/Escritorio/Proyectos/MIA_P1/mkdir.cpp" "/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/CMakeFiles/MIA_P1.dir/mkdir.cpp.o"
   "/home/diego/Escritorio/Proyectos/MIA_P1/mkfs.cpp" "/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/CMakeFiles/MIA_P1.dir/mkfs.cpp.o"

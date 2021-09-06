@@ -55,21 +55,22 @@ CMakeFiles/MIA_P1.dir/find.cpp.o: \
  ../mkfs.h \
  ../mount.h \
  ../parser.h
-CMakeFiles/MIA_P1.dir/login.cpp.o: \
+CMakeFiles/MIA_P1.dir/inodos.cpp.o: \
  ../disco.h \
  ../fdisk.h \
- ../login.cpp \
- ../login.h \
+ ../inodos.cpp \
+ ../inodos.h \
+ ../mkdir.h \
+ ../mkfs.h \
  ../mount.h \
  ../parser.h
 CMakeFiles/MIA_P1.dir/main.cpp.o: \
  ../main.cpp \
  ../parser.h
 CMakeFiles/MIA_P1.dir/mkdir.cpp.o: \
- ../arbol.h \
  ../disco.h \
  ../fdisk.h \
- ../login.h \
+ ../inodos.h \
  ../mkdir.cpp \
  ../mkdir.h \
  ../mkfs.h \
@@ -98,13 +99,13 @@ CMakeFiles/MIA_P1.dir/move.cpp.o: \
  ../move.h \
  ../parser.h
 CMakeFiles/MIA_P1.dir/parser.cpp.o: \
+ ../arbol.h \
  ../cat.h \
  ../chmod.h \
  ../comexec.h \
  ../disco.h \
  ../fdisk.h \
  ../find.h \
- ../login.h \
  ../mkdir.h \
  ../mkfs.h \
  ../mount.h \
@@ -117,7 +118,6 @@ CMakeFiles/MIA_P1.dir/parser.cpp.o: \
 CMakeFiles/MIA_P1.dir/ren.cpp.o: \
  ../disco.h \
  ../fdisk.h \
- ../login.h \
  ../mkdir.h \
  ../mkfs.h \
  ../mount.h \

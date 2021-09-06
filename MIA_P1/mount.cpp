@@ -263,9 +263,9 @@ listMounted mount::discoMontado(string path) {
 
 void mount::agregarDisco(string nombreDisco, string path) {
     listMounted nuevo;
-    nuevo.id = contA;
+    nuevo.id = 0;
     nuevo.path = path;
-    nuevo.letra = letras[contA];
+    nuevo.num = contA + 1;
     contA++;
     nuevo.nombreDisco = nombreDisco;
     nuevo.listMountedPartitions.clear();
@@ -286,17 +286,17 @@ int mount::agregarParticion(string partName, listMounted disco) {
             //Visualizamos las particiones montadas si son halladas.
             if(listaMontados[i].listMountedPartitions.size() == 0){
                 partMontada nuevo;
-                nuevo.num = 1;
+                nuevo.letra = 'a';
                 nuevo.nombrePart = partName;
-                nuevo.idPart = "581" + listaMontados[i].letra;
+                nuevo.idPart = "581" + string(1,'a');
                 listaMontados[i].listMountedPartitions.push_back(nuevo);
                 return  1;
             }
             else{
                 partMontada nuevo;
-                nuevo.num = listaMontados[i].listMountedPartitions.size() + 1;
+                nuevo.letra = letras[listaMontados[i].listMountedPartitions.size()];
                 nuevo.nombrePart = partName;
-                nuevo.idPart = "58" + to_string(listaMontados[i].listMountedPartitions.size() + 1) + listaMontados[i].letra;
+                nuevo.idPart = "58" + to_string(listaMontados[i].num) + listaMontados[i].listMountedPartitions[i].letra;
                 listaMontados[i].listMountedPartitions.push_back(nuevo);
                 return  1;
             }
@@ -328,7 +328,7 @@ void mount::mostrarParticiones() {
     for (int i = 0; i < listaMontados.size(); i++) {
         //procedemos a mostrar las particiones que ya estan monatadas
         for (int j = 0; j < listaMontados[i].listMountedPartitions.size(); j++) {
-            cout << " " << listaMontados[i].nombreDisco <<" | "<< listaMontados[i].listMountedPartitions[j].nombrePart<<" | "<< " 58" << listaMontados[i].listMountedPartitions[j].num<< listaMontados[i].letra<< endl;
+            cout << " " << listaMontados[i].nombreDisco <<" | "<< listaMontados[i].listMountedPartitions[j].nombrePart<<" | "<< " 58" << listaMontados[i].num<< listaMontados[i].listMountedPartitions[j].letra<< endl;
         }
 
     }
@@ -348,10 +348,10 @@ void mount::desmontarParticiones(string idParticionM) {
         //HACEMOS UN RECORRIDO POR LAS PARTICIONES MONTADAS
         for (int j = 0; j < listaMontados[i].listMountedPartitions.size(); j++) {
             string idM = "58";
-            idM += to_string( listaMontados[i].listMountedPartitions[j].num);
-            idM += listaMontados[i].letra;
+            idM += to_string( listaMontados[i].num);
+            idM += listaMontados[i].listMountedPartitions[j].letra;
             if(idM == idParticionM){
-                cout << idM << "," << to_string( listaMontados[i].listMountedPartitions[j].num) <<endl;
+                cout << idM << "," << to_string( listaMontados[i].num) <<endl;
                 listaMontados[i].listMountedPartitions.erase (listaMontados[i].listMountedPartitions.begin()+j);
                 flag = true;
                 break;
@@ -380,7 +380,7 @@ void mount::desmontarParticiones(string idParticionM) {
 listMounted mount::recorrerLista(string id) {
     for (int i = 0; i < listaMontados.size(); i++) {
         for(int j = 0; j < listaMontados[i].listMountedPartitions.size(); j++) {
-            string comp = "58" + to_string(listaMontados[i].listMountedPartitions[j].num) + listaMontados[i].letra;
+            string comp = "58" + to_string(listaMontados[i].num) + listaMontados[i].listMountedPartitions[j].letra;
             if (comp == id){
                 return listaMontados[i];
             }

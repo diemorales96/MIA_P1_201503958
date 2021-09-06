@@ -7,7 +7,7 @@
 using namespace std;
 class cat {
 public:
-    static void ContentA(string path, string id);
+    static void ContentA(string path, string id,bool entra);
 };
 
 

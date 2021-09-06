@@ -6,7 +6,7 @@
 using namespace std;
 
 typedef struct partMontada{
-    int num = 0;
+    string letra;
     int estado = 0;
     string nombrePart;
     string idPart;
@@ -16,7 +16,7 @@ typedef struct listMounted{
     int id;
     string nombreDisco;
     string path;
-    string letra;
+    int num = 0;
     vector<partMontada> listMountedPartitions;
 } listMounted;
 

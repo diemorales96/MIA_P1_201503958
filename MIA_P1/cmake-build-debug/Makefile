@@ -297,29 +297,29 @@ find.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/find.cpp.s
 .PHONY : find.cpp.s
 
-login.o: login.cpp.o
-.PHONY : login.o
+inodos.o: inodos.cpp.o
+.PHONY : inodos.o
 
 # target to build an object file
-login.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/login.cpp.o
-.PHONY : login.cpp.o
+inodos.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/inodos.cpp.o
+.PHONY : inodos.cpp.o
 
-login.i: login.cpp.i
-.PHONY : login.i
+inodos.i: inodos.cpp.i
+.PHONY : inodos.i
 
 # target to preprocess a source file
-login.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/login.cpp.i
-.PHONY : login.cpp.i
+inodos.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/inodos.cpp.i
+.PHONY : inodos.cpp.i
 
-login.s: login.cpp.s
-.PHONY : login.s
+inodos.s: inodos.cpp.s
+.PHONY : inodos.s
 
 # target to generate assembly for a file
-login.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/login.cpp.s
-.PHONY : login.cpp.s
+inodos.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/inodos.cpp.s
+.PHONY : inodos.cpp.s
 
 main.o: main.cpp.o
 .PHONY : main.o
@@ -567,9 +567,9 @@ help:
 	@echo "... find.o"
 	@echo "... find.i"
 	@echo "... find.s"
-	@echo "... login.o"
-	@echo "... login.i"
-	@echo "... login.s"
+	@echo "... inodos.o"
+	@echo "... inodos.i"
+	@echo "... inodos.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

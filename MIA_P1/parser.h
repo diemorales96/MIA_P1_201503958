@@ -93,20 +93,23 @@ extern int yydebug;
     Login = 299,
     User = 300,
     Pwd = 301,
-    Ren = 302,
-    Chmod = 303,
-    Ugo = 304,
-    Rep = 305,
-    Mbr = 306,
-    Disk = 307,
-    Sb = 308,
-    TIgual = 309,
-    TTexto = 310,
-    TID = 311,
-    TCara = 312,
-    TMenos = 313,
-    Cat = 314,
-    File = 315
+    Logout = 302,
+    Ren = 303,
+    Chmod = 304,
+    Ugo = 305,
+    Rep = 306,
+    Mbr = 307,
+    Disk = 308,
+    Sb = 309,
+    Tree = 310,
+    Root = 311,
+    TIgual = 312,
+    TTexto = 313,
+    TID = 314,
+    TCara = 315,
+    TMenos = 316,
+    Cat = 317,
+    File = 318
   };
 #endif
 
@@ -114,11 +117,11 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 82 "parser.y"
+#line 83 "parser.y"
 
     char TEXT [256];
 
-#line 122 "parser.h"
+#line 125 "parser.h"
 
 };
 typedef union YYSTYPE YYSTYPE;
