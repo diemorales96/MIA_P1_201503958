@@ -1,1 +1,1 @@
-Mkdir -path=/home
+rep -id=581a -Path=/home/diego/Escritorio/s/reporte2.png -name=mbr

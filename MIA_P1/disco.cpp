@@ -227,7 +227,7 @@ void disco::repoteMBR(string id, string path){
         string D_type(1, mbr.mbr_partition[i].part_type);
         if (mbr.mbr_partition[i].part_status == 'V'){
             string nombre(mbr.mbr_partition[i].part_name);
-            grafo += "DISCO"+ to_string(i +1) +"|";
+            grafo += "|PARTICION"+ to_string(i +1) +"|";
             grafo += "{part_status | "+ status +" }|";
             grafo += "{part_type | "+ D_type +" }|";
             grafo += "{part_start | "+ to_string(mbr.mbr_partition[i].part_start) +" }|";
@@ -235,7 +235,12 @@ void disco::repoteMBR(string id, string path){
             grafo += "{part_name | "+ nombre +" }";
         }
     }
-    grafo += "\"]\n}";
+    grafo += "\"]\n";
+    string grafo2;
+    grafo2 = reporteEBR(id,path);
+
+    grafo += grafo2;
+    grafo+="}";
 
     string cc = "dot -Tpng archivoDot1.dot -o " ;
     cc += path;
@@ -269,7 +274,50 @@ void disco::repoteMBR(string id, string path){
 
 }
 
+string disco::reporteEBR(string id, string path){
+    listMounted particion;
+    particion = mount::recorrerLista(id);
+    FILE *archivo;
+    char ruta[500];
+    strcpy(ruta,particion.path.c_str());
+    archivo = fopen(ruta,"rb");
+    MBR mbr;
+    rewind(archivo);
+    fread(&mbr,sizeof(MBR),1,archivo);
+    string rep = "";
+    for(int i =0; i < 4; i++){
+        if(mbr.mbr_partition[i].part_status == 'V' && mbr.mbr_partition[i].part_type=='E'){
+            int contador = 1;
+            rep = recorridoEBR(archivo,mbr.mbr_partition[i].part_start,rep,contador);
+            fclose(archivo);
+            return rep;
+        }
+    }
+}
 
+string disco::recorridoEBR(FILE *archivo, int siguienteEBR,string rep,int contador) {
+    EBR ebr;
+    fseek(archivo, siguienteEBR, SEEK_SET);
+    fread(&ebr, sizeof(EBR), 1, archivo);
+    string cont = to_string(contador);
+    if (ebr.part_status == 'V')
+    {
+        //nodo1 [label="EBR|{NOMBRE|VALOR}"];
+        rep+= "nodo"+cont+" [label=\"EBR"+cont+"|{NOMBRE|VALOR}";
+        rep+="|{ part_status_"+ (cont)+"|"+ebr.part_status+"}";
+        rep+="|{ part_fit"+ (cont)+"|"+ebr.part_fit+"}";
+        rep+="|{ part_start_"+ (cont)+"|"+ to_string(ebr.par_start) +"}";
+        rep+="|{ part_size_"+ (cont)+"|"+ to_string(ebr.part_size) +"}";
+        rep+="|{ part_next_"+ (cont)+"|"+ to_string(ebr.part_next) +"}";
+        rep+="|{ part_name_"+ (cont)+"|"+ebr.part_name+"}\"];\n";
+        siguienteEBR = ebr.part_next;
+        //cout<<rep<<endl;
+        //cout<<"--------------------------------------------------------------------------"<<endl;
+        contador = contador+1;
+        rep = recorridoEBR(archivo,siguienteEBR,rep,contador);
+    }
+    return rep;
+}
 
 void disco::reporteDisco(string id, string path){
     vector<listMounted> disco;

@@ -2,5 +2,8 @@ digraph MBR{
   nodesep=.05
 rankdir=LR
 node [shape=record,width=.1,height=.1]
-Nodo0 [label = " SUPER BLOQUE Disco1.disk Particion1| {NOMBRE | VALOR}|{ s_inodes_count | 11 }|{ s_block_count  | 13 }|{ s_free_block_count | 861 }|{ s_free_inodes_count | 2603 }|{ s_mtime | 05/09/21 17:29: }|{ s_umtime |  }|{ s_mnt_count | 0 }|{ s_magic | 61267 }|{ s_inode_size | 156 }|{ s_block_size | 64 }|{ s_first_ino | 2 }|{ s_first_blo | 2 }|{ s_bm_inode_start | 307312 }|{ s_bm_block_start | 308184 }|{ s_inode_start | 310800 }|{ s_block_start | 446832 }"]
+Nodo0 [label = " MBR Disco1.disk| {NOMBRE | VALOR}|{ mbr_tamaño | 921600 }|{ mbr_fecha  | 06/09/21 00:07:14 }|{ mbr_signature | 384 }|{ mbr_fit | F }||PARTICION1|{part_status | V }|{part_type | P }|{part_start | 209 }|{part_size | 307200 }|{part_name | Particion1 }|PARTICION2|{part_status | V }|{part_type | E }|{part_start | 307410 }|{part_size | 307200 }|{part_name | Particion2 }"]
+nodo1 [label="EBR1|{NOMBRE|VALOR}|{ part_status_1|V}|{ part_fit1|W}|{ part_start_1|307458}|{ part_size_1|30720}|{ part_next_1|338178}|{ part_name_1|Particion2}"];
+nodo2 [label="EBR2|{NOMBRE|VALOR}|{ part_status_2|V}|{ part_fit2|W}|{ part_start_2|338226}|{ part_size_2|30720}|{ part_next_2|368946}|{ part_name_2|Particion2}"];
+nodo3 [label="EBR3|{NOMBRE|VALOR}|{ part_status_3|V}|{ part_fit3|W}|{ part_start_3|368994}|{ part_size_3|30720}|{ part_next_3|399714}|{ part_name_3|Particion3}"];
 }

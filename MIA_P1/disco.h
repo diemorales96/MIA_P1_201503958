@@ -59,7 +59,8 @@ public:
     static int aleatorio();
 
     static void repoteMBR(string id, string path);
-    static void reporteEBR(string id, string path);
+    static string reporteEBR(string id, string path);
+    static string recorridoEBR(FILE *archivo,int siguienteEBR,string rep,int contador);
     static void reporteDisco(string id, string path);
     static void generarGraficaDisk(MBR &mbr,string destino,string disco,FILE *archivo);
     static double obtenerPorcentaje(int tamanio,int tamanioTotal);
