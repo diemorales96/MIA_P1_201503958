@@ -41,6 +41,16 @@ CMakeFiles/MIA_P1.dir/disco.cpp.o: \
  ../mkfs.h \
  ../mount.h \
  ../parser.h
+CMakeFiles/MIA_P1.dir/edit.cpp.o: \
+ ../disco.h \
+ ../edit.cpp \
+ ../edit.h \
+ ../fdisk.h \
+ ../mkdir.h \
+ ../mkfs.h \
+ ../mount.h \
+ ../parser.h \
+ ../touch.h
 CMakeFiles/MIA_P1.dir/fdisk.cpp.o: \
  ../disco.h \
  ../fdisk.cpp \
@@ -104,6 +114,7 @@ CMakeFiles/MIA_P1.dir/parser.cpp.o: \
  ../chmod.h \
  ../comexec.h \
  ../disco.h \
+ ../edit.h \
  ../fdisk.h \
  ../find.h \
  ../mkdir.h \

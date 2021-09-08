@@ -33,6 +33,8 @@ Direccion  	    "/"[^\r\n" "]*[^\r\n" "]
 
 Comentario	    "#"[^\r\n]*[^\r\n]
 
+
+
 %%
 
 "Mkdisk"			{	return (Mkdisk);  }
@@ -47,6 +49,8 @@ Comentario	    "#"[^\r\n]*[^\r\n]
 "-pwd"              {   return (Pwd);     }
 
 "ren"               {   return (Ren);     }
+
+"edit"              {   return(Edit);     }
 
 
 "Mkfs"              {   return (Mkfs);    }
@@ -94,6 +98,10 @@ Comentario	    "#"[^\r\n]*[^\r\n]
 "-ugo"              {   return (Ugo);   }
 
 "-path"				{	return (Path); 	}
+
+"mv"                {   return (Mv);    }
+"-dest"             {   return (Dest);  }
+
 
 "rep"				{	return (Rep); 	}
 "mbr"				{	return (Mbr); 	}

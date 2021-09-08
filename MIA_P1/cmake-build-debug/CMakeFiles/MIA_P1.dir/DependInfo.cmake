@@ -13,6 +13,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/diego/Escritorio/Proyectos/MIA_P1/chmod.cpp" "/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/CMakeFiles/MIA_P1.dir/chmod.cpp.o"
   "/home/diego/Escritorio/Proyectos/MIA_P1/comexec.cpp" "/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/CMakeFiles/MIA_P1.dir/comexec.cpp.o"
   "/home/diego/Escritorio/Proyectos/MIA_P1/disco.cpp" "/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/CMakeFiles/MIA_P1.dir/disco.cpp.o"
+  "/home/diego/Escritorio/Proyectos/MIA_P1/edit.cpp" "/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/CMakeFiles/MIA_P1.dir/edit.cpp.o"
   "/home/diego/Escritorio/Proyectos/MIA_P1/fdisk.cpp" "/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/CMakeFiles/MIA_P1.dir/fdisk.cpp.o"
   "/home/diego/Escritorio/Proyectos/MIA_P1/find.cpp" "/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/CMakeFiles/MIA_P1.dir/find.cpp.o"
   "/home/diego/Escritorio/Proyectos/MIA_P1/inodos.cpp" "/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/CMakeFiles/MIA_P1.dir/inodos.cpp.o"

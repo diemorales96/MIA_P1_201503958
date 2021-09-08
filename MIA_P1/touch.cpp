@@ -3,7 +3,7 @@
 #include "mkfs.h"
 #include "mount.h"
 
-void touch::crearArchivo(string path, string r, string Pname, string cont, string stdin, string size,bool entra)
+void touch::crearArchivo(string path, string r, string Pname, string cont, string Stdin, string size,bool entra)
 {
     if(!entra){
         cout<<"Usuario No logeado"<<endl;
@@ -191,17 +191,22 @@ void touch::crearArchivo(string path, string r, string Pname, string cont, strin
                                 if(contenido2 != "") {
                                     nuevaC = CbloqueC(contenido2);
                                     for(int s = 0; s < nuevaC.contenido.size();s++){
-                                        fseek(archivo,aux.s_block_start +(64*(aux.s_blocks_count + 1+ s)),SEEK_SET);
+                                        aux.s_blocks_count++;
+                                        fseek(archivo,aux.s_block_start +(64*(aux.s_blocks_count)),SEEK_SET);
                                         fwrite(&nuevaC.contenido[s],64,1,archivo);
-                                        if (s >= 1){
-                                            nuevaT.i_block[s] = aux.s_blocks_count + 1 +s;
-                                        }
+                                        aux.s_free_blocks_count--;
+                                        nuevaT.i_block[s] = aux.s_blocks_count;
+                                        /*if (s >= 1){
+
+                                        }*/
                                     }
                                 }else{
                                     BloqueArchivos nuevobloque;
                                     nuevaC.contenido.push_back(nuevobloque);
                                     fseek(archivo, aux.s_block_start + (64 * (aux.s_blocks_count + 1)), SEEK_SET);
                                     fwrite(&nuevaC.contenido[0], 64, 1, archivo);
+                                    aux.s_blocks_count++;
+                                    aux.s_free_blocks_count--;
                                 }
                                 strcpy(aux3.b_content[k].b_name, f[i].c_str());
                                 aux3.b_content[k].b_inodo = aux.s_inodes_count + 1;
@@ -216,9 +221,7 @@ void touch::crearArchivo(string path, string r, string Pname, string cont, strin
                                 fseek(archivo, aux.s_bm_block_start, SEEK_SET);
                                 fwrite(&Bmb, sizeof(Bmb), 1, archivo);
                                 aux.s_inodes_count++;
-                                aux.s_blocks_count++;
                                 aux.s_free_inodes_count--;
-                                aux.s_free_blocks_count--;
                                 fseek(archivo, inicioP, SEEK_SET);
                                 fwrite(&aux, sizeof(SuperBloque), 1, archivo);
                                 fclose(archivo);

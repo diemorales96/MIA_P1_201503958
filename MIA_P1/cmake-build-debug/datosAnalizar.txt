@@ -1,1 +1,1 @@
-rep -id=581a -Path=/home/diego/Escritorio/s/reporte2.png -name=mbr
+Cat -file1=/home/pru.txt

@@ -249,6 +249,30 @@ disco.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/disco.cpp.s
 .PHONY : disco.cpp.s
 
+edit.o: edit.cpp.o
+.PHONY : edit.o
+
+# target to build an object file
+edit.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/edit.cpp.o
+.PHONY : edit.cpp.o
+
+edit.i: edit.cpp.i
+.PHONY : edit.i
+
+# target to preprocess a source file
+edit.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/edit.cpp.i
+.PHONY : edit.cpp.i
+
+edit.s: edit.cpp.s
+.PHONY : edit.s
+
+# target to generate assembly for a file
+edit.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/edit.cpp.s
+.PHONY : edit.cpp.s
+
 fdisk.o: fdisk.cpp.o
 .PHONY : fdisk.o
 
@@ -561,6 +585,9 @@ help:
 	@echo "... disco.o"
 	@echo "... disco.i"
 	@echo "... disco.s"
+	@echo "... edit.o"
+	@echo "... edit.i"
+	@echo "... edit.s"
 	@echo "... fdisk.o"
 	@echo "... fdisk.i"
 	@echo "... fdisk.s"

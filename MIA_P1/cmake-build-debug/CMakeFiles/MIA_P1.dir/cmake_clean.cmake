@@ -4,6 +4,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/MIA_P1.dir/chmod.cpp.o"
   "CMakeFiles/MIA_P1.dir/comexec.cpp.o"
   "CMakeFiles/MIA_P1.dir/disco.cpp.o"
+  "CMakeFiles/MIA_P1.dir/edit.cpp.o"
   "CMakeFiles/MIA_P1.dir/fdisk.cpp.o"
   "CMakeFiles/MIA_P1.dir/find.cpp.o"
   "CMakeFiles/MIA_P1.dir/inodos.cpp.o"

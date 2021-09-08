@@ -6,14 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/diego/Escritorio/Proyectos/MIA_P1/disco.cpp
-disco.h
-/home/diego/Escritorio/Proyectos/MIA_P1/disco.h
-mount.h
-/home/diego/Escritorio/Proyectos/MIA_P1/mount.h
-mkdir.h
-/home/diego/Escritorio/Proyectos/MIA_P1/mkdir.h
-
 /home/diego/Escritorio/Proyectos/MIA_P1/disco.h
 iostream
 -
@@ -39,6 +31,24 @@ time.h
 -
 cstdlib
 -
+
+/home/diego/Escritorio/Proyectos/MIA_P1/edit.cpp
+edit.h
+/home/diego/Escritorio/Proyectos/MIA_P1/edit.h
+vector
+-
+mount.h
+/home/diego/Escritorio/Proyectos/MIA_P1/mount.h
+mkdir.h
+/home/diego/Escritorio/Proyectos/MIA_P1/mkdir.h
+touch.h
+/home/diego/Escritorio/Proyectos/MIA_P1/touch.h
+
+/home/diego/Escritorio/Proyectos/MIA_P1/edit.h
+mkdir.h
+/home/diego/Escritorio/Proyectos/MIA_P1/mkdir.h
+string.h
+/home/diego/Escritorio/Proyectos/MIA_P1/string.h
 
 /home/diego/Escritorio/Proyectos/MIA_P1/fdisk.h
 stdlib.h
@@ -85,4 +95,14 @@ fdisk.h
 /home/diego/Escritorio/Proyectos/MIA_P1/fdisk.h
 
 /home/diego/Escritorio/Proyectos/MIA_P1/parser.h
+
+/home/diego/Escritorio/Proyectos/MIA_P1/touch.h
+iostream
+-
+string.h
+/home/diego/Escritorio/Proyectos/MIA_P1/string.h
+mkdir.h
+/home/diego/Escritorio/Proyectos/MIA_P1/mkdir.h
+vector
+-
 

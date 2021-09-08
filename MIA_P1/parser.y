@@ -21,6 +21,7 @@
 #include "cat.h"
 #include "arbol.h"
 #include <vector>
+#include "edit.h"
 
 using namespace std;
 
@@ -49,9 +50,6 @@ static int userL = 0,pwdL = 0, idL = 0;
 static string userLogin = "",pwdLogin = "", idLogin = "";
 static bool aceptado = false;
 
-static int pathMov = 0,destMov = 0;
-static string pathMove = "",destMove = "";
-
 static int pathRe = 0,nombreRe = 0;
 static string pathRen = "",nombreRen = "";
 
@@ -63,6 +61,13 @@ static string pathChmod = "",ugoChmod = "", rChmod = "";
 
 static int mbrRep = 0,pathRep = 0,idRep = 0,nameRep = 0,sbRep = 0,diskRep = 0,treeRep = 0,rootRep = 0;
 static string pathReporte = "",id_Reporte = "", root_Reporte = "/";
+
+static int pathMov = 0, destMov = 0;
+static string pathMove = "", destMove = "";
+
+static int pathEd = 0, stdinEd = 0, contEd = 0;
+static string pathEdit = "", contEdit = "";
+
 
 static int fileC = 0;
 static string fileCat = "";
@@ -114,6 +119,8 @@ int yyerror(const char* mens){
 %token<TEXT>  TIgual TTexto TID TCara
 %token<TEXT>  TMenos
 %token<TEXT>  Cat File
+%token<TEXT>  Mv Dest
+%token<TEXT>  Edit
 
 
 //****************************** NO TERMINALES
@@ -147,6 +154,10 @@ int yyerror(const char* mens){
 
 %type<TEXT> CAT CUERPO_CAT COMMAND_CAT LOGOUT
 
+%type<TEXT> MV CUERPO_MV COMMAND_MV
+
+%type<TEXT> EDIT CUERPO_EDIT COMMAND_EDIT
+
 %start S
 
 
@@ -176,7 +187,9 @@ SENTENCIAS      	: MKDISK	{}
 			| CHMOD		{}
 			| REP		{}
 			| CAT		{}
-			| LOGOUT	{};
+			| LOGOUT	{}
+			| MV		{}
+			| EDIT		{};
 
 //--------------------------------------MKDISK---------------------------------------------------------
 MKDISK          	: Mkdisk CUERPO_MKDISK    {
@@ -211,7 +224,7 @@ UNIDAD          	: Kilo    {unitDisc = "k"; unitPart = "k"; }
 DIRECCION       	: TTexto    { pathMount = $1;  pathPart = $1; pathDisc = $1; patDisc = 1; comDisc = 1;
 				     pathMkdir = $1;pathT = 1; path_find = $1;}
                 	| Direccion { pathMount = $1;  pathPart = $1; pathDisc = $1; patDisc = 1; pathMkdir =
-                		$1; pathT = 1; path_find = $1;};
+                		$1; pathT = 1; path_find = $1; };
 
 AJUSTE          	: Bf    { fitDisc ="bf"; }
                 	| Wf    { fitDisc ="wf"; }
@@ -601,5 +614,53 @@ CUERPO_CAT		: CUERPO_CAT COMMAND_CAT	{}
 
 COMMAND_CAT 		: File TNumero TIgual DIRECCION	{ fileC = 1; fileCat = pathMount; };
 
+MV			: Mv CUERPO_MV{
+	if(pathMov == 1 && destMov == 1){
+		if(comDisc == 1){
+			pathMove = disco::quitarComillas(pathMove);
+			destMove = disco::quitarComillas(destMove);
+			move::teleport(pathMove,destMove,idLogin,aceptado);
+		}else{
+			move::teleport(pathMove,destMove,idLogin,aceptado);
+		}
+	}else{
+		cout<<"Falta un parametro obligatorio"<<endl;
+	}
+
+};
+
+CUERPO_MV		: CUERPO_MV COMMAND_MV		{}
+			| COMMAND_MV			{};
+
+COMMAND_MV 		: Path TIgual DIRECCION		{ pathMov = 1; pathMove = pathMount; }
+			| Dest TIgual DIRECCION		{ destMov = 1; destMove = pathMount; };
+
+EDIT			: Edit CUERPO_EDIT		{
+	cout<<contEd<<","<<stdinEd<<","<<pathEdit<<","<<contEdit<<endl;
+	if(pathEd == 1){
+		if((contEd == 1) && (stdinEd == 1)){
+			cout<<"entra aqui puta madre :( "<<endl;
+                       	cout<<"No pueden venir juntos el parametro cont y el stdin"<<endl;
+		}else{
+			if(comDisc == 1){
+				pathEdit = disco::quitarComillas(pathEdit);
+				contEdit = disco::quitarComillas(contEdit);
+				edit::editar(pathEdit,contEdit,stdinEd,idLogin,aceptado);
+			}else{
+				edit::editar(pathEdit,contEdit,stdinEd,idLogin,aceptado);
+			}
+}
+	}else{
+		cout<<"Es necesario el parametro path"<<endl;
+	}
+	contEd = 0; stdinEd = 0; pathEd = 0; comDisc = 0; pathEdit = ""; contEdit = "";
+};
+
+CUERPO_EDIT		: CUERPO_EDIT COMMAND_EDIT	{}
+			| COMMAND_EDIT			{};
+
+COMMAND_EDIT		: Path TIgual DIRECCION		{ pathEd = 1; pathEdit = pathMount;}
+			| Cont TIgual DIRECCION		{ contEd = 1; contEdit = pathMount; }
+			| Stdin				{ stdinEd = 1; };
 
 %%

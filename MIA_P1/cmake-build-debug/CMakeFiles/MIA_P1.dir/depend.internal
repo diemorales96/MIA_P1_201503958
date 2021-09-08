@@ -41,6 +41,16 @@ CMakeFiles/MIA_P1.dir/disco.cpp.o
  /home/diego/Escritorio/Proyectos/MIA_P1/mkfs.h
  /home/diego/Escritorio/Proyectos/MIA_P1/mount.h
  /home/diego/Escritorio/Proyectos/MIA_P1/parser.h
+CMakeFiles/MIA_P1.dir/edit.cpp.o
+ /home/diego/Escritorio/Proyectos/MIA_P1/disco.h
+ /home/diego/Escritorio/Proyectos/MIA_P1/edit.cpp
+ /home/diego/Escritorio/Proyectos/MIA_P1/edit.h
+ /home/diego/Escritorio/Proyectos/MIA_P1/fdisk.h
+ /home/diego/Escritorio/Proyectos/MIA_P1/mkdir.h
+ /home/diego/Escritorio/Proyectos/MIA_P1/mkfs.h
+ /home/diego/Escritorio/Proyectos/MIA_P1/mount.h
+ /home/diego/Escritorio/Proyectos/MIA_P1/parser.h
+ /home/diego/Escritorio/Proyectos/MIA_P1/touch.h
 CMakeFiles/MIA_P1.dir/fdisk.cpp.o
  /home/diego/Escritorio/Proyectos/MIA_P1/disco.h
  /home/diego/Escritorio/Proyectos/MIA_P1/fdisk.cpp
@@ -104,6 +114,7 @@ CMakeFiles/MIA_P1.dir/parser.cpp.o
  /home/diego/Escritorio/Proyectos/MIA_P1/chmod.h
  /home/diego/Escritorio/Proyectos/MIA_P1/comexec.h
  /home/diego/Escritorio/Proyectos/MIA_P1/disco.h
+ /home/diego/Escritorio/Proyectos/MIA_P1/edit.h
  /home/diego/Escritorio/Proyectos/MIA_P1/fdisk.h
  /home/diego/Escritorio/Proyectos/MIA_P1/find.h
  /home/diego/Escritorio/Proyectos/MIA_P1/mkdir.h

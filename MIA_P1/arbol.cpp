@@ -101,11 +101,11 @@ void arbol::Reporte(string id, string path, string dest)
     grafo += "node [shape=record,width=.1,height=.1]\n";
     grafo += rep+"\n";
     grafo += "}";
-    cout <<grafo << endl;
+    //cout <<grafo << endl;
 
     char ru[500];
     strcpy(ru, cc.c_str());
-    cout << "ru: " << ru << endl;
+    //cout << "ru: " << ru << endl;
 
     ofstream file;
     file.open("archivoDot1.dot");
@@ -119,7 +119,7 @@ void arbol::Reporte(string id, string path, string dest)
 
     char rut[500];
     strcpy(rut, ccc.c_str());
-    cout << ccc << endl;
+    //cout << ccc << endl;
     string s(rut);
     string comando = "eog " + s;
     const char *cmd2 = comando.c_str();
@@ -140,8 +140,8 @@ string arbol::buscarTodo(int siguienteI, int inicioP, FILE *archivo, string repo
     repo += bInodos(aux2, siguienteI)+"\n";
     if(anterior!=""){
         repo+=anterior+"->inode"+to_string(siguienteI)+"\n";
-        cout<<repo<<endl;
-        cout<<"--------------------------------------------------------------------------------------------------"<<endl;
+        //cout<<repo<<endl;
+        //cout<<"--------------------------------------------------------------------------------------------------"<<endl;
     }
 
     for (int i = 0; i < 15; i++)
@@ -167,8 +167,8 @@ string arbol::buscarTodo(int siguienteI, int inicioP, FILE *archivo, string repo
                                 siguienteI = aux3.b_content[j].b_inodo;
                                 string n="node"+to_string(aux2.i_block[i])+":bc"+to_string(aux2.i_block[i])+to_string(j);
                                 repo = buscarTodo(siguienteI,inicioP,archivo,repo,n);
-                                cout<<repo<<endl;
-                                cout <<"------------------------aqui-------------------------------"<<endl;
+                                //cout<<repo<<endl;
+                                //cout <<"------------------------aqui-------------------------------"<<endl;
                             }
                         }
                     }
@@ -178,8 +178,8 @@ string arbol::buscarTodo(int siguienteI, int inicioP, FILE *archivo, string repo
                     fread(&contenido,64,1,archivo);
                     repo+=bArchivos(contenido,aux2.i_block[i]);
                     repo+="inode"+to_string(siguienteI)+":i"+to_string(i)+"->node"+to_string(aux2.i_block[i])+"\n";
-                    cout <<repo<<endl;
-                    cout <<"-----------------------------------------------------------"<<endl;
+                    //cout <<repo<<endl;
+                    //cout <<"-----------------------------------------------------------"<<endl;
                 }
             }
         }else{

@@ -109,7 +109,10 @@ extern int yydebug;
     TCara = 315,
     TMenos = 316,
     Cat = 317,
-    File = 318
+    File = 318,
+    Mv = 319,
+    Dest = 320,
+    Edit = 321
   };
 #endif
 
@@ -117,11 +120,11 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 83 "parser.y"
+#line 88 "parser.y"
 
     char TEXT [256];
 
-#line 125 "parser.h"
+#line 128 "parser.h"
 
 };
 typedef union YYSTYPE YYSTYPE;
