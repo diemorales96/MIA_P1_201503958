@@ -489,6 +489,30 @@ parser.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/parser.cpp.s
 .PHONY : parser.cpp.s
 
+remove.o: remove.cpp.o
+.PHONY : remove.o
+
+# target to build an object file
+remove.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/remove.cpp.o
+.PHONY : remove.cpp.o
+
+remove.i: remove.cpp.i
+.PHONY : remove.i
+
+# target to preprocess a source file
+remove.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/remove.cpp.i
+.PHONY : remove.cpp.i
+
+remove.s: remove.cpp.s
+.PHONY : remove.s
+
+# target to generate assembly for a file
+remove.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MIA_P1.dir/build.make CMakeFiles/MIA_P1.dir/remove.cpp.s
+.PHONY : remove.cpp.s
+
 ren.o: ren.cpp.o
 .PHONY : ren.o
 
@@ -615,6 +639,9 @@ help:
 	@echo "... parser.o"
 	@echo "... parser.i"
 	@echo "... parser.s"
+	@echo "... remove.o"
+	@echo "... remove.i"
+	@echo "... remove.s"
 	@echo "... ren.o"
 	@echo "... ren.i"
 	@echo "... ren.s"

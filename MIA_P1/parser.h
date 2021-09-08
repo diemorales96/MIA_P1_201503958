@@ -103,16 +103,17 @@ extern int yydebug;
     Sb = 309,
     Tree = 310,
     Root = 311,
-    TIgual = 312,
-    TTexto = 313,
-    TID = 314,
-    TCara = 315,
-    TMenos = 316,
-    Cat = 317,
-    File = 318,
-    Mv = 319,
-    Dest = 320,
-    Edit = 321
+    Inode = 312,
+    TIgual = 313,
+    TTexto = 314,
+    TID = 315,
+    TCara = 316,
+    TMenos = 317,
+    Cat = 318,
+    File = 319,
+    Mv = 320,
+    Dest = 321,
+    Edit = 322
   };
 #endif
 
@@ -124,7 +125,7 @@ union YYSTYPE
 
     char TEXT [256];
 
-#line 128 "parser.h"
+#line 129 "parser.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

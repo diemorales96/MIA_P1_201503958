@@ -13,10 +13,10 @@ public:
     static void crearCarpeta(string path, string p, string Pname,string id,bool acceso);
     static string Separar(string path, int *content);
     static string Separar2(string path);
-    static void actBI(char *bm, int n, int veces);
+    static void Bitmap(char *bm, int n, int veces);
     static Inodo CInodo(char fechaActual[], int bloque,char tipo);
     static BloqueCarpetas CbloqueC(int actual, int padre);
-    static BloqueApuntadores Capunt();
+    static BloqueApuntadores Crearapuntador();
     static void ReporteSuperBloque(string id, string path);
 
 

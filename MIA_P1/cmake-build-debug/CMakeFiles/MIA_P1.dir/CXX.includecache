@@ -32,24 +32,6 @@ time.h
 cstdlib
 -
 
-/home/diego/Escritorio/Proyectos/MIA_P1/edit.cpp
-edit.h
-/home/diego/Escritorio/Proyectos/MIA_P1/edit.h
-vector
--
-mount.h
-/home/diego/Escritorio/Proyectos/MIA_P1/mount.h
-mkdir.h
-/home/diego/Escritorio/Proyectos/MIA_P1/mkdir.h
-touch.h
-/home/diego/Escritorio/Proyectos/MIA_P1/touch.h
-
-/home/diego/Escritorio/Proyectos/MIA_P1/edit.h
-mkdir.h
-/home/diego/Escritorio/Proyectos/MIA_P1/mkdir.h
-string.h
-/home/diego/Escritorio/Proyectos/MIA_P1/string.h
-
 /home/diego/Escritorio/Proyectos/MIA_P1/fdisk.h
 stdlib.h
 -
@@ -69,6 +51,24 @@ cstdlib
 -
 disco.h
 /home/diego/Escritorio/Proyectos/MIA_P1/disco.h
+
+/home/diego/Escritorio/Proyectos/MIA_P1/find.cpp
+find.h
+/home/diego/Escritorio/Proyectos/MIA_P1/find.h
+mkdir.h
+/home/diego/Escritorio/Proyectos/MIA_P1/mkdir.h
+mount.h
+/home/diego/Escritorio/Proyectos/MIA_P1/mount.h
+vector
+-
+
+/home/diego/Escritorio/Proyectos/MIA_P1/find.h
+string.h
+/home/diego/Escritorio/Proyectos/MIA_P1/string.h
+mkdir.h
+/home/diego/Escritorio/Proyectos/MIA_P1/mkdir.h
+vector
+-
 
 /home/diego/Escritorio/Proyectos/MIA_P1/mkdir.h
 iostream
@@ -95,14 +95,4 @@ fdisk.h
 /home/diego/Escritorio/Proyectos/MIA_P1/fdisk.h
 
 /home/diego/Escritorio/Proyectos/MIA_P1/parser.h
-
-/home/diego/Escritorio/Proyectos/MIA_P1/touch.h
-iostream
--
-string.h
-/home/diego/Escritorio/Proyectos/MIA_P1/string.h
-mkdir.h
-/home/diego/Escritorio/Proyectos/MIA_P1/mkdir.h
-vector
--
 

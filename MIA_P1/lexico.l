@@ -109,6 +109,7 @@ Comentario	    "#"[^\r\n]*[^\r\n]
 "sb"                {   return (Sb);    }
 "tree"              {   return (Tree);  }
 "-root"             {   return (Root);  }
+"inode"             {   return (Inode); }
 
 "cat"               {   return (Cat);   }
 "-file"             {   return (File);  }

@@ -23,6 +23,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/diego/Escritorio/Proyectos/MIA_P1/mount.cpp" "/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/CMakeFiles/MIA_P1.dir/mount.cpp.o"
   "/home/diego/Escritorio/Proyectos/MIA_P1/move.cpp" "/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/CMakeFiles/MIA_P1.dir/move.cpp.o"
   "/home/diego/Escritorio/Proyectos/MIA_P1/parser.cpp" "/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/CMakeFiles/MIA_P1.dir/parser.cpp.o"
+  "/home/diego/Escritorio/Proyectos/MIA_P1/remove.cpp" "/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/CMakeFiles/MIA_P1.dir/remove.cpp.o"
   "/home/diego/Escritorio/Proyectos/MIA_P1/ren.cpp" "/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/CMakeFiles/MIA_P1.dir/ren.cpp.o"
   "/home/diego/Escritorio/Proyectos/MIA_P1/scanner.cpp" "/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/CMakeFiles/MIA_P1.dir/scanner.cpp.o"
   "/home/diego/Escritorio/Proyectos/MIA_P1/touch.cpp" "/home/diego/Escritorio/Proyectos/MIA_P1/cmake-build-debug/CMakeFiles/MIA_P1.dir/touch.cpp.o"

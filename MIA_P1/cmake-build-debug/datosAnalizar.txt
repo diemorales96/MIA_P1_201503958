@@ -1,1 +1,1 @@
-Cat -file1=/home/pru.txt
+find -Path="/" -name=?.txt

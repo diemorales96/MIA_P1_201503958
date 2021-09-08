@@ -1,7 +1,7 @@
 #include "cat.h"
 #include <vector>
 #include "mount.h"
-#include "touch.h"
+#include "remove.h"
 
 
 void cat::ContentA(string path, string id,bool entra)
@@ -10,6 +10,8 @@ void cat::ContentA(string path, string id,bool entra)
         cout<<"Usuario No Logeado"<<endl;
         return;
     }
+    //inodos::Reporte("/home/diego/Escritorio/s/img6.png","581a");
+    //remove::buscar("/home",id);
     vector <string> f;
     listMounted particion;
     particion = mount::recorrerLista(id);

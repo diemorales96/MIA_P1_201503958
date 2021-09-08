@@ -22,7 +22,7 @@
 #include "arbol.h"
 #include <vector>
 #include "edit.h"
-
+#include "inodos.h"
 using namespace std;
 
 
@@ -59,7 +59,7 @@ static string path_find = "", name_find = "", termina_find_ast = "", termina_fin
 static int pathCh = 0,ugoCh = 0,rCh = 0;
 static string pathChmod = "",ugoChmod = "", rChmod = "";
 
-static int mbrRep = 0,pathRep = 0,idRep = 0,nameRep = 0,sbRep = 0,diskRep = 0,treeRep = 0,rootRep = 0;
+static int mbrRep = 0,pathRep = 0,idRep = 0,nameRep = 0,sbRep = 0,diskRep = 0,treeRep = 0,rootRep = 0,inodeRep = 0;
 static string pathReporte = "",id_Reporte = "", root_Reporte = "/";
 
 static int pathMov = 0, destMov = 0;
@@ -115,7 +115,7 @@ int yyerror(const char* mens){
 
 %token<TEXT>  Ren
 %token<TEXT>  Chmod Ugo
-%token<TEXT>  Rep Mbr Disk Sb Tree Root
+%token<TEXT>  Rep Mbr Disk Sb Tree Root Inode
 %token<TEXT>  TIgual TTexto TID TCara
 %token<TEXT>  TMenos
 %token<TEXT>  Cat File
@@ -412,17 +412,17 @@ TOUCH 			: Touch CUERPO_TOUCH		{
                                		if(rT == 1){
                                			if(comDisc == 1){
 								pathTouch = disco::quitarComillas(pathTouch);
-								touch::crearArchivo(pathTouch,"r",idLogin,contTouch,stdinTouch,sizeTouch,aceptado);
+								touch::crearArchivo(pathTouch,"r",idLogin,contTouch,stdinT,sizeTouch,aceptado);
                                                 	}else{
-								touch::crearArchivo(pathTouch,"r",idLogin,contTouch,stdinTouch,sizeTouch,aceptado);
+								touch::crearArchivo(pathTouch,"r",idLogin,contTouch,stdinT,sizeTouch,aceptado);
                                                 }
 
                                		}else{
                                			if(comDisc == 1){
 							pathTouch = disco::quitarComillas(pathTouch);
-							touch::crearArchivo(pathTouch,"r","581a",contTouch,stdinTouch,sizeTouch,aceptado);
+							touch::crearArchivo(pathTouch,"r","581a",contTouch,stdinT,sizeTouch,aceptado);
 						}else{
-							touch::crearArchivo(pathTouch,"r","581a",contTouch,stdinTouch,sizeTouch,aceptado);
+							touch::crearArchivo(pathTouch,"r","581a",contTouch,stdinT,sizeTouch,aceptado);
 						}
                                		}
 
@@ -438,10 +438,7 @@ CUERPO_TOUCH 		: CUERPO_TOUCH COMMAND_TOUCH	{}
 COMMAND_TOUCH 		: Tamanio TIgual TNumero	{ sizeT = 1; sizeTouch = $3; }
 			| Path TIgual DIRECCION		{ pathTouch = pathMkdir; }
 			| Cont TIgual DIRECCION		{ contT = 1; contTouch = pathMkdir; }
-			| Stdin				{stdinT = 1;
-				cout<<"Ingrese un texto para guardar en el archivo"<<endl;
-				getline(cin, stdinTouch);
-							}
+			| Stdin				{stdinT = 1;}
 			| R 				{rT = 1;};
 
 //-------------------------------- LOGIN -------------------------------------------------------------------------
@@ -571,6 +568,13 @@ REP 			: Rep CUERPO_REP		{
 			}else{
 				arbol::Reporte(id_Reporte,root_Reporte,pathReporte);
 			}
+		}else if (inodeRep == 1){
+			if(comDisc == 1){
+				pathReporte = disco::quitarComillas(pathReporte);
+				inodos::Reporte(pathReporte,id_Reporte);
+			}else{
+				inodos::Reporte(pathReporte,id_Reporte);
+			}
 		}else{
 			cout<<"error en parametro name";
 		}
@@ -578,7 +582,7 @@ REP 			: Rep CUERPO_REP		{
 		cout<<"Falta un parametro"<<endl;
 	}
 	idRep = 0; pathRep = 0; nameRep = 0,root_Reporte = "/";
-	mbrRep = 0; comDisc = 0; pathReporte = ""; id_Reporte = ""; sbRep = 0; diskRep = 0,treeRep = 0; rootRep = 0;
+	mbrRep = 0; comDisc = 0; pathReporte = ""; id_Reporte = ""; sbRep = 0; diskRep = 0,treeRep = 0; rootRep = 0; inodeRep = 0;
 };
 
 CUERPO_REP 		: CUERPO_REP COMMAND_REP	{}
@@ -592,27 +596,30 @@ COMMAND_REP		: Id TIgual TID 		{ idRep = 1; id_Reporte = $3; }
 TIPO_REP		: Mbr 				{ mbrRep = 1; }
 			| Sb				{ sbRep = 1; }
 			| Disk				{ diskRep = 1; }
-			| Tree				{ treeRep = 1; };
+			| Tree				{ treeRep = 1; }
+			| Inode				{ inodeRep = 1; };
 //------------------------------------- CAT -----------------------------------------------------------------
 
 CAT 			: Cat CUERPO_CAT		{
-	if(fileC == 1){
-		if(comDisc == 1){
-			pathReporte = disco::quitarComillas(pathReporte);
-                        cat::ContentA(fileCat, idLogin,aceptado);
-		}else{
-			cat::ContentA(fileCat, idLogin,aceptado);
-		}
-	}else{
-		cout <<"Fal el comando file"<<endl;
-	}
+
 
 };
 
 CUERPO_CAT		: CUERPO_CAT COMMAND_CAT	{}
 			| COMMAND_CAT			{};
 
-COMMAND_CAT 		: File TNumero TIgual DIRECCION	{ fileC = 1; fileCat = pathMount; };
+COMMAND_CAT 		: File TNumero TIgual DIRECCION	{ fileC = 1; fileCat = pathMount;
+	if(fileC == 1){
+		if(comDisc == 1){
+			pathReporte = disco::quitarComillas(pathReporte);
+			cat::ContentA(fileCat, idLogin,aceptado);
+		}else{
+			cat::ContentA(fileCat, idLogin,aceptado);
+		}
+	}else{
+		cout <<"Fal el comando file"<<endl;
+	}
+};
 
 MV			: Mv CUERPO_MV{
 	if(pathMov == 1 && destMov == 1){
@@ -636,7 +643,7 @@ COMMAND_MV 		: Path TIgual DIRECCION		{ pathMov = 1; pathMove = pathMount; }
 			| Dest TIgual DIRECCION		{ destMov = 1; destMove = pathMount; };
 
 EDIT			: Edit CUERPO_EDIT		{
-	cout<<contEd<<","<<stdinEd<<","<<pathEdit<<","<<contEdit<<endl;
+
 	if(pathEd == 1){
 		if((contEd == 1) && (stdinEd == 1)){
 			cout<<"entra aqui puta madre :( "<<endl;

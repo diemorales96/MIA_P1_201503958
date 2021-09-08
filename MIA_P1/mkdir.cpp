@@ -291,8 +291,8 @@ void mkdir::crearCarpeta(string path, string p, string Pname,string id,bool acce
                                 fseek(archivo, aux.s_bm_block_start, SEEK_SET);
                                 fread(&Bmb, sizeof(Bmb), 1, archivo);
                                 //Actualizo los bitmap
-                                actBI(Bmi, n, 1);
-                                actBI(Bmb, 3 * n, 2);
+                                Bitmap(Bmi, n, 1);
+                                Bitmap(Bmb, 3 * n, 2);
                                 //Bloque de carpetas saliente del bloque de apuntadores
                                 nuevaC = CbloqueC(aux2.i_block[j], -1);
                                 strcpy(nuevaC.b_content[0].b_name,f[i].c_str());
@@ -329,7 +329,7 @@ void mkdir::crearCarpeta(string path, string p, string Pname,string id,bool acce
                     }else{
                         aux2.i_block[j] = aux.s_blocks_count + 1;
                         BloqueApuntadores nuevoAp;
-                        nuevoAp = Capunt();
+                        nuevoAp = Crearapuntador();
                         nuevoAp.b_pointers[0] = aux.s_blocks_count + 2;
                         BloqueCarpetas nuevaC;
                         nuevaC = CbloqueC(-1, -1);
@@ -439,7 +439,7 @@ Inodo mkdir::CInodo(char fechaActual[], int bloque,char tipo)
     return tablainodos;
 }
 
-void mkdir::actBI(char *bm, int n, int veces)
+void mkdir::Bitmap(char *bm, int n, int veces)
 {
     if (veces == 1)
     {
@@ -468,7 +468,7 @@ void mkdir::actBI(char *bm, int n, int veces)
     }
 }
 
-BloqueApuntadores mkdir::Capunt()
+BloqueApuntadores mkdir::Crearapuntador()
 {
     BloqueApuntadores apuntador;
     for (int i = 0; i < 16; i++)

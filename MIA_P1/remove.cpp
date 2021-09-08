@@ -1,26 +1,21 @@
-
-#include "find.h"
-#include "mkdir.h"
+#include "remove.h"
 #include "mount.h"
-#include <vector>
-
-string find::buscar(int uno, int varios, string path, string name, string id)
+int inodos=0;
+int bloques=0;
+void remove::buscar(string path, string id)
 {
-    vector<string> f;
-    if (uno == 1 || varios == 1){
-        name = "." + name;
-    }
-
+    vector<string> ruta;
     listMounted particion;
     particion = mount::recorrerLista(id);
+    //Mkdir::Separar(path, ruta);
     FILE *archivo;
-    archivo = fopen(particion.path.c_str(), "rb");
+    archivo = fopen(particion.path.c_str(), "rb+");
     int contador = 0;
     if (path != "/")
     {
-        f = mkdir::split(path,'/');
-        contador = f.size();
+        ruta = mkdir::split(path,'/');
     }
+    contador = ruta.size();
 
     //string name = ruta[contador - 1];
     MBR mbr;
@@ -65,9 +60,8 @@ string find::buscar(int uno, int varios, string path, string name, string id)
     int siguienteI = 0;
     int actual = 0;
     int padre = 0;
+    int v = 0;
     int apuntador = 0;
-    vector<string> reporte;
-
     for (int i = 1; i < contador; i++)
     {
         for (int j = 0; j < 15; j++)
@@ -82,9 +76,13 @@ string find::buscar(int uno, int varios, string path, string name, string id)
                     {
                         if (aux3.b_content[k].b_inodo != -1)
                         {
-                            encontrado = true;
-                            siguienteI = aux3.b_content[k].b_inodo;
-                            break;
+                            if(aux3.b_content[k].b_name == ruta[i]){
+                                encontrado = true;
+                                v = k;
+                                actual = j;
+                                siguienteI = aux3.b_content[k].b_inodo;
+                                break;
+                            }
                         }
                     }
                     if (encontrado)
@@ -95,26 +93,34 @@ string find::buscar(int uno, int varios, string path, string name, string id)
                     }
                 }
             }
-            else{
+            else
+            {
                 break;
             }
         }
     }
-    if (path == "/"){
-        encontrado = true;
-    }
-    if(encontrado){
-        buscarTodo(particion.path,uno,varios,siguienteI,inicioP,name,archivo);
+    if(encontrado) {
+        inodos++;
+        buscarTodo(siguienteI, inicioP, archivo);
+        aux3.b_content[v].b_inodo=-1;
+        strcpy(aux3.b_content[v].b_name,"--");
+        aux.s_blocks_count=aux.s_blocks_count-bloques;
+        aux.s_free_blocks_count=aux.s_free_blocks_count+bloques;
+        aux.s_inodes_count=aux.s_inodes_count-inodos;
+        aux.s_free_inodes_count=aux.s_free_inodes_count+inodos;
+        fseek(archivo, aux.s_block_start+(64*actual), SEEK_SET);
+        fwrite(&aux3,64,1,archivo);
+        fseek(archivo,inicioP,SEEK_SET);
+        fwrite(&aux,sizeof (SuperBloque),1,archivo);
+        fclose(archivo);
     }else{
-        cout<<"Error no se encontro la carpeta de inicio"<<endl;
+        cout<<"NO se encontro la carpeta de inicio"<<endl;
+        return;
     }
 
-    fclose(archivo);
 }
-vector <string> reporte;
-void find::buscarTodo(string dire, int uno, int varios, int siguienteI, int inicioP, string sufijo,FILE *archivo)
+void remove::buscarTodo(int siguienteI, int inicioP, FILE *archivo)
 {
-
     SuperBloque aux;
     Inodo aux2;
     BloqueCarpetas aux3;
@@ -122,41 +128,35 @@ void find::buscarTodo(string dire, int uno, int varios, int siguienteI, int inic
     fread(&aux, sizeof(SuperBloque), 1, archivo);
     fseek(archivo, aux.s_inode_start + (sizeof(Inodo) * siguienteI), SEEK_SET);
     fread(&aux2, sizeof(Inodo), 1, archivo);
+    inodos++;
     for (int i = 0; i < 15; i++)
     {
         if (aux2.i_block[i] != -1)
         {
-            if (i < 12)
-            {
-                fseek(archivo, aux.s_block_start + (64 * aux2.i_block[i]), SEEK_SET);
-                fread(&aux3, 64, 1, archivo);
-                for (int j = 0; j < 4; j++)
+            bloques++;
+            if(aux2.i_type == '0'){
+                if (i < 12)
                 {
-                    if (aux3.b_content[j].b_inodo != -1)
+                    fseek(archivo, aux.s_block_start + (64 * aux2.i_block[i]), SEEK_SET);
+                    fread(&aux3, 64, 1, archivo);
+                    for (int j = 0; j < 4; j++)
                     {
-                        string nombre(aux3.b_content[j].b_name);
+                        if (aux3.b_content[j].b_inodo != -1)
+                        {
+                            string nombre(aux3.b_content[j].b_name);
 
-                        if (verExtension(uno, varios, nombre, sufijo) == 1)
-                        {
-                            cout<<"Nombre archivo: "<< nombre<<endl;
-                            reporte.push_back(nombre);
-                        }else if(sufijo == aux3.b_content[j].b_name){
-                            cout<<"Nombre carpeta: "<< nombre<<endl;
-                            reporte.push_back(nombre);
-                        }
-                        else
-                        {
-                            if(j >= 2){
-                                if(aux2.i_block[i] != -1){
+
+                            if (j >= 2)
+                            {
+                                if (aux2.i_block[i] != -1)
+                                {
                                     Inodo siguiente;
                                     fseek(archivo, aux.s_inode_start + (sizeof(Inodo) * aux3.b_content[j].b_inodo), SEEK_SET);
                                     fread(&siguiente, sizeof(Inodo), 1, archivo);
-                                    if (siguiente.i_type == '0')
-                                    {
-                                        buscarTodo(dire, uno, varios,aux3.b_content[j].b_inodo, inicioP, sufijo,archivo);
-                                    }
+                                    buscarTodo(aux3.b_content[j].b_inodo, inicioP,archivo);
                                 }
                             }
+
                         }
                     }
                 }
@@ -166,51 +166,5 @@ void find::buscarTodo(string dire, int uno, int varios, int siguienteI, int inic
         {
             break;
         }
-    }
-}
-
-int find::verExtension(int uno, int varios, string nombre, string sufijo)
-{
-    if (uno == 1 && varios == 0)
-    {
-        int tamanio = nombre.length() - sufijo.length();
-        if (tamanio == 1)
-        {
-            if (nombre == "" || sufijo == "")
-            {
-                return 0;
-            }
-
-            size_t str_ = strlen(nombre.c_str());
-            size_t suf_ = strlen(sufijo.c_str());
-
-            if (suf_ > str_)
-            {
-                return 0;
-            }
-
-            return 0 == strncmp(nombre.c_str() + str_ - suf_, sufijo.c_str(), suf_);
-        }
-        else
-        {
-            return 0;
-        }
-    }
-    else
-    {
-        if (nombre == "" || sufijo == "")
-        {
-            return 0;
-        }
-
-        size_t str_ = strlen(nombre.c_str());
-        size_t suf_ = strlen(sufijo.c_str());
-
-        if (suf_ > str_)
-        {
-            return 0;
-        }
-
-        return 0 == strncmp(nombre.c_str() + str_ - suf_, sufijo.c_str(), suf_);
     }
 }

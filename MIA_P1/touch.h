@@ -13,7 +13,7 @@ typedef struct listaChar{
 
 class touch {
 public:
-    static void crearArchivo(string path, string r, string Pname,string cont, string Stdin, string size,bool entra);
+    static void crearArchivo(string path, string r, string Pname,string cont, int Stdin, string size,bool entra);
     static listaChar CbloqueC(string contenido);
 };
 

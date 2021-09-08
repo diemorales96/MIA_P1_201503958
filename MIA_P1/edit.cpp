@@ -34,6 +34,9 @@ void edit::editar(string path, string cont, int Stdin, string id, bool acceso) {
         string con(contenido);
         cout<< con <<endl;
         contenido2=con;
+    }else if(Stdin == 1){
+        cout<<"Ingrese texto: "<<endl;
+        getline(cin,contenido2);
     }
     int n = 0;
     char e = '/';

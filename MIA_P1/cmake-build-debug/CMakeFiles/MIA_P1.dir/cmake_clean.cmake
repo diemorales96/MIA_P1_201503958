@@ -14,6 +14,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/MIA_P1.dir/mount.cpp.o"
   "CMakeFiles/MIA_P1.dir/move.cpp.o"
   "CMakeFiles/MIA_P1.dir/parser.cpp.o"
+  "CMakeFiles/MIA_P1.dir/remove.cpp.o"
   "CMakeFiles/MIA_P1.dir/ren.cpp.o"
   "CMakeFiles/MIA_P1.dir/scanner.cpp.o"
   "CMakeFiles/MIA_P1.dir/touch.cpp.o"

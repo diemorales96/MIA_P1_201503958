@@ -19,7 +19,7 @@ CMakeFiles/MIA_P1.dir/cat.cpp.o: \
  ../mkfs.h \
  ../mount.h \
  ../parser.h \
- ../touch.h
+ ../remove.h
 CMakeFiles/MIA_P1.dir/chmod.cpp.o: \
  ../chmod.cpp \
  ../chmod.h \
@@ -117,6 +117,7 @@ CMakeFiles/MIA_P1.dir/parser.cpp.o: \
  ../edit.h \
  ../fdisk.h \
  ../find.h \
+ ../inodos.h \
  ../mkdir.h \
  ../mkfs.h \
  ../mount.h \
@@ -126,6 +127,15 @@ CMakeFiles/MIA_P1.dir/parser.cpp.o: \
  ../ren.h \
  ../scanner.h \
  ../touch.h
+CMakeFiles/MIA_P1.dir/remove.cpp.o: \
+ ../disco.h \
+ ../fdisk.h \
+ ../mkdir.h \
+ ../mkfs.h \
+ ../mount.h \
+ ../parser.h \
+ ../remove.cpp \
+ ../remove.h
 CMakeFiles/MIA_P1.dir/ren.cpp.o: \
  ../disco.h \
  ../fdisk.h \

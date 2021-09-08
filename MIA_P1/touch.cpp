@@ -3,7 +3,7 @@
 #include "mkfs.h"
 #include "mount.h"
 
-void touch::crearArchivo(string path, string r, string Pname, string cont, string Stdin, string size,bool entra)
+void touch::crearArchivo(string path, string r, string Pname, string cont, int Stdin, string size,bool entra)
 {
     if(!entra){
         cout<<"Usuario No logeado"<<endl;
@@ -25,6 +25,9 @@ void touch::crearArchivo(string path, string r, string Pname, string cont, strin
         string con(contenido);
         cout<< con <<endl;
         contenido2=con;
+    }else if(Stdin == 1){
+        cout<<"Ingrese texto: "<<endl;
+        getline(cin,contenido2);
     }
 
     listMounted particion;
@@ -233,40 +236,89 @@ void touch::crearArchivo(string path, string r, string Pname, string cont, strin
                     }
                     else
                     { //Creo Inodo,bloque de carpetas y otro bloque de carpetas
-                        aux2.i_block[j] = aux.s_blocks_count + 1;
-                        listaChar nuevaC;
-                        char Bmi[n];
-                        char Bmb[3 * n];
-                        //Obtengo los arreglos de bitmap guardados en el disco
-                        fseek(archivo, aux.s_bm_inode_start, SEEK_SET);
-                        fread(&Bmi, sizeof(Bmi), 1, archivo);
-                        fseek(archivo, aux.s_bm_block_start, SEEK_SET);
-                        fread(&Bmb, sizeof(Bmb), 1, archivo);
-                        //Actualizo los bitmap
-                        //actBI(Bmi, n, 1);
-                        //actBI(Bmb, 3 * n, 2);
-                        //Bloque de carpetas saliente del inodo revisado
-                        nuevaC = CbloqueC(contenido2);
-                        //Bloque de carpetas saliente del nuevo inodo
-                        fseek(archivo, aux.s_block_start + (64 * (aux.s_blocks_count + 1)), SEEK_SET);
-                        fwrite(&nuevaC, 64, 1, archivo);
-                        fseek(archivo, aux.s_bm_inode_start, SEEK_SET);
-                        fwrite(&Bmi, sizeof(Bmi), 1, archivo);
-                        fseek(archivo, aux.s_bm_block_start, SEEK_SET);
-                        fwrite(&Bmb, sizeof(Bmb), 1, archivo);
-                        fseek(archivo, aux.s_inode_start + (sizeof(Inodo) * aux2.i_block[j]), SEEK_SET);
-                        fwrite(&aux2, sizeof(Inodo), 1, archivo);
-                        aux.s_inodes_count++;
-                        aux.s_blocks_count++;
-                        aux.s_blocks_count++;
-                        aux.s_free_blocks_count--;
-                        aux.s_free_blocks_count--;
-                        aux.s_free_inodes_count--;
-                        fseek(archivo, inicioP, SEEK_SET);
-                        fwrite(&aux, sizeof(SuperBloque), 1, archivo);
-                        fclose(archivo);
-                        cout << "La carpeta fue creada con exito" << endl;
-                        creado = true;
+                        if(aux2.i_type == '1'){
+                            aux2.i_block[j] = aux.s_blocks_count + 1;
+                            listaChar nuevaC;
+                            char Bmi[n];
+                            char Bmb[3 * n];
+                            //Obtengo los arreglos de bitmap guardados en el disco
+                            fseek(archivo, aux.s_bm_inode_start, SEEK_SET);
+                            fread(&Bmi, sizeof(Bmi), 1, archivo);
+                            fseek(archivo, aux.s_bm_block_start, SEEK_SET);
+                            fread(&Bmb, sizeof(Bmb), 1, archivo);
+                            //Actualizo los bitmap
+                            //actBI(Bmi, n, 1);
+                            //actBI(Bmb, 3 * n, 2);
+                            //Bloque de carpetas saliente del inodo revisado
+                            nuevaC = CbloqueC(contenido2);
+                            //Bloque de carpetas saliente del nuevo inodo
+                            fseek(archivo, aux.s_block_start + (64 * (aux.s_blocks_count + 1)), SEEK_SET);
+                            fwrite(&nuevaC, 64, 1, archivo);
+                            fseek(archivo, aux.s_bm_inode_start, SEEK_SET);
+                            fwrite(&Bmi, sizeof(Bmi), 1, archivo);
+                            fseek(archivo, aux.s_bm_block_start, SEEK_SET);
+                            fwrite(&Bmb, sizeof(Bmb), 1, archivo);
+
+                            fseek(archivo, aux.s_inode_start + (sizeof(Inodo) * aux2.i_block[j]), SEEK_SET);
+                            fwrite(&aux2, sizeof(Inodo), 1, archivo);
+                            aux.s_inodes_count++;
+                            aux.s_blocks_count++;
+                            aux.s_blocks_count++;
+                            aux.s_free_blocks_count--;
+                            aux.s_free_blocks_count--;
+                            aux.s_free_inodes_count--;
+                            fseek(archivo, inicioP, SEEK_SET);
+                            fwrite(&aux, sizeof(SuperBloque), 1, archivo);
+                            fclose(archivo);
+                            cout << "La carpeta fue creada con exito" << endl;
+                            creado = true;
+                        }else{
+                            BloqueCarpetas nuevaCarp;
+                            nuevaCarp= mkdir::CbloqueC(actual,padre);
+                            aux.s_blocks_count++;
+                            Inodo nuevaT;
+                            nuevaT = mkdir::CInodo(fechaActual, aux.s_blocks_count+1, '1');
+                            listaChar nuevoA;
+
+                            nuevaCarp.b_content[2].b_inodo=aux.s_inodes_count+1;
+                            strcpy(nuevaCarp.b_content[2].b_name,f[i].c_str());
+                            aux2.i_block[j]=aux.s_blocks_count;
+                            fseek(archivo,aux.s_block_start+(64*aux.s_blocks_count),SEEK_SET);
+                            fwrite(&nuevaCarp,64,1,archivo);
+                            if (contenido2 != "")
+                            {
+                                nuevoA = CbloqueC(contenido2);
+                                for (size_t t = 0; t < nuevoA.contenido.size(); t++)
+                                {
+                                    aux.s_blocks_count++;
+                                    fseek(archivo, aux.s_block_start + (64 * (aux.s_blocks_count)), SEEK_SET);
+                                    fwrite(&nuevoA.contenido[t], 64, 1, archivo);
+                                    aux.s_free_blocks_count--;
+                                    nuevaT.i_block[t]=aux.s_blocks_count;
+
+                                }
+                            }
+                            else
+                            {
+                                BloqueArchivos nuevito;
+                                nuevoA.contenido.push_back(nuevito);
+                                fseek(archivo, aux.s_block_start + (64 * (aux.s_blocks_count + 1)), SEEK_SET);
+                                fwrite(&nuevoA.contenido[0], 64, 1, archivo);
+                                aux.s_blocks_count++;
+                                aux.s_free_blocks_count--;
+
+
+                            }
+                            fseek(archivo,aux.s_inode_start+(sizeof (Inodo)*(aux.s_inodes_count+1)),SEEK_SET);
+                            fwrite(&nuevaT,sizeof (Inodo),1,archivo);
+                            fseek(archivo,aux.s_inode_start+(sizeof (Inodo)*actual),SEEK_SET);
+                            fwrite(&aux2,sizeof (Inodo),1,archivo);
+                            aux.s_inodes_count++;
+                            aux.s_free_inodes_count--;
+                            fseek(archivo,inicioP,SEEK_SET);
+                            fwrite(&aux,sizeof (SuperBloque),1,archivo);
+                            creado=true;
+                        }
                     }
                     if(creado == true){
                         creado = false;
