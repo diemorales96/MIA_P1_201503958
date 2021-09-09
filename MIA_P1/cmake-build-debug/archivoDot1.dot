@@ -2,14 +2,41 @@ digraph MBR{
   nodesep=.05
 rankdir=LR
 node [shape=record,width=.1,height=.1]
-inode0[label="Inodo0|{i_uid|1}|{i_gid|1}|{i_size|0}|{i_atime|08/09/21 16:57:}|{i_ctime|08/09/21 16:57:}|{i_mtime|08/09/21 16:57:}|{i_perm|664}|{i_type|0}|{i_block[0]|<i0>0}|{i_block[1]|-1}|{i_block[2]|-1}|{i_block[3]|-1}|{i_block[4]|-1}|{i_block[5]|-1}|{i_block[6]|-1}|{i_block[7]|-1}|{i_block[8]|-1}|{i_block[9]|-1}|{i_block[10]|-1}|{i_block[11]|-1}|{i_block[12]|-1}|{i_block[13]|-1}|{i_block[14]|-1}"]
+inode0[label="Inodo0|{i_uid|1}|{i_gid|1}|{i_size|0}|{i_atime|08/09/21 20:17:}|{i_ctime|08/09/21 20:17:}|{i_mtime|08/09/21 20:17:}|{i_perm|664}|{i_type|0}|{i_block[0]|<i0>0}|{i_block[1]|-1}|{i_block[2]|-1}|{i_block[3]|-1}|{i_block[4]|-1}|{i_block[5]|-1}|{i_block[6]|-1}|{i_block[7]|-1}|{i_block[8]|-1}|{i_block[9]|-1}|{i_block[10]|-1}|{i_block[11]|-1}|{i_block[12]|-1}|{i_block[13]|-1}|{i_block[14]|-1}"]
 
-node0[label="<b0> Bloque Carpeta 0|{.|<bc00>0}|{..|<bc01>0}|{user.txt|<bc02>1}|{--|<bc03>-1}"]
+node0[label="<b0> Bloque Carpeta 0|{.|<bc00>0}|{..|<bc01>0}|{user.txt|<bc02>1}|{home|<bc03>3}"]
 inode0:i0->node0:b0
-inode1[label="Inodo1|{i_uid|1}|{i_gid|1}|{i_size|32}|{i_atime|08/09/21 16:57:}|{i_ctime|08/09/21 16:57:}|{i_mtime|08/09/21 16:57:}|{i_perm|664}|{i_type|1}|{i_block[0]|<i0>1}|{i_block[1]|-1}|{i_block[2]|-1}|{i_block[3]|-1}|{i_block[4]|-1}|{i_block[5]|-1}|{i_block[6]|-1}|{i_block[7]|-1}|{i_block[8]|-1}|{i_block[9]|-1}|{i_block[10]|-1}|{i_block[11]|-1}|{i_block[12]|-1}|{i_block[13]|-1}|{i_block[14]|-1}"]
+inode1[label="Inodo1|{i_uid|1}|{i_gid|1}|{i_size|32}|{i_atime|08/09/21 20:17:}|{i_ctime|08/09/21 20:17:}|{i_mtime|08/09/21 20:17:}|{i_perm|664}|{i_type|1}|{i_block[0]|<i0>1}|{i_block[1]|-1}|{i_block[2]|-1}|{i_block[3]|-1}|{i_block[4]|-1}|{i_block[5]|-1}|{i_block[6]|-1}|{i_block[7]|-1}|{i_block[8]|-1}|{i_block[9]|-1}|{i_block[10]|-1}|{i_block[11]|-1}|{i_block[12]|-1}|{i_block[13]|-1}|{i_block[14]|-1}"]
 
 node0:bc02->inode1
 node1[label="<b1> Bloque Archivos 1|contenido"]
 inode1:i0->node1
+inode3[label="Inodo3|{i_uid|1}|{i_gid|1}|{i_size|0}|{i_atime|08/09/21 20:17:}|{i_ctime|08/09/21 20:17:}|{i_mtime|08/09/21 20:17:}|{i_perm|664}|{i_type|0}|{i_block[0]|<i0>3}|{i_block[1]|<i1>6}|{i_block[2]|-1}|{i_block[3]|-1}|{i_block[4]|-1}|{i_block[5]|-1}|{i_block[6]|-1}|{i_block[7]|-1}|{i_block[8]|-1}|{i_block[9]|-1}|{i_block[10]|-1}|{i_block[11]|-1}|{i_block[12]|-1}|{i_block[13]|-1}|{i_block[14]|-1}"]
+
+node0:bc03->inode3
+node3[label="<b3> Bloque Carpeta 3|{.|<bc30>3}|{..|<bc31>0}|{pru.txt|<bc32>4}|{hola.txt|<bc33>5}"]
+inode3:i0->node3:b3
+inode4[label="Inodo4|{i_uid|1}|{i_gid|1}|{i_size|0}|{i_atime|08/09/21 20:17:}|{i_ctime|08/09/21 20:17:}|{i_mtime|08/09/21 20:17:}|{i_perm|664}|{i_type|1}|{i_block[0]|<i0>4}|{i_block[1]|-1}|{i_block[2]|-1}|{i_block[3]|-1}|{i_block[4]|-1}|{i_block[5]|-1}|{i_block[6]|-1}|{i_block[7]|-1}|{i_block[8]|-1}|{i_block[9]|-1}|{i_block[10]|-1}|{i_block[11]|-1}|{i_block[12]|-1}|{i_block[13]|-1}|{i_block[14]|-1}"]
+
+node3:bc32->inode4
+node4[label="<b4> Bloque Archivos 4|contenido"]
+inode4:i0->node4
+inode5[label="Inodo5|{i_uid|1}|{i_gid|1}|{i_size|0}|{i_atime|08/09/21 20:17:}|{i_ctime|08/09/21 20:17:}|{i_mtime|08/09/21 20:17:}|{i_perm|664}|{i_type|1}|{i_block[0]|<i0>5}|{i_block[1]|-1}|{i_block[2]|-1}|{i_block[3]|-1}|{i_block[4]|-1}|{i_block[5]|-1}|{i_block[6]|-1}|{i_block[7]|-1}|{i_block[8]|-1}|{i_block[9]|-1}|{i_block[10]|-1}|{i_block[11]|-1}|{i_block[12]|-1}|{i_block[13]|-1}|{i_block[14]|-1}"]
+
+node3:bc33->inode5
+node5[label="<b5> Bloque Archivos 5|contenido"]
+inode5:i0->node5
+node6[label="<b6> Bloque Carpeta 6|{.|<bc60>3}|{..|<bc61>0}|{b1.txt|<bc62>6}|{p.txt|<bc63>6}"]
+inode3:i1->node6:b6
+inode6[label="Inodo6|{i_uid|1}|{i_gid|1}|{i_size|0}|{i_atime|08/09/21 20:17:}|{i_ctime|08/09/21 20:17:}|{i_mtime|08/09/21 20:17:}|{i_perm|664}|{i_type|1}|{i_block[0]|<i0>6}|{i_block[1]|-1}|{i_block[2]|-1}|{i_block[3]|-1}|{i_block[4]|-1}|{i_block[5]|-1}|{i_block[6]|-1}|{i_block[7]|-1}|{i_block[8]|-1}|{i_block[9]|-1}|{i_block[10]|-1}|{i_block[11]|-1}|{i_block[12]|-1}|{i_block[13]|-1}|{i_block[14]|-1}"]
+
+node6:bc62->inode6
+node6[label="<b6> Bloque Archivos 6|contenido"]
+inode6:i0->node6
+inode6[label="Inodo6|{i_uid|1}|{i_gid|1}|{i_size|0}|{i_atime|08/09/21 20:17:}|{i_ctime|08/09/21 20:17:}|{i_mtime|08/09/21 20:17:}|{i_perm|664}|{i_type|1}|{i_block[0]|<i0>6}|{i_block[1]|-1}|{i_block[2]|-1}|{i_block[3]|-1}|{i_block[4]|-1}|{i_block[5]|-1}|{i_block[6]|-1}|{i_block[7]|-1}|{i_block[8]|-1}|{i_block[9]|-1}|{i_block[10]|-1}|{i_block[11]|-1}|{i_block[12]|-1}|{i_block[13]|-1}|{i_block[14]|-1}"]
+
+node6:bc63->inode6
+node6[label="<b6> Bloque Archivos 6|contenido"]
+inode6:i0->node6
 
 }

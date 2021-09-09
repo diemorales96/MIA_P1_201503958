@@ -32,7 +32,6 @@ void touch::crearArchivo(string path, string r, string Pname, string cont, int S
 
     listMounted particion;
     particion = mount::recorrerLista(Pname);
-    //Mkdir::Separar(path, ruta);
     FILE *archivo;
     archivo = fopen(particion.path.c_str(), "rb+");
     vector<string> f;
@@ -82,10 +81,8 @@ void touch::crearArchivo(string path, string r, string Pname, string cont, int S
     int padre = 0;
     int apuntador = 0;
     bool creado = false;
-    //For para las palabras que forman la ruta
     for (int i = 1; i < contador; i++)
     {
-        //FOr para los bloques de apuntadores de inodos
         for (int j = 0; j < 15; j++)
         {
             if (aux2.i_block[j] != -1)
@@ -190,7 +187,7 @@ void touch::crearArchivo(string path, string r, string Pname, string cont, int S
                                 //Actualizo los bitmap
                                 //actBI(Bmi, n, 1);
                                 //actBI(Bmb, 3 * n, 1);
-                                nuevaT = mkdir::CInodo(fechaActual, aux.s_blocks_count + 1,'1');
+                                nuevaT = mkdir::CrearInodo(fechaActual, aux.s_blocks_count + 1,'1');
                                 if(contenido2 != "") {
                                     nuevaC = CbloqueC(contenido2);
                                     for(int s = 0; s < nuevaC.contenido.size();s++){
@@ -274,10 +271,10 @@ void touch::crearArchivo(string path, string r, string Pname, string cont, int S
                             creado = true;
                         }else{
                             BloqueCarpetas nuevaCarp;
-                            nuevaCarp= mkdir::CbloqueC(actual,padre);
+                            nuevaCarp= mkdir::CrearBloqueCarpetas(actual,padre);
                             aux.s_blocks_count++;
                             Inodo nuevaT;
-                            nuevaT = mkdir::CInodo(fechaActual, aux.s_blocks_count+1, '1');
+                            nuevaT = mkdir::CrearInodo(fechaActual, aux.s_blocks_count+1, '1');
                             listaChar nuevoA;
 
                             nuevaCarp.b_content[2].b_inodo=aux.s_inodes_count+1;

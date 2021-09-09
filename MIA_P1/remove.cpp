@@ -2,8 +2,12 @@
 #include "mount.h"
 int inodos=0;
 int bloques=0;
-void remove::buscar(string path, string id)
+void remove::buscar(string path, string id,bool aceptado)
 {
+    if(!aceptado){
+        cout<<"Usuario No Logeado"<<endl;
+        return;
+    }
     vector<string> ruta;
     listMounted particion;
     particion = mount::recorrerLista(id);
@@ -113,6 +117,7 @@ void remove::buscar(string path, string id)
         fseek(archivo,inicioP,SEEK_SET);
         fwrite(&aux,sizeof (SuperBloque),1,archivo);
         fclose(archivo);
+        cout<<"Elemento eliminado con exito"<<endl;
     }else{
         cout<<"NO se encontro la carpeta de inicio"<<endl;
         return;

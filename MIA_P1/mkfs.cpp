@@ -52,10 +52,6 @@ void mkfs::Formato_ext2(string id, string tipo) {
     strftime(fechaActual,16,"%d/%m/%y %H:%M:%S",tlocal);
 
     SuperBloque Sbloque;
-    //SuperBloque Sbloque2;
-    //fseek(archivo,inicio_P,SEEK_SET);
-
-
     Sbloque.s_filesystem_type=2;
     Sbloque.s_inodes_count=0;
     Sbloque.s_blocks_count=0;
@@ -76,12 +72,9 @@ void mkfs::Formato_ext2(string id, string tipo) {
 
     fseek(archivo,inicio_P,SEEK_SET);
     fwrite(&Sbloque,sizeof(SuperBloque),1,archivo);
-    //fclose(archivo);
-    //archivo=fopen(exis.path.c_str(),"rb+");
+
     fseek(archivo,inicio_P+sizeof(SuperBloque),SEEK_SET);
-    //char ino[n];
-    //char blo[3*n];
-    //fread(&ino, sizeof(ino), 1, archivo);
+
     char inodos[n];
     char bloques[3*n];
     for (int i = 0; i < n; i++)
@@ -108,7 +101,6 @@ void mkfs::Formato_ext2(string id, string tipo) {
     fseek(archivo,inicio_P+sizeof(SuperBloque)+n, SEEK_SET);
     fread(&blo, sizeof(blo), 1, archivo);
 
-    //Toca crear la tabla de inodos y bloque de carpetas
     SuperBloque aux;
     fseek(archivo,inicio_P,SEEK_SET);
     fread(&aux,sizeof(SuperBloque),1,archivo);
@@ -171,7 +163,6 @@ void mkfs::Formato_ext2(string id, string tipo) {
     aux.s_inodes_count++;
     BloqueArchivos NuevoArch;
     strcpy(NuevoArch.b_content,content.c_str());
-    //formula para saber donde va el bloque o inodo: inicio bloque+sizeof(bloque)*countblock
     fseek(archivo,(aux.s_block_start+64*aux.s_blocks_count),SEEK_SET);
     fwrite(&NuevoArch,64,1,archivo);
     aux.s_free_blocks_count--;

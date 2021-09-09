@@ -6,6 +6,18 @@
 
 #IncludeRegexTransform: 
 
+/home/diego/Escritorio/Proyectos/MIA_P1/arbol.cpp
+arbol.h
+/home/diego/Escritorio/Proyectos/MIA_P1/arbol.h
+mount.h
+/home/diego/Escritorio/Proyectos/MIA_P1/mount.h
+
+/home/diego/Escritorio/Proyectos/MIA_P1/arbol.h
+mkdir.h
+/home/diego/Escritorio/Proyectos/MIA_P1/mkdir.h
+string.h
+/home/diego/Escritorio/Proyectos/MIA_P1/string.h
+
 /home/diego/Escritorio/Proyectos/MIA_P1/disco.h
 iostream
 -
@@ -51,24 +63,6 @@ cstdlib
 -
 disco.h
 /home/diego/Escritorio/Proyectos/MIA_P1/disco.h
-
-/home/diego/Escritorio/Proyectos/MIA_P1/find.cpp
-find.h
-/home/diego/Escritorio/Proyectos/MIA_P1/find.h
-mkdir.h
-/home/diego/Escritorio/Proyectos/MIA_P1/mkdir.h
-mount.h
-/home/diego/Escritorio/Proyectos/MIA_P1/mount.h
-vector
--
-
-/home/diego/Escritorio/Proyectos/MIA_P1/find.h
-string.h
-/home/diego/Escritorio/Proyectos/MIA_P1/string.h
-mkdir.h
-/home/diego/Escritorio/Proyectos/MIA_P1/mkdir.h
-vector
--
 
 /home/diego/Escritorio/Proyectos/MIA_P1/mkdir.h
 iostream

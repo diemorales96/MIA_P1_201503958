@@ -1,1 +1,1 @@
-find -Path="/" -name=?.txt
+rep -id=581a -Path=/home/diego/Escritorio/s/reporte1.png -name=tree

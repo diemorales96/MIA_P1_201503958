@@ -124,6 +124,7 @@ CMakeFiles/MIA_P1.dir/parser.cpp.o: \
  ../move.h \
  ../parser.cpp \
  ../parser.h \
+ ../remove.h \
  ../ren.h \
  ../scanner.h \
  ../touch.h

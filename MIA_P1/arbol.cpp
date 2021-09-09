@@ -137,11 +137,11 @@ string arbol::buscarTodo(int siguienteI, int inicioP, FILE *archivo, string repo
     fread(&aux, sizeof(SuperBloque), 1, archivo);
     fseek(archivo, aux.s_inode_start + (sizeof(Inodo) * siguienteI), SEEK_SET);
     fread(&aux2, sizeof(Inodo), 1, archivo);
-    repo += bInodos(aux2, siguienteI)+"\n";
+    repo += buscarInodos(aux2, siguienteI)+"\n";
     if(anterior!=""){
         repo+=anterior+"->inode"+to_string(siguienteI)+"\n";
-        //cout<<repo<<endl;
-        //cout<<"--------------------------------------------------------------------------------------------------"<<endl;
+        cout<<repo<<endl;
+        cout<<"--------------------------------------------------------------------------------------------------"<<endl;
     }
 
     for (int i = 0; i < 15; i++)
@@ -155,9 +155,9 @@ string arbol::buscarTodo(int siguienteI, int inicioP, FILE *archivo, string repo
                 if(aux2.i_type == '0'){
                     fseek(archivo, aux.s_block_start + (64 * aux2.i_block[i]), SEEK_SET);
                     fread(&aux3, 64, 1, archivo);
-                    repo += bBloques(aux3, aux3.b_content[0].b_inodo, aux3.b_content[1].b_inodo, aux2.i_block[i]);
+                    repo += buscarBloques(aux3, aux3.b_content[0].b_inodo, aux3.b_content[1].b_inodo, aux2.i_block[i]);
                     repo += "inode" + to_string(aux3.b_content[0].b_inodo) + ":i" + to_string(i)+"->node"+to_string(aux2.i_block[i])+":b"+to_string(aux2.i_block[i])+"\n";
-                    //cout << repo << endl;
+                    cout << repo << endl;
 
                     for (int j = 0; j < 4; j++)
                     {
@@ -167,8 +167,8 @@ string arbol::buscarTodo(int siguienteI, int inicioP, FILE *archivo, string repo
                                 siguienteI = aux3.b_content[j].b_inodo;
                                 string n="node"+to_string(aux2.i_block[i])+":bc"+to_string(aux2.i_block[i])+to_string(j);
                                 repo = buscarTodo(siguienteI,inicioP,archivo,repo,n);
-                                //cout<<repo<<endl;
-                                //cout <<"------------------------aqui-------------------------------"<<endl;
+                                cout<<repo<<endl;
+                                cout <<"------------------------aqui-------------------------------"<<endl;
                             }
                         }
                     }
@@ -176,10 +176,10 @@ string arbol::buscarTodo(int siguienteI, int inicioP, FILE *archivo, string repo
                     BloqueArchivos contenido;
                     fseek(archivo,aux.s_block_start+(64*aux2.i_block[i]),SEEK_SET);
                     fread(&contenido,64,1,archivo);
-                    repo+=bArchivos(contenido,aux2.i_block[i]);
+                    repo+=buscarArchivos(aux2.i_block[i]);
                     repo+="inode"+to_string(siguienteI)+":i"+to_string(i)+"->node"+to_string(aux2.i_block[i])+"\n";
-                    //cout <<repo<<endl;
-                    //cout <<"-----------------------------------------------------------"<<endl;
+                    cout <<repo<<endl;
+                    cout <<"-----------------------------------------------------------"<<endl;
                 }
             }
         }else{
@@ -189,7 +189,7 @@ string arbol::buscarTodo(int siguienteI, int inicioP, FILE *archivo, string repo
     return repo;
 }
 
-string arbol::bInodos(Inodo tabla, int inodo)
+string arbol::buscarInodos(Inodo tabla, int inodo)
 {
     string fecha(tabla.i_atime);
     string fecha2(tabla.i_ctime);
@@ -217,7 +217,7 @@ string arbol::bInodos(Inodo tabla, int inodo)
     return repo;
 }
 
-string arbol::bBloques(BloqueCarpetas bloque, int actual, int padre, int Nbloque)
+string arbol::buscarBloques(BloqueCarpetas bloque, int actual, int padre, int Nbloque)
 {
     string repo = "";
     repo += "node" + to_string(Nbloque) + "[label=\"<b" + to_string(Nbloque) + "> Bloque Carpeta " + to_string(Nbloque) + "|";
@@ -235,7 +235,7 @@ string arbol::bBloques(BloqueCarpetas bloque, int actual, int padre, int Nbloque
     return repo;
 }
 
-string arbol::bArchivos(BloqueArchivos archivo,int Nbloque)
+string arbol::buscarArchivos(int Nbloque)
 {
     string repo="";
     repo+="node"+to_string(Nbloque)+"[label=\"<b"+to_string(Nbloque)+"> Bloque Archivos "+to_string(Nbloque)+"|contenido\"]\n";

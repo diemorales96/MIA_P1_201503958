@@ -10,7 +10,7 @@
 using namespace std;
 class remove {
 public:
-    static void buscar(string path, string id);
+    static void buscar(string path, string id,bool aceptado);
     static void buscarTodo(int siguienteI, int inicioP, FILE *archivo);
 };
 

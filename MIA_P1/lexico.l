@@ -23,7 +23,7 @@ TkNumero        {Digito}+("."{Digito}+)?
 
 Letra           [a-zA-ZZñÑáéíóúÁÉÍÓÚ]
 
-Id              (({Digito}+)|{Letra})({Letra}|"_"|{Digito})*
+Id              (({Digito}+)|{Letra})({Letra}|"_"|{Digito}|\.)*
 
 texto           \"[^\n"]+\"
 
@@ -110,6 +110,8 @@ Comentario	    "#"[^\r\n]*[^\r\n]
 "tree"              {   return (Tree);  }
 "-root"             {   return (Root);  }
 "inode"             {   return (Inode); }
+"rm"                {   return (Rm);    }
+
 
 "cat"               {   return (Cat);   }
 "-file"             {   return (File);  }

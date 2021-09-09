@@ -23,6 +23,8 @@
 #include <vector>
 #include "edit.h"
 #include "inodos.h"
+#include "remove.h"
+
 using namespace std;
 
 
@@ -67,6 +69,9 @@ static string pathMove = "", destMove = "";
 
 static int pathEd = 0, stdinEd = 0, contEd = 0;
 static string pathEdit = "", contEdit = "";
+
+static int pathRem = 0;
+static string pathRemove = "";
 
 
 static int fileC = 0;
@@ -121,7 +126,7 @@ int yyerror(const char* mens){
 %token<TEXT>  Cat File
 %token<TEXT>  Mv Dest
 %token<TEXT>  Edit
-
+%token<TEXT>  Rm
 
 //****************************** NO TERMINALES
 
@@ -158,6 +163,8 @@ int yyerror(const char* mens){
 
 %type<TEXT> EDIT CUERPO_EDIT COMMAND_EDIT
 
+%type<TEXT> RM CUERPO_RM COMMAND_RM
+
 %start S
 
 
@@ -189,7 +196,8 @@ SENTENCIAS      	: MKDISK	{}
 			| CAT		{}
 			| LOGOUT	{}
 			| MV		{}
-			| EDIT		{};
+			| EDIT		{}
+			| RM 		{};
 
 //--------------------------------------MKDISK---------------------------------------------------------
 MKDISK          	: Mkdisk CUERPO_MKDISK    {
@@ -669,5 +677,22 @@ CUERPO_EDIT		: CUERPO_EDIT COMMAND_EDIT	{}
 COMMAND_EDIT		: Path TIgual DIRECCION		{ pathEd = 1; pathEdit = pathMount;}
 			| Cont TIgual DIRECCION		{ contEd = 1; contEdit = pathMount; }
 			| Stdin				{ stdinEd = 1; };
+
+RM			: Rm CUERPO_RM			{
+	if(pathRem == 1){
+		if(comDisc == 1){
+			pathRemove = disco::quitarComillas(pathRemove);
+			remove::buscar(pathRemove,idLogin,aceptado);
+		}else{
+			remove::buscar(pathRemove,idLogin,aceptado);
+		}
+	}
+};
+
+CUERPO_RM		: CUERPO_RM COMMAND_RM		{}
+			| COMMAND_RM			{};
+
+COMMAND_RM 		: Path TIgual DIRECCION		{ pathRem = 1; pathRemove = pathMount; };
+
 
 %%

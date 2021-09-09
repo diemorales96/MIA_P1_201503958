@@ -10,8 +10,7 @@ void cat::ContentA(string path, string id,bool entra)
         cout<<"Usuario No Logeado"<<endl;
         return;
     }
-    //inodos::Reporte("/home/diego/Escritorio/s/img6.png","581a");
-    //remove::buscar("/home",id);
+
     vector <string> f;
     listMounted particion;
     particion = mount::recorrerLista(id);
@@ -19,7 +18,6 @@ void cat::ContentA(string path, string id,bool entra)
     archivo = fopen(particion.path.c_str(), "rb");
     f = mkdir::split(path,'/');
     int contador = f.size();
-    //string name = ruta[contador - 1];
     MBR mbr;
     rewind(archivo);
     fread(&mbr, sizeof(mbr), 1, archivo);
@@ -58,9 +56,7 @@ void cat::ContentA(string path, string id,bool entra)
     fread(&aux2, sizeof(Inodo), 1, archivo);
     bool encontrado = false;
     int siguienteI = 0;
-    int actual = 0;
-    int padre = 0;
-    int apuntador = 0;
+
     for (int i = 1; i < contador; i++)
     {
         encontrado = false;

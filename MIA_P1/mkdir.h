@@ -14,8 +14,8 @@ public:
     static string Separar(string path, int *content);
     static string Separar2(string path);
     static void Bitmap(char *bm, int n, int veces);
-    static Inodo CInodo(char fechaActual[], int bloque,char tipo);
-    static BloqueCarpetas CbloqueC(int actual, int padre);
+    static Inodo CrearInodo(char fechaActual[], int bloque,char tipo);
+    static BloqueCarpetas CrearBloqueCarpetas(int actual, int padre);
     static BloqueApuntadores Crearapuntador();
     static void ReporteSuperBloque(string id, string path);
 

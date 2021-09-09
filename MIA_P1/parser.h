@@ -113,7 +113,8 @@ extern int yydebug;
     File = 319,
     Mv = 320,
     Dest = 321,
-    Edit = 322
+    Edit = 322,
+    Rm = 323
   };
 #endif
 
@@ -121,11 +122,11 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 88 "parser.y"
+#line 93 "parser.y"
 
     char TEXT [256];
 
-#line 129 "parser.h"
+#line 130 "parser.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

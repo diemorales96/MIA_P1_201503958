@@ -1,7 +1,7 @@
 #include "ren.h"
 #include "mount.h"
 #include "mkdir.h"
-
+#include <vector>
 
 void ren::cambiarNombre(string path, string nombreC,string id,bool entra){
     if(!entra){
@@ -10,12 +10,14 @@ void ren::cambiarNombre(string path, string nombreC,string id,bool entra){
     }
 
     int n = 0;
-    string ruta[50];
+    vector<string> ruta;
+    ruta = mkdir::split(path,'/');
     listMounted particion;
     particion = mount::recorrerLista(id);
     FILE *archivo;
+
     archivo = fopen(particion.path.c_str(), "rb+");
-    int contador = 0;
+    int contador = ruta.size();
     MBR mbr;
     rewind(archivo);
     fread(&mbr, sizeof(mbr), 1, archivo);
@@ -53,12 +55,8 @@ void ren::cambiarNombre(string path, string nombreC,string id,bool entra){
     fseek(archivo, aux.s_inode_start, SEEK_SET);
     fread(&aux2, sizeof(Inodo), 1, archivo);
     bool encontrado = false;
-    int siguienteI = 0;
-    int actual = 0;
-    int padre = 0;
-    int apuntador = 0;
     int x = 0, z = 0;
-    for (int i = 0; i < contador; i++) {
+    for (int i = 1; i < contador; i++) {
         for (int j = 0; j < 15; j++) {
             if (aux2.i_block[j] != -1) {
                 if (j < 12) {
@@ -75,21 +73,27 @@ void ren::cambiarNombre(string path, string nombreC,string id,bool entra){
                         }
                         if (nombreArchivo == ruta[i]) {
                             x = k;
-                            z = j;
+                            z = aux2.i_block[j];
                             encontrado = true;
                         }
                     }
-
-
-
+                    if(encontrado){
+                        fseek(archivo, aux.s_inode_start + (sizeof(Inodo)*aux3.b_content[x].b_inodo), SEEK_SET);
+                        fread(&aux2, sizeof(Inodo), 1, archivo);
+                        break;
+                    }
                 }
+            }else{
+                break;
             }
         }
         if((encontrado) && ((i+1) == contador)){
             strcpy(aux3.b_content[x].b_name,nombreC.c_str());
-            fseek(archivo, aux.s_block_start + (64 * aux2.i_block[z]), SEEK_SET);
+            fseek(archivo, aux.s_block_start + (64 * z), SEEK_SET);
             fwrite(&aux3,64,1,archivo);
             fclose(archivo);
+        }else{
+            encontrado = false;
         }
     }
 

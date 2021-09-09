@@ -188,7 +188,7 @@ void move::teleport(string path, string destino,string id,bool entra) {
                 }else{
                     if(k < 12){
                         BloqueCarpetas NuevaC;
-                        NuevaC = mkdir::CbloqueC(actual,padre);
+                        NuevaC = mkdir::CrearBloqueCarpetas(actual,padre);
                         NuevaC.b_content[2].b_inodo = referencia;
                         strcpy(NuevaC.b_content[2].b_name,nameMov.c_str());
                         aux2.i_block[k] = aux.s_blocks_count + 1;

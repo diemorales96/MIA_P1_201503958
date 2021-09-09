@@ -9,9 +9,9 @@ class arbol {
 public:
     static void Reporte(string id, string path, string inicio);
     static string buscarTodo(int siguienteI, int inicioP, FILE *archivo, string repo,string anterior);
-    static string bInodos( Inodo tabla, int inodo);
-    static string bBloques(BloqueCarpetas bloque, int actual, int padre, int Nbloque);
-    static string bArchivos(BloqueArchivos archivo,int Nbloque);
+    static string buscarInodos( Inodo tabla, int inodo);
+    static string buscarBloques(BloqueCarpetas bloque, int actual, int padre, int Nbloque);
+    static string buscarArchivos(int Nbloque);
 };
 
 

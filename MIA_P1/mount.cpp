@@ -65,10 +65,7 @@ void mount::montar(string path, string name) {
                     }
 
                 }
-
-                //-----NEXT----
                 if(mbrtemp.mbr_partition[1].part_status =='V' && partMontar==0){
-
                     if(strcmp(mbrtemp.mbr_partition[1].part_name,name.c_str())==0 ){
 
                         listMounted disco;
@@ -280,7 +277,6 @@ void mount::agregarDisco(string nombreDisco, string path) {
 
 int mount::agregarParticion(string partName, listMounted disco) {
 
-    //Hacemos una busqueda a traves del disco
     for (int i = 0; i < listaMontados.size(); i++) {
         if(listaMontados[i].nombreDisco == disco.nombreDisco){
             //Visualizamos las particiones montadas si son halladas.
@@ -309,7 +305,6 @@ int mount::agregarParticion(string partName, listMounted disco) {
 int mount::particionMontada(string name, listMounted disco) {//Realizamos una busqueda en el disco
     for (int i = 0; i < listaMontados.size(); i++) {
         if(listaMontados[i].nombreDisco == disco.nombreDisco){
-            //En caso de hallarlas, las visualizamos
             if(listaMontados[i].listMountedPartitions.size() != 0){
                 for (int j = 0; j < listaMontados[i].listMountedPartitions.size(); j++) {
                     if(listaMontados[i].listMountedPartitions[j].nombrePart == name){
@@ -324,9 +319,7 @@ int mount::particionMontada(string name, listMounted disco) {//Realizamos una bu
 
 
 void mount::mostrarParticiones() {
-    //Buscamos en el disco
     for (int i = 0; i < listaMontados.size(); i++) {
-        //procedemos a mostrar las particiones que ya estan monatadas
         for (int j = 0; j < listaMontados[i].listMountedPartitions.size(); j++) {
             cout << " " << listaMontados[i].nombreDisco <<" | "<< listaMontados[i].listMountedPartitions[j].nombrePart<<" | "<< " 58" << listaMontados[i].num<< listaMontados[i].listMountedPartitions[j].letra<< endl;
         }

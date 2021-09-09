@@ -11,8 +11,6 @@ void mkdir::crearCarpeta(string path, string p, string Pname,string id,bool acce
         return;
     }
 
-
-
     listMounted particion;
     particion = mount::recorrerLista(id);
 
@@ -183,8 +181,8 @@ void mkdir::crearCarpeta(string path, string p, string Pname,string id,bool acce
                                 //Actualizo los bitmap
                                 //actBI(Bmi, n, 1);
                                 //actBI(Bmb, 3 * n, 1);
-                                nuevaT = CInodo(fechaActual, aux.s_blocks_count + 1,'0');
-                                nuevaC = CbloqueC(aux.s_inodes_count + 1, actual);
+                                nuevaT = CrearInodo(fechaActual, aux.s_blocks_count + 1,'0');
+                                nuevaC = CrearBloqueCarpetas(aux.s_inodes_count + 1, actual);
                                 strcpy(aux3.b_content[k].b_name, f[i].c_str());
                                 aux3.b_content[k].b_inodo = aux.s_inodes_count + 1;
 
@@ -231,12 +229,12 @@ void mkdir::crearCarpeta(string path, string p, string Pname,string id,bool acce
                         //actBI(Bmi, n, 1);
                         //actBI(Bmb, 3 * n, 2);
                         //Bloque de carpetas saliente del inodo revisado
-                        nuevaC = CbloqueC(actual, padre);
+                        nuevaC = CrearBloqueCarpetas(actual, padre);
                         //Bloque de carpetas saliente del nuevo inodo
-                        nuevaC2 = CbloqueC(aux.s_inodes_count + 1, actual);
+                        nuevaC2 = CrearBloqueCarpetas(aux.s_inodes_count + 1, actual);
                         nuevaC.b_content[2].b_inodo = aux.s_inodes_count + 1;
                         strcpy(nuevaC.b_content[2].b_name, f[i].c_str());
-                        nuevaT = CInodo(fechaActual, aux.s_blocks_count + 2,'0');
+                        nuevaT = CrearInodo(fechaActual, aux.s_blocks_count + 2,'0');
                         fseek(archivo, aux.s_inode_start + (sizeof(Inodo) * (aux.s_inodes_count + 1)), SEEK_SET);
 
                         fwrite(&nuevaT, sizeof(Inodo), 1, archivo);
@@ -294,11 +292,11 @@ void mkdir::crearCarpeta(string path, string p, string Pname,string id,bool acce
                                 Bitmap(Bmi, n, 1);
                                 Bitmap(Bmb, 3 * n, 2);
                                 //Bloque de carpetas saliente del bloque de apuntadores
-                                nuevaC = CbloqueC(aux2.i_block[j], -1);
+                                nuevaC = CrearBloqueCarpetas(aux2.i_block[j], -1);
                                 strcpy(nuevaC.b_content[0].b_name,f[i].c_str());
                                 //Bloque de carpetas saliente del nuevo inodo
-                                nuevaC2 = CbloqueC(aux.s_inodes_count + 1, actual);
-                                nuevaT = CInodo(fechaActual, aux.s_blocks_count + 2,'0');
+                                nuevaC2 = CrearBloqueCarpetas(aux.s_inodes_count + 1, actual);
+                                nuevaT = CrearInodo(fechaActual, aux.s_blocks_count + 2,'0');
                                 fseek(archivo, aux.s_inode_start + (sizeof(Inodo) * (aux.s_inodes_count + 1)), SEEK_SET);
                                 fwrite(&nuevaT, sizeof(Inodo), 1, archivo);
                                 fseek(archivo, aux.s_block_start + (64 * (aux.s_blocks_count + 1)), SEEK_SET);
@@ -332,13 +330,13 @@ void mkdir::crearCarpeta(string path, string p, string Pname,string id,bool acce
                         nuevoAp = Crearapuntador();
                         nuevoAp.b_pointers[0] = aux.s_blocks_count + 2;
                         BloqueCarpetas nuevaC;
-                        nuevaC = CbloqueC(-1, -1);
+                        nuevaC = CrearBloqueCarpetas(-1, -1);
                         nuevaC.b_content[0].b_inodo = aux.s_inodes_count + 1;
                         strcpy(nuevaC.b_content[0].b_name, f[i].c_str());
                         BloqueCarpetas nuevaC2;
-                        nuevaC2 = CbloqueC(aux.s_inodes_count + 1, actual);
+                        nuevaC2 = CrearBloqueCarpetas(aux.s_inodes_count + 1, actual);
                         Inodo nuevaT;
-                        nuevaT = CInodo(fechaActual, aux.s_blocks_count + 3,'0');
+                        nuevaT = CrearInodo(fechaActual, aux.s_blocks_count + 3,'0');
                         fseek(archivo, aux.s_inode_start + (sizeof(Inodo) * (aux.s_inodes_count + 1)), SEEK_SET);
                         fwrite(&nuevaT, sizeof(Inodo), 1, archivo);
                         fseek(archivo, aux.s_block_start + (64 * (aux.s_blocks_count + 1)), SEEK_SET);
@@ -389,7 +387,7 @@ vector<string> mkdir::split(string str, char pattern)
     return resultados;
 }
 
-BloqueCarpetas mkdir::CbloqueC(int actual, int padre)
+BloqueCarpetas mkdir::CrearBloqueCarpetas(int actual, int padre)
 {
     BloqueCarpetas nuevaC;
     if (padre != -1)
@@ -418,7 +416,7 @@ BloqueCarpetas mkdir::CbloqueC(int actual, int padre)
     }
 }
 
-Inodo mkdir::CInodo(char fechaActual[], int bloque,char tipo)
+Inodo mkdir::CrearInodo(char fechaActual[], int bloque,char tipo)
 {
     Inodo tablainodos;
 
